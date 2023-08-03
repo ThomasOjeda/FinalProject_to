@@ -1,0 +1,83 @@
+@import "./colors";
+
+@function color($color-name) {
+  @return map-get($map: $colors, $key: $color-name);
+}
+
+@mixin light-theme($element) {
+  @if $element == "icon" {
+    filter: invert(0%)
+      sepia(6%)
+      saturate(58%)
+      hue-rotate(345deg)
+      brightness(91%)
+      contrast(73%);
+  }
+  @if $element == "button" {
+    border-color: color("black");
+    color: color("black");
+  }
+  @if $element == "body" {
+    background-color: color("white");
+    color: color("black");
+  }
+  @if $element == "task" {
+    background-color: color("black-10");
+  }
+  @if $element == "task-form" {
+    background-color: color("black-10");
+    backdrop-filter: blur(0.5rem) saturate(150%);
+  }
+  @if $element == "task-input" {
+    color: color("black");
+  }
+  @if $element == "divider" {
+    background-color: color("black-10");
+  }
+}
+
+@mixin dark-theme($element) {
+  @if $element == "icon" {
+    filter: invert(100%)
+      sepia(0%)
+      saturate(0%)
+      hue-rotate(10deg)
+      brightness(102%)
+      contrast(101%);
+  }
+  @if $element == "button" {
+    border-color: color("white");
+    color: color("white");
+  }
+  @if $element == "body" {
+    background-color: color("black");
+    color: color("white");
+  }
+  @if $element == "task" {
+    background-color: color("white-10");
+  }
+  @if $element == "task-form" {
+    background-color: color("white-10");
+  }
+  @if $element == "task-input" {
+    color: color("white");
+  }
+  @if $element == "divider" {
+    background-color: color("white-10");
+  }
+}
+
+@mixin theme($element, $user-choice: "theme-system") {
+  @if ($user-choice == "theme-system") {
+    @include light-theme($element);
+    @media (prefers-color-scheme: dark) {
+      @include dark-theme($element);
+    }
+  }
+  @if ($user-choice == "theme-light") {
+    @include light-theme($element);
+  }
+  @if ($user-choice == "theme-dark") {
+    @include dark-theme($element);
+  }
+}

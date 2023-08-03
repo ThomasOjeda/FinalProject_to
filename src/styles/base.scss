@@ -1,0 +1,48 @@
+@import "theme";
+
+@mixin margins() {
+  margin: 0 1.5rem;
+}
+
+@mixin center-x-y($justify: center, $align: center) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin padding() {
+  padding: 0.5rem;
+}
+
+@mixin max-width() {
+  max-width: 32rem;
+}
+
+@mixin visible-borders() {
+  border: 0.0625rem solid;
+  border-radius: 0.25rem;
+}
+
+@mixin invisible-borders() {
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.body-theme-system {
+  @include theme("body", "theme-system");
+}
+
+.body-theme-light {
+  @include theme("body", "theme-light");
+}
+
+.body-theme-dark {
+  @include theme("body", "theme-dark");
+}
