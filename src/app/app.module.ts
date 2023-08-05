@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
+import { ProjectModule } from './features/project/project.module';
 
 @NgModule({
   declarations: [AppComponent, PlaceholderComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule],
+  imports: [BrowserModule, AppRoutingModule, CoreModule, ProjectModule],
   providers: [],
   bootstrap: [AppComponent],
 })
