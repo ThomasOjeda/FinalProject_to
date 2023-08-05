@@ -1,8 +1,8 @@
 <header>
   <nav>
     <ol>
-      <li *ngFor="let segment of currentRoute">
-        <a [routerLink]="[segment]">{{ segment }}</a>
+      <li *ngFor="let segment of currentRoute; index as i">
+        <a (click)="composeURL(i)">{{ segment }}</a>
       </li>
     </ol>
   </nav>
