@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
+import { HomeComponent } from './features/home/home/home.component';
+import { LayoutComponent } from './core/layout/layout.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: LayoutComponent,
     children: [
       {
         path: '',
-        component: PlaceholderComponent,
+        component: HomeComponent,
       },
       {
         path: 'my-projects',
