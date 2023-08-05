@@ -4,6 +4,7 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { HomeComponent } from './features/home/home/home.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { MyProjectsComponent } from './features/project/my-projects/my-projects.component';
+import { SettingsComponent } from './features/settings/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'settings',
-        component: PlaceholderComponent,
+        component: SettingsComponent,
       },
     ],
   },
