@@ -1,3 +1,11 @@
-<p>header works!</p>
+<header>
+  <nav>
+    <ol>
+      <li *ngFor="let segment of currentRoute">
+        <a [routerLink]="[segment]">{{ segment }}</a>
+      </li>
+    </ol>
+  </nav>
+</header>
 
-{{ this.title | json }}
+<p>header works!</p>

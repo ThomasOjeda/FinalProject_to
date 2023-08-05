@@ -7,14 +7,16 @@ import { Event, NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  title: string[] = [];
+  currentRoute: string[] = [];
 
   constructor(private r: Router) {}
 
   ngOnInit() {
     this.r.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        this.title = event.urlAfterRedirects.split('/');
+        let cr = event.urlAfterRedirects.split('/');
+        cr.shift();
+        this.currentRoute = cr;
       }
     });
   }
