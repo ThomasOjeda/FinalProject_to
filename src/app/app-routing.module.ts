@@ -12,7 +12,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
+        path: 'home',
         component: HomeComponent,
       },
       {
@@ -38,6 +38,11 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
       },
     ],
   },
