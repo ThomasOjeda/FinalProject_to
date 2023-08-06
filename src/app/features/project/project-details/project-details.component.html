@@ -1,1 +1,11 @@
-<p>project-details works!</p>
+<section>
+  <header>
+    <h1>Project details</h1>
+  </header>
+
+  <ul>
+    <li *ngFor="let epic of epicList">
+      {{ epic | json }}
+    </li>
+  </ul>
+</section>
