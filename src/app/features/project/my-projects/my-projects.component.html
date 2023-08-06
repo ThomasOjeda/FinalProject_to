@@ -3,9 +3,11 @@
     <h1>my projects section</h1>
   </header>
 
-  <ul>
+  <ul *ngIf="projectList.length > 0">
     <li *ngFor="let project of projectList">
       {{ project | json }}
     </li>
   </ul>
+
+  <p *ngIf="projectList.length <= 0">No projects available</p>
 </section>
