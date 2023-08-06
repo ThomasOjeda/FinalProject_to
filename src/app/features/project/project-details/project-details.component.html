@@ -3,9 +3,11 @@
     <h1>Project details</h1>
   </header>
 
-  <ul>
+  <ul *ngIf="epicList.length > 0">
     <li *ngFor="let epic of epicList">
       {{ epic | json }}
     </li>
   </ul>
+
+  <p *ngIf="epicList.length <= 0">No epics found</p>
 </section>
