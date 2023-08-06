@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Event, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { RouteSegmentsService } from 'src/app/features/project/services/route-segments.service';
 
 @Component({
   selector: 'app-header',
@@ -9,29 +9,21 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   currentRoute: string[] = [];
-  routerSubscription: Subscription = new Subscription();
-  constructor(private routerService: Router) {}
-
+  currentRouteSubscription: Subscription = new Subscription();
+  constructor(private routesSegmentsService: RouteSegmentsService) {}
   ngOnInit() {
-    let cr = this.routerService.url.split('/');
-    cr.shift();
-    this.currentRoute = cr;
-    this.routerSubscription = this.routerService.events.subscribe(
-      (event: Event) => {
-        if (event instanceof NavigationEnd) {
-          let cr = event.urlAfterRedirects.split('/');
-          cr.shift();
-          this.currentRoute = cr;
-        }
-      }
-    );
+    this.currentRouteSubscription = this.routesSegmentsService
+      .getCurrentRoute$()
+      .subscribe((cr) => (this.currentRoute = cr));
   }
 
   composeURL(index: number) {
-    this.routerService.navigate(this.currentRoute.slice(0, index + 1));
+    this.routesSegmentsService.navigateTo(
+      this.currentRoute.slice(0, index + 1)
+    );
   }
 
   ngOnDestroy() {
-    this.routerSubscription.unsubscribe();
+    this.currentRouteSubscription.unsubscribe();
   }
 }
