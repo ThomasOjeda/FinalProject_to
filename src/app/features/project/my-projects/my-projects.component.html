@@ -5,7 +5,7 @@
 
   <ul *ngIf="projectList.length > 0">
     <li *ngFor="let project of projectList">
-      {{ project | json }}
+      <a (click)="handleProjectSelection(project._id)">{{ project | json }}</a>
     </li>
   </ul>
 

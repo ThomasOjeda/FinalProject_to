@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Project } from 'src/models/project/project';
 import { ProjectService } from '../services/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-projects',
@@ -10,7 +11,11 @@ import { ProjectService } from '../services/project.service';
 export class MyProjectsComponent {
   projectList: Project[] = [];
 
-  constructor(projectService: ProjectService) {
+  constructor(projectService: ProjectService, private router: Router) {
     this.projectList = projectService.getProjects();
+  }
+
+  handleProjectSelection(projectId: string) {
+    this.router.navigateByUrl('/my-projects/' + projectId);
   }
 }
