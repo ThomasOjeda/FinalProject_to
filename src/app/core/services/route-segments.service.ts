@@ -20,8 +20,9 @@ export class RouteSegmentsService implements OnDestroy {
     private projectService: ProjectService
   ) {
     this.currentRoute = this.routeToArray(this.routerService.url);
+
     this.currentRoute$ = new BehaviorSubject<string[]>(this.currentRoute);
-    this.displayRoute = this.currentRoute;
+    this.displayRoute = [...this.currentRoute];
     this.displayRoute$ = new BehaviorSubject<string[]>(this.displayRoute);
     this.beautifyCurrentRoute();
     this.routerSubscription = this.routerService.events.subscribe(
@@ -29,8 +30,8 @@ export class RouteSegmentsService implements OnDestroy {
         if (event instanceof NavigationEnd) {
           this.currentRoute = this.routeToArray(event.urlAfterRedirects);
           this.currentRoute$.next(this.currentRoute);
-          this.displayRoute = this.currentRoute;
-          this.displayRoute$.next(this.currentRoute);
+          this.displayRoute = [...this.currentRoute];
+          this.displayRoute$.next(this.displayRoute);
           this.beautifyCurrentRoute();
         }
       }
