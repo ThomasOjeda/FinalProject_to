@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Event, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { ProjectService } from './project.service';
+import { ProjectService } from 'src/app/features/project/services/project.service';
 
 @Injectable({
   providedIn: 'root',

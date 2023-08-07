@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/models/project/project';
-import { EpicService } from '../services/epic.service';
 import { Epic } from 'src/models/project/epic';
+import { EpicService } from '../../epic/services/epic.service';
 
 @Component({
   selector: 'app-project-details',

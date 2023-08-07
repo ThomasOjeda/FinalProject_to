@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RouteSegmentsService } from 'src/app/features/project/services/route-segments.service';
+import { RouteSegmentsService } from '../services/route-segments.service';
 
 @Component({
   selector: 'app-header',
