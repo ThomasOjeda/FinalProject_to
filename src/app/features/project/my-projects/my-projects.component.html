@@ -5,7 +5,12 @@
 
   <ul *ngIf="projectList.length > 0">
     <li *ngFor="let project of projectList">
-      <a (click)="handleProjectSelection(project._id)">{{ project | json }}</a>
+      <app-summary-card
+        [name]="project.name"
+        [description]="project.description"
+        [icon]="project.icon"
+        (click)="handleProjectSelection(project._id)"
+      ></app-summary-card>
     </li>
   </ul>
 

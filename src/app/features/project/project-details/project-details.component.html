@@ -5,7 +5,11 @@
 
   <ul *ngIf="epicList.length > 0">
     <li *ngFor="let epic of epicList">
-      {{ epic | json }}
+      <app-summary-card
+        [name]="epic.name"
+        [description]="epic.description"
+        [icon]="epic.icon"
+      ></app-summary-card>
     </li>
   </ul>
 
