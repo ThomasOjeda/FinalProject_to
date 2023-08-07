@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/models/project/project';
 import { ProjectService } from '../services/project.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-my-projects',
   templateUrl: './my-projects.component.html',
   styleUrls: ['./my-projects.component.scss'],
 })
-export class MyProjectsComponent {
+export class MyProjectsComponent implements OnInit {
   projectList: Project[] = [];
-
-  constructor(projectService: ProjectService, private router: Router) {
-    this.projectList = projectService.getProjects();
+  projectListSubscription: Subscription = new Subscription();
+  constructor(private projectService: ProjectService, private router: Router) {}
+  ngOnInit(): void {
+    this.projectService.getProjects().subscribe((projects) => {
+      this.projectList = projects;
+    });
   }
 
   handleProjectSelection(projectId: string) {
