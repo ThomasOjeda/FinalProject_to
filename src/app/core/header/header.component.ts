@@ -8,22 +8,20 @@ import { RouteSegmentsService } from 'src/app/features/project/services/route-se
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  currentRoute: string[] = [];
-  currentRouteSubscription: Subscription = new Subscription();
+  displayRoute: string[] = [];
+  displayRouteSubscription: Subscription = new Subscription();
   constructor(private routesSegmentsService: RouteSegmentsService) {}
   ngOnInit() {
-    this.currentRouteSubscription = this.routesSegmentsService
-      .getCurrentRoute$()
-      .subscribe((cr) => (this.currentRoute = cr));
+    this.displayRouteSubscription = this.routesSegmentsService
+      .getDisplayRoute$()
+      .subscribe((dr) => (this.displayRoute = dr));
   }
 
-  composeURL(index: number) {
-    this.routesSegmentsService.navigateTo(
-      this.currentRoute.slice(0, index + 1)
-    );
+  navigateToSegment(index: number) {
+    this.routesSegmentsService.navigateTo(index + 1);
   }
 
   ngOnDestroy() {
-    this.currentRouteSubscription.unsubscribe();
+    this.displayRouteSubscription.unsubscribe();
   }
 }

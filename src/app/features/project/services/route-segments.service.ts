@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Event, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { ProjectService } from './project.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,20 +13,38 @@ export class RouteSegmentsService implements OnDestroy {
   routerSubscription: Subscription = new Subscription();
 
   displayRoute: string[] = [];
-  displayRoute$!: BehaviorSubject<string[]>; // creamos el subject
+  displayRoute$: BehaviorSubject<string[]>; // creamos el subject
 
-  constructor(private routerService: Router) {
+  constructor(
+    private routerService: Router,
+    private projectService: ProjectService
+  ) {
     this.currentRoute = this.routeToArray(this.routerService.url);
     this.currentRoute$ = new BehaviorSubject<string[]>(this.currentRoute);
-
+    this.displayRoute$ = new BehaviorSubject<string[]>(this.currentRoute);
+    this.beautifyCurrentRoute();
     this.routerSubscription = this.routerService.events.subscribe(
       (event: Event) => {
         if (event instanceof NavigationEnd) {
           this.currentRoute = this.routeToArray(event.urlAfterRedirects);
           this.currentRoute$.next(this.currentRoute);
+          this.displayRoute$.next(this.currentRoute);
+          this.beautifyCurrentRoute();
         }
       }
     );
+  }
+
+  beautifyCurrentRoute() {
+    if (this.currentRoute.length < 2) return;
+
+    this.projectService
+      .getProject(this.currentRoute[1])
+      .subscribe((project) => {
+        this.displayRoute[1] = project.name;
+        this.displayRoute$.next(this.displayRoute);
+      })
+      .unsubscribe();
   }
 
   private routeToArray(r: string): string[] {
@@ -34,15 +53,17 @@ export class RouteSegmentsService implements OnDestroy {
     return cr;
   }
 
-  navigateTo(newRoute: string[]) {
-    this.routerService.navigate(newRoute);
+  navigateTo(segmentIndex: number) {
+    this.routerService.navigate(this.currentRoute.slice(0, segmentIndex));
   }
 
   getCurrentRoute$() {
     return this.currentRoute$.asObservable();
   }
 
-  getDisplayRoute() {}
+  getDisplayRoute$() {
+    return this.displayRoute$.asObservable();
+  }
 
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();

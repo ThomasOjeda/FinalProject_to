@@ -1,13 +1,13 @@
 <header>
   <nav>
     <a
-      *ngIf="currentRoute.length >= 2"
-      (click)="composeURL(currentRoute.length - 2)"
+      *ngIf="displayRoute.length >= 2"
+      (click)="navigateToSegment(displayRoute.length - 2)"
       >Go Back</a
     >
     <ol>
-      <li *ngFor="let segment of currentRoute; index as i">
-        <a (click)="composeURL(i)">{{ segment }}</a>
+      <li *ngFor="let segment of displayRoute; index as i">
+        <a (click)="navigateToSegment(i)">{{ segment }}</a>
       </li>
     </ol>
   </nav>
