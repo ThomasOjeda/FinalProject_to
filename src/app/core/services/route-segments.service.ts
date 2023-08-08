@@ -1,30 +1,37 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Event, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { EpicService } from 'src/app/features/epic/services/epic.service';
 import { ProjectService } from 'src/app/features/project/services/project.service';
+import { StoryService } from 'src/app/features/user-story/services/story.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouteSegmentsService implements OnDestroy {
-  currentRoute: string[] = [];
-  currentRoute$: BehaviorSubject<string[]>; // creamos el subject
+  currentRoute: string[] = []; //Holds the real route segments
+  currentRoute$: BehaviorSubject<string[]>;
 
   routerSubscription: Subscription = new Subscription();
 
-  displayRoute: string[] = [];
-  displayRoute$: BehaviorSubject<string[]>; // creamos el subject
+  displayRoute: string[] = []; //Holds the readable route segments
+  displayRoute$: BehaviorSubject<string[]>;
+
+  projectServiceSubscription: Subscription = new Subscription();
+  epicServiceSubscription: Subscription = new Subscription();
+  storyServiceSubscription: Subscription = new Subscription();
 
   constructor(
     private routerService: Router,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private epicService: EpicService,
+    private storyService: StoryService
   ) {
     this.currentRoute = this.routeToArray(this.routerService.url);
-
     this.currentRoute$ = new BehaviorSubject<string[]>(this.currentRoute);
     this.displayRoute = [...this.currentRoute];
     this.displayRoute$ = new BehaviorSubject<string[]>(this.displayRoute);
-    this.beautifyCurrentRoute();
+    this.beautifyDisplayRoute();
     this.routerSubscription = this.routerService.events.subscribe(
       (event: Event) => {
         if (event instanceof NavigationEnd) {
@@ -32,22 +39,44 @@ export class RouteSegmentsService implements OnDestroy {
           this.currentRoute$.next(this.currentRoute);
           this.displayRoute = [...this.currentRoute];
           this.displayRoute$.next(this.displayRoute);
-          this.beautifyCurrentRoute();
+          this.beautifyDisplayRoute();
         }
       }
     );
   }
 
-  beautifyCurrentRoute() {
+  beautifyDisplayRoute() {
+    //Unsubscribe first to stop previous unfinished requests
+    this.projectServiceSubscription.unsubscribe();
+    this.epicServiceSubscription.unsubscribe();
+    this.storyServiceSubscription.unsubscribe();
+
     if (this.currentRoute.length < 2) return;
 
-    this.projectService
+    this.projectServiceSubscription = this.projectService
       .getProject(this.currentRoute[1])
       .subscribe((project) => {
         this.displayRoute[1] = project.name;
         this.displayRoute$.next(this.displayRoute);
-      })
-      .unsubscribe();
+      });
+
+    if (this.currentRoute.length < 3) return;
+
+    this.epicServiceSubscription = this.epicService
+      .getEpic(this.currentRoute[2])
+      .subscribe((epic) => {
+        this.displayRoute[2] = epic.name;
+        this.displayRoute$.next(this.displayRoute);
+      });
+
+    if (this.currentRoute.length < 4) return;
+
+    this.storyServiceSubscription = this.storyService
+      .getStory(this.currentRoute[3])
+      .subscribe((story) => {
+        this.displayRoute[3] = story.name;
+        this.displayRoute$.next(this.displayRoute);
+      });
   }
 
   private routeToArray(r: string): string[] {
