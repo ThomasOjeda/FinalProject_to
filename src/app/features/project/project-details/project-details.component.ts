@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/models/project/project';
 import { Epic } from 'src/models/project/epic';
 import { EpicService } from '../../epic/services/epic.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../services/project.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class ProjectDetailsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private epicService: EpicService,
-    private activatedRouteService: ActivatedRoute
+    private activatedRouteService: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -28,5 +29,9 @@ export class ProjectDetailsComponent implements OnInit {
         .getProject(projectId)
         .subscribe((project) => (this.project = project))
         .unsubscribe();
+  }
+
+  handleEpicSelection(epicId: string) {
+    this.router.navigate([epicId], { relativeTo: this.activatedRouteService });
   }
 }

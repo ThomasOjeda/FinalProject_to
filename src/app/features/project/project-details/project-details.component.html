@@ -16,6 +16,7 @@
           [name]="epic.name"
           [description]="epic.description"
           [icon]="epic.icon"
+          (click)="handleEpicSelection(epic._id)"
         ></app-summary-card>
       </li>
     </ul>

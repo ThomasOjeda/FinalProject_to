@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/models/project/project';
 import { ProjectService } from '../services/project.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,7 +12,11 @@ import { Subscription } from 'rxjs';
 export class MyProjectsComponent implements OnInit {
   projectList: Project[] = [];
   projectListSubscription: Subscription = new Subscription();
-  constructor(private projectService: ProjectService, private router: Router) {}
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private activatedRouteService: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.projectService.getProjects().subscribe((projects) => {
       this.projectList = projects;
@@ -20,6 +24,8 @@ export class MyProjectsComponent implements OnInit {
   }
 
   handleProjectSelection(projectId: string) {
-    this.router.navigateByUrl('/my-projects/' + projectId);
+    this.router.navigate([projectId], {
+      relativeTo: this.activatedRouteService,
+    });
   }
 }
