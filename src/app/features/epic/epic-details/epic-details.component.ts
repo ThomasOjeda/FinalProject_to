@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Epic } from 'src/models/epic';
 import { EpicService } from '../services/epic.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from 'src/models/story';
 import { StoryService } from '../../user-story/services/story.service';
 
@@ -16,6 +16,7 @@ export class EpicDetailsComponent implements OnInit {
   constructor(
     private epicService: EpicService,
     private storyService: StoryService,
+    private router: Router,
     private activatedRouteService: ActivatedRoute
   ) {}
 
@@ -34,5 +35,9 @@ export class EpicDetailsComponent implements OnInit {
     }
   }
 
-  handleStorySelection(storyId: string) {}
+  handleStorySelection(storyId: string) {
+    this.router.navigate([storyId], {
+      relativeTo: this.activatedRouteService,
+    });
+  }
 }
