@@ -1,17 +1,25 @@
 <section>
-  <header>
-    <h1>Project details</h1>
-  </header>
+  <section>
+    <header>
+      <h2>Project details</h2>
+    </header>
 
-  <ul *ngIf="epicList.length > 0">
-    <li *ngFor="let epic of epicList">
-      <app-summary-card
-        [name]="epic.name"
-        [description]="epic.description"
-        [icon]="epic.icon"
-      ></app-summary-card>
-    </li>
-  </ul>
+    {{ this.project | json }}
+  </section>
+  <section>
+    <header>
+      <h2>Associated Epics</h2>
+    </header>
+    <ul *ngIf="epicList.length > 0">
+      <li *ngFor="let epic of epicList">
+        <app-summary-card
+          [name]="epic.name"
+          [description]="epic.description"
+          [icon]="epic.icon"
+        ></app-summary-card>
+      </li>
+    </ul>
 
-  <p *ngIf="epicList.length <= 0">No epics found</p>
+    <p *ngIf="epicList.length <= 0">No epics found</p>
+  </section>
 </section>
