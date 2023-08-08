@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/models/project';
 import { ProjectService } from '../services/project.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-my-projects',
@@ -18,9 +18,12 @@ export class MyProjectsComponent implements OnInit {
     private activatedRouteService: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe((projects) => {
-      this.projectList = projects;
-    });
+    this.projectService
+      .getProjects()
+      .pipe(take(1))
+      .subscribe((projects) => {
+        this.projectList = projects;
+      });
   }
 
   handleProjectSelection(projectId: string) {

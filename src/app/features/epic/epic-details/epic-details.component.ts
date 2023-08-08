@@ -4,6 +4,7 @@ import { EpicService } from '../services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from 'src/models/story';
 import { StoryService } from '../../user-story/services/story.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-epic-details',
@@ -23,10 +24,14 @@ export class EpicDetailsComponent implements OnInit {
   ngOnInit() {
     let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
-      this.epicService.getEpic(epicId).subscribe((epic) => (this.epic = epic));
+      this.epicService
+        .getEpic(epicId)
+        .pipe(take(1))
+        .subscribe((epic) => (this.epic = epic));
 
       this.storyService
         .getStories(epicId)
+        .pipe(take(1))
         .subscribe((stories) => (this.storyList = stories));
     }
   }

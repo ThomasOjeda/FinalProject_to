@@ -4,7 +4,7 @@ import { Epic } from 'src/models/epic';
 import { EpicService } from '../../epic/services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../services/project.service';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-project-details',
@@ -29,9 +29,11 @@ export class ProjectDetailsComponent implements OnInit {
     if (projectId) {
       this.projectService
         .getProject(projectId)
+        .pipe(take(1))
         .subscribe((project) => (this.project = project));
       this.epicService
         .getEpics(projectId)
+        .pipe(take(1))
         .subscribe((epics) => (this.epicList = epics));
     }
   }
