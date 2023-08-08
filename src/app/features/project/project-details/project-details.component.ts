@@ -24,17 +24,18 @@ export class ProjectDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.epicService
-      .getEpics()
-      .subscribe((epics) => (this.epicList = epics))
-      .unsubscribe();
     let projectId =
       this.activatedRouteService.snapshot.paramMap.get('project-id');
-    if (projectId)
+    if (projectId) {
       this.projectService
         .getProject(projectId)
         .subscribe((project) => (this.project = project))
         .unsubscribe();
+      this.epicService
+        .getEpics(projectId)
+        .subscribe((epics) => (this.epicList = epics))
+        .unsubscribe();
+    }
   }
 
   handleEpicSelection(epicId: string) {

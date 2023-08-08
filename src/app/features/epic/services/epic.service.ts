@@ -38,7 +38,7 @@ export class EpicService {
     });
   }
 
-  getEpics() {
+  getEpics(projectId: string) {
     return this.epicList$.asObservable();
   }
 
