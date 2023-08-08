@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, delay } from 'rxjs';
 import { Project } from 'src/models/project';
 
 @Injectable({
@@ -42,12 +42,16 @@ export class ProjectService {
   }
 
   getProjects() {
-    return this.projectList$.asObservable();
+    return this.projectList$
+      .asObservable()
+      .pipe(delay(Math.floor(Math.random() * 5001)));
   }
 
   getProject(projectId: string) {
     this.project$.next(this.projectList.filter((p) => p._id == projectId)[0]);
 
-    return this.project$.asObservable();
+    return this.project$
+      .asObservable()
+      .pipe(delay(Math.floor(Math.random() * 5001)));
   }
 }

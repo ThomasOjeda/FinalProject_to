@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, delay } from 'rxjs';
 import { Epic } from 'src/models/epic';
 
 @Injectable({
@@ -39,12 +39,16 @@ export class EpicService {
   }
 
   getEpics(projectId: string) {
-    return this.epicList$.asObservable();
+    return this.epicList$
+      .asObservable()
+      .pipe(delay(Math.floor(Math.random() * 5001)));
   }
 
   getEpic(epicId: string) {
     this.epic$.next(this.epicList.filter((e) => e._id == epicId)[0]);
 
-    return this.epic$.asObservable();
+    return this.epic$
+      .asObservable()
+      .pipe(delay(Math.floor(Math.random() * 5001)));
   }
 }

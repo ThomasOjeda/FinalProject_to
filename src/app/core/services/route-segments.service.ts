@@ -99,5 +99,9 @@ export class RouteSegmentsService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
+
+    this.projectServiceSubscription.unsubscribe();
+    this.epicServiceSubscription.unsubscribe();
+    this.storyServiceSubscription.unsubscribe();
   }
 }

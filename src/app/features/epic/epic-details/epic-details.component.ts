@@ -23,15 +23,11 @@ export class EpicDetailsComponent implements OnInit {
   ngOnInit() {
     let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
-      this.epicService
-        .getEpic(epicId)
-        .subscribe((epic) => (this.epic = epic))
-        .unsubscribe();
+      this.epicService.getEpic(epicId).subscribe((epic) => (this.epic = epic));
 
       this.storyService
         .getStories(epicId)
-        .subscribe((stories) => (this.storyList = stories))
-        .unsubscribe();
+        .subscribe((stories) => (this.storyList = stories));
     }
   }
 

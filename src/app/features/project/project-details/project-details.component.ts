@@ -29,12 +29,10 @@ export class ProjectDetailsComponent implements OnInit {
     if (projectId) {
       this.projectService
         .getProject(projectId)
-        .subscribe((project) => (this.project = project))
-        .unsubscribe();
+        .subscribe((project) => (this.project = project));
       this.epicService
         .getEpics(projectId)
-        .subscribe((epics) => (this.epicList = epics))
-        .unsubscribe();
+        .subscribe((epics) => (this.epicList = epics));
     }
   }
 
