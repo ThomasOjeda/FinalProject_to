@@ -1,0 +1,26 @@
+<section>
+  <section>
+    <header>
+      <h2>Epic details</h2>
+    </header>
+
+    {{ this.epic | json }}
+  </section>
+  <section>
+    <header>
+      <h2>Associated User Stories</h2>
+    </header>
+    <ul *ngIf="userStoryList.length > 0">
+      <li *ngFor="let userStory of userStoryList">
+        <app-summary-card
+          [name]="userStory.name"
+          [description]="userStory.description"
+          [icon]="userStory.icon"
+          (click)="handleUserStorySelection(userStory._id)"
+        ></app-summary-card>
+      </li>
+    </ul>
+
+    <p *ngIf="userStoryList.length <= 0">No User Stories found</p>
+  </section>
+</section>

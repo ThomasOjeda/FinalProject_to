@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Epic } from 'src/models/project/epic';
+import { BehaviorSubject } from 'rxjs';
+import { Epic } from 'src/models/epic';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EpicService {
   epicList: Epic[] = [];
+  epicList$: BehaviorSubject<Epic[]>;
+  epic$: BehaviorSubject<Epic>;
   constructor() {
     this.epicList = [
       {
@@ -23,9 +26,25 @@ export class EpicService {
         icon: 'nose',
       },
     ];
+
+    this.epicList$ = new BehaviorSubject<Epic[]>(this.epicList);
+
+    this.epic$ = new BehaviorSubject<Epic>({
+      _id: 'def',
+      project: 'def',
+      name: 'def',
+      description: 'def',
+      icon: 'def',
+    });
   }
 
   getEpics() {
-    return this.epicList;
+    return this.epicList$.asObservable();
+  }
+
+  getEpic(epicId: string) {
+    this.epic$.next(this.epicList.filter((e) => e._id == epicId)[0]);
+
+    return this.epic$.asObservable();
   }
 }

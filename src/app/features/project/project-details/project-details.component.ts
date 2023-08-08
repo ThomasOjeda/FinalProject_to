@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from 'src/models/project/project';
-import { Epic } from 'src/models/project/epic';
+import { Project } from 'src/models/project';
+import { Epic } from 'src/models/epic';
 import { EpicService } from '../../epic/services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../services/project.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-details',
@@ -13,6 +14,8 @@ import { ProjectService } from '../services/project.service';
 export class ProjectDetailsComponent implements OnInit {
   project: Project | undefined;
   epicList: Epic[] = [];
+
+  epicListSubscription: Subscription = new Subscription();
   constructor(
     private projectService: ProjectService,
     private epicService: EpicService,
@@ -21,7 +24,10 @@ export class ProjectDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.epicList = this.epicService.getEpics();
+    this.epicService
+      .getEpics()
+      .subscribe((epics) => (this.epicList = epics))
+      .unsubscribe();
     let projectId =
       this.activatedRouteService.snapshot.paramMap.get('project-id');
     if (projectId)
