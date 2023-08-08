@@ -1,4 +1,4 @@
-export interface UserStory {
+export interface Story {
   _id: string;
   name: string;
   owner?: string;

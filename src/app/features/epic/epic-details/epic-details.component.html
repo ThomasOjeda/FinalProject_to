@@ -8,19 +8,19 @@
   </section>
   <section>
     <header>
-      <h2>Associated User Stories</h2>
+      <h2>Associated Stories</h2>
     </header>
-    <ul *ngIf="userStoryList.length > 0">
-      <li *ngFor="let userStory of userStoryList">
+    <ul *ngIf="storyList.length > 0">
+      <li *ngFor="let story of storyList">
         <app-summary-card
-          [name]="userStory.name"
-          [description]="userStory.description"
-          [icon]="userStory.icon"
-          (click)="handleUserStorySelection(userStory._id)"
+          [name]="story.name"
+          [description]="story.description"
+          [icon]="story.icon"
+          (click)="handleStorySelection(story._id)"
         ></app-summary-card>
       </li>
     </ul>
 
-    <p *ngIf="userStoryList.length <= 0">No User Stories found</p>
+    <p *ngIf="storyList.length <= 0">No Stories found</p>
   </section>
 </section>

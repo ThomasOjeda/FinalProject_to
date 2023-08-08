@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Epic } from 'src/models/epic';
 import { EpicService } from '../services/epic.service';
 import { ActivatedRoute } from '@angular/router';
-import { UserStory } from 'src/models/user-story';
+import { Story } from 'src/models/story';
 
 @Component({
   selector: 'app-epic-details',
@@ -11,7 +11,7 @@ import { UserStory } from 'src/models/user-story';
 })
 export class EpicDetailsComponent implements OnInit {
   epic: Epic | undefined;
-  userStoryList: UserStory[] = [];
+  storyList: Story[] = [];
   constructor(
     private epicService: EpicService,
     private activatedRouteService: ActivatedRoute
@@ -26,5 +26,5 @@ export class EpicDetailsComponent implements OnInit {
         .unsubscribe();
   }
 
-  handleUserStorySelection(userStoryId: string) {}
+  handleStorySelection(storyId: string) {}
 }
