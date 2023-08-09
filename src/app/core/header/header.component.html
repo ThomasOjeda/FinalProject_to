@@ -1,13 +1,27 @@
-<header>
-  <nav>
-    <a
-      *ngIf="displayRoute.length >= 2"
-      (click)="navigateToSegment(displayRoute.length - 2)"
-      >Go Back</a
+<header class="header">
+  <nav class="navigation">
+    <button *ngIf="segments.length <= 0">Menu</button>
+    <button
+      *ngIf="segments.length > 0"
+      (click)="navigateToSegment(segments.length - 2)"
     >
-    <ol>
-      <li *ngFor="let segment of displayRoute; index as i">
-        <a (click)="navigateToSegment(i)">{{ segment }}</a>
+      Go Back
+    </button>
+    <div *ngIf="segments.length <= 0">
+      {{ mainSegment }}
+    </div>
+
+    <ol *ngIf="segments.length > 0" class="segmentList">
+      <li
+        *ngFor="
+          let segment of segments;
+          index as i;
+          last as isLast;
+          first as isFirst
+        "
+      >
+        <a (click)="navigateToSegment(i)" class="segment">{{ segment }}</a>
+        <span *ngIf="!isLast">/</span>
       </li>
     </ol>
   </nav>
