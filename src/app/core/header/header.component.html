@@ -1,6 +1,6 @@
 <header class="header">
   <nav class="navigation">
-    <button *ngIf="segments.length <= 0">Menu</button>
+    <button *ngIf="segments.length <= 0" (click)="openMenu()">Menu</button>
     <button
       *ngIf="segments.length > 0"
       (click)="navigateToSegment(segments.length - 2)"

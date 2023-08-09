@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RouteSegmentsService } from '../services/route-segments.service';
+import { MenuService } from '../services/menu.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,10 @@ export class HeaderComponent implements OnInit {
   mainSegment: string = '';
   segments: string[] = [];
   displayRouteSubscription: Subscription = new Subscription();
-  constructor(private routesSegmentsService: RouteSegmentsService) {}
+  constructor(
+    private routesSegmentsService: RouteSegmentsService,
+    private menuService: MenuService
+  ) {}
   ngOnInit() {
     this.displayRouteSubscription = this.routesSegmentsService
       .getDisplayRoute$()
@@ -23,6 +27,10 @@ export class HeaderComponent implements OnInit {
 
   navigateToSegment(index: number) {
     this.routesSegmentsService.navigateTo(index + 2);
+  }
+
+  openMenu() {
+    this.menuService.openMenu();
   }
 
   ngOnDestroy() {

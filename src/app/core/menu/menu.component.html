@@ -1,6 +1,7 @@
-<aside>
+<aside class="menu" [ngClass]="{ 'open-menu': isOpen }">
   <header>
-    <h1>Welcome to the manager</h1>
+    <button (click)="closeMenu()">Close</button>
+    <h2>Welcome to the manager</h2>
     <figure>
       <img src="" alt="" />
       <caption></caption>
