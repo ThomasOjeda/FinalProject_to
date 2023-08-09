@@ -1,12 +1,20 @@
 <header class="header">
   <nav class="navigation">
-    <button *ngIf="segments.length <= 0" (click)="openMenu()">Menu</button>
-    <button
-      *ngIf="segments.length > 0"
-      (click)="navigateToSegment(segments.length - 2)"
+    <app-custom-button
+      *ngIf="segments.length <= 0"
+      [buttonType]="'icon'"
+      [iconPath]="'/assets/menu-svgrepo-com.svg'"
+      (clickedButtonEvent)="openMenu()"
     >
-      Go Back
-    </button>
+    </app-custom-button>
+    <app-custom-button
+      *ngIf="segments.length > 0"
+      [buttonType]="'icon'"
+      [iconPath]="'/assets/arrow-left-svgrepo-com.svg'"
+      (clickedButtonEvent)="navigateToSegment(segments.length - 2)"
+    >
+    </app-custom-button>
+
     <div *ngIf="segments.length <= 0">
       {{ mainSegment }}
     </div>
