@@ -14,10 +14,10 @@ export class ListComponent implements OnInit, OnDestroy {
   tasksSubscription = new Subscription();
   constructor(private taskService: TaskService) {}
   ngOnInit(): void {
-    /*     this.tasks$ = this.taskService.getTasks$();
+    this.tasks$ = this.taskService.getTasks$();
     this.tasksSubscription = this.tasks$.subscribe(
       (tasks) => (this.taskList = tasks)
-    ); */
+    );
   }
 
   ngOnDestroy() {

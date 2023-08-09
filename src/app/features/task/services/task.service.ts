@@ -13,14 +13,14 @@ export class TaskService {
     this.taskList = [
       {
         _id: '8441as5a8sd465165',
-        name: 'P111',
-        description: 'A dream project',
+        name: 'Tarea1',
+        description: 'This task is not easy :D',
         story: '4848516133654600',
       },
       {
         _id: '987777797877977',
-        name: 'P222',
-        description: 'A postal project',
+        name: 'Tarea2',
+        description: 'The lemons usually fall down the tree',
         story: 'a5da6d4546454484',
       },
     ];
@@ -35,17 +35,30 @@ export class TaskService {
     });
   }
 
-  getProjects() {
+  getTasks$() {
     return this.taskList$
       .asObservable()
       .pipe(delay(Math.floor(Math.random() * 1501)));
   }
 
-  getProject(taskId: string) {
-    this.task$.next(this.taskList.filter((p) => p._id == taskId)[0]);
+  getTask$(taskId: string) {
+    this.task$.next(this.taskList.filter((t) => t._id == taskId)[0]);
 
     return this.task$
       .asObservable()
       .pipe(delay(Math.floor(Math.random() * 1501)));
+  }
+
+  updateTask(updatedTask: Task) {
+    this.taskList[this.taskList.findIndex((t) => t._id == updatedTask._id)] =
+      updatedTask;
+
+    console.log(this.taskList);
+  }
+
+  deleteTask(deletedTask: Task) {
+    delete this.taskList[
+      this.taskList.findIndex((t) => t._id == deletedTask._id)
+    ];
   }
 }

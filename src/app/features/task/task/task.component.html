@@ -6,31 +6,15 @@
   }"
 >
   <app-checkbox
-    [checked]="checked"
-    (checkboxEvent)="receiveCheckedEvent($event)"
+    [done]="task.done ?? false"
+    (checkboxEvent)="receiveDoneEvent($event)"
   ></app-checkbox>
-  <app-task-name
-    [styleTask]="checked"
-    class="task-name-container"
-    routerLink="/tasks/{{ this.id }}"
-  >
-    {{ taskName }}
+  <app-task-name [styleTask]="task.done ?? false" class="task-name-container">
+    {{ task.name }}
   </app-task-name>
   <app-custom-button
-    [iconPath]="'/assets/clipboard-svgrepo-com.svg'"
-    [iconAlt]="'delete task'"
-    buttonType="icon"
-    (clickedButtonEvent)="handleCopyToClickboardButtonClick()"
-  ></app-custom-button>
-  <app-custom-button
-    [iconPath]="'/assets/share-svgrepo-com.svg'"
-    [iconAlt]="'share task'"
-    buttonType="icon"
-    (clickedButtonEvent)="handleShareButtonClick()"
-  ></app-custom-button>
-  <app-custom-button
     [iconPath]="'/assets/tcan.svg'"
-    [iconAlt]="'copy task'"
+    [iconAlt]="'delete task'"
     buttonType="icon"
     (clickedButtonEvent)="handleDeleteButtonClick()"
   ></app-custom-button>

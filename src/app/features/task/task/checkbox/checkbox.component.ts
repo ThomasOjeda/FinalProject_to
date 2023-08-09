@@ -9,9 +9,9 @@ import { Output, EventEmitter } from '@angular/core';
 export class CheckboxComponent {
   @Output() checkboxEvent = new EventEmitter<boolean>();
 
-  @Input() checked: boolean = false;
+  @Input() done: boolean = false;
 
   handleCheckboxEvent() {
-    this.checkboxEvent.emit(this.checked);
+    this.checkboxEvent.emit(this.done);
   }
 }

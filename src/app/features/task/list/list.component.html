@@ -1,6 +1,5 @@
 <ul>
   <li *ngFor="let task of taskList; let i = index">
-    <app-task class="task" [taskName]="task.name" [checked]="false" [id]="i">
-    </app-task>
+    <app-task class="task" [task]="task" [id]="i"> </app-task>
   </li>
 </ul>
