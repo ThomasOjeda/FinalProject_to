@@ -3,7 +3,7 @@ import { NavigationEnd, Event, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { EpicService } from 'src/app/features/epic/services/epic.service';
 import { ProjectService } from 'src/app/features/project/services/project.service';
-import { StoryService } from 'src/app/features/user-story/services/story.service';
+import { StoryService } from 'src/app/features/story/services/story.service';
 
 @Injectable({
   providedIn: 'root',

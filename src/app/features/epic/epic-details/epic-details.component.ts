@@ -3,7 +3,7 @@ import { Epic } from 'src/models/epic';
 import { EpicService } from '../services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from 'src/models/story';
-import { StoryService } from '../../user-story/services/story.service';
+import { StoryService } from '../../story/services/story.service';
 import { take } from 'rxjs';
 
 @Component({

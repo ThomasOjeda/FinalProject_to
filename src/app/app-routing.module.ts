@@ -7,6 +7,7 @@ import { MyProjectsComponent } from './features/project/my-projects/my-projects.
 import { SettingsComponent } from './features/settings/settings/settings.component';
 import { ProjectDetailsComponent } from './features/project/project-details/project-details.component';
 import { EpicDetailsComponent } from './features/epic/epic-details/epic-details.component';
+import { StoryDetailsComponent } from './features/story/story-details/story-details.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'my-projects/:project-id/:epic-id/:story-id',
-        component: PlaceholderComponent,
+        component: StoryDetailsComponent,
       },
       {
         path: 'my-stories',
