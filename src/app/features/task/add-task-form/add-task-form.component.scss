@@ -1,0 +1,30 @@
+@import "../../../../styles.scss";
+
+:host {
+  position: sticky;
+  top: 2rem;
+}
+
+form {
+  @include padding();
+  @include center-x-y($justify: space-between);
+  gap: 0.5rem;
+  @include invisible-borders();
+}
+
+.add-task-input-container {
+  height: 3rem;
+  flex: 1;
+}
+
+.form-theme-system {
+  @include theme("task-form", "theme-system");
+}
+
+.form-theme-light {
+  @include theme("task-form", "theme-light");
+}
+
+.form-theme-dark {
+  @include theme("task-form", "theme-dark");
+}

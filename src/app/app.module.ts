@@ -8,7 +8,8 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { ProjectModule } from './features/project/project.module'; //Do not remove
 import { SharedModule } from './shared/shared.module';
 import { EpicModule } from './features/epic/epic.module';
-import { StoryModule } from './features/story/user-story.module';
+import { StoryModule } from './features/story/story.module';
+import { TaskModule } from './features/task/task.module';
 
 @NgModule({
   declarations: [AppComponent, PlaceholderComponent],
@@ -20,6 +21,7 @@ import { StoryModule } from './features/story/user-story.module';
     ProjectModule,
     EpicModule,
     StoryModule,
+    TaskModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

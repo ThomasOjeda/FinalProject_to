@@ -1,0 +1,37 @@
+<article
+  [ngClass]="{
+    'task-theme-system': theme == 'system',
+    'task-theme-light': theme == 'light',
+    'task-theme-dark': theme == 'dark'
+  }"
+>
+  <app-checkbox
+    [checked]="checked"
+    (checkboxEvent)="receiveCheckedEvent($event)"
+  ></app-checkbox>
+  <app-task-name
+    [styleTask]="checked"
+    class="task-name-container"
+    routerLink="/tasks/{{ this.id }}"
+  >
+    {{ taskName }}
+  </app-task-name>
+  <app-custom-button
+    [iconPath]="'/assets/clipboard-svgrepo-com.svg'"
+    [iconAlt]="'delete task'"
+    buttonType="icon"
+    (clickedButtonEvent)="handleCopyToClickboardButtonClick()"
+  ></app-custom-button>
+  <app-custom-button
+    [iconPath]="'/assets/share-svgrepo-com.svg'"
+    [iconAlt]="'share task'"
+    buttonType="icon"
+    (clickedButtonEvent)="handleShareButtonClick()"
+  ></app-custom-button>
+  <app-custom-button
+    [iconPath]="'/assets/tcan.svg'"
+    [iconAlt]="'copy task'"
+    buttonType="icon"
+    (clickedButtonEvent)="handleDeleteButtonClick()"
+  ></app-custom-button>
+</article>

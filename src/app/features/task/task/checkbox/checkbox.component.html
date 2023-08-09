@@ -1,0 +1,7 @@
+<input
+  (change)="handleCheckboxEvent()"
+  type="checkbox"
+  [(ngModel)]="checked"
+  class="task-checkbox"
+/>
+<!-- I had to import he FormsModule to make the ngModel work; i have to use ngModel to bind the checkbox state with the checked variable -->

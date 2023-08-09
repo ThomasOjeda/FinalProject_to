@@ -1,0 +1,27 @@
+@import "../../../../styles.scss";
+
+article {
+  @include padding();
+
+  @include center-x-y();
+  gap: 0.5rem;
+
+  border-radius: 0.25rem;
+  /* @include theme("task"); */
+}
+
+.task-theme-system {
+  @include theme("task", "theme-system");
+}
+.task-theme-light {
+  @include theme("task", "theme-light");
+}
+.task-theme-dark {
+  @include theme("task", "theme-dark");
+}
+
+.task-name-container {
+  flex: 1;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

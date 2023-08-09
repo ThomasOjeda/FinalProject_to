@@ -1,0 +1,51 @@
+@import "../../../styles.scss";
+
+.btn {
+  box-sizing: border-box;
+  height: 3rem;
+  min-width: 3rem;
+  padding: 0.5rem 1rem;
+  @include center-x-y();
+
+  background: none;
+  @include visible-borders();
+  cursor: pointer;
+}
+
+.icon-btn {
+  padding: 0.5rem;
+}
+
+.icon {
+  height: 1.5rem;
+}
+
+.text {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.btn-theme-system {
+  @include theme("button", "theme-system");
+}
+
+.btn-theme-light {
+  @include theme("button", "theme-ligth");
+}
+
+.btn-theme-dark {
+  @include theme("button", "theme-dark");
+}
+
+.icon-theme-system {
+  @include theme("icon", "theme-system");
+}
+
+.icon-theme-light {
+  @include theme("icon", "theme-ligth");
+}
+
+.icon-theme-dark {
+  @include theme("icon", "theme-dark");
+}
