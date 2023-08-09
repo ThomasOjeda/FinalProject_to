@@ -44,7 +44,7 @@ export class StoryService {
   getStories(epicId: string) {
     return this.storyList$
       .asObservable()
-      .pipe(delay(Math.floor(Math.random() * 5001)));
+      .pipe(delay(Math.floor(Math.random() * 1501)));
   }
 
   getStory(storyId: string) {
@@ -52,6 +52,6 @@ export class StoryService {
 
     return this.story$
       .asObservable()
-      .pipe(delay(Math.floor(Math.random() * 5001)));
+      .pipe(delay(Math.floor(Math.random() * 1501)));
   }
 }

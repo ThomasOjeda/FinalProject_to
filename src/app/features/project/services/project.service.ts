@@ -44,7 +44,7 @@ export class ProjectService {
   getProjects() {
     return this.projectList$
       .asObservable()
-      .pipe(delay(Math.floor(Math.random() * 5001)));
+      .pipe(delay(Math.floor(Math.random() * 1501)));
   }
 
   getProject(projectId: string) {
@@ -52,6 +52,6 @@ export class ProjectService {
 
     return this.project$
       .asObservable()
-      .pipe(delay(Math.floor(Math.random() * 5001)));
+      .pipe(delay(Math.floor(Math.random() * 1501)));
   }
 }

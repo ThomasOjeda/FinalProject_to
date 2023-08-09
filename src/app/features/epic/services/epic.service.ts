@@ -41,7 +41,7 @@ export class EpicService {
   getEpics(projectId: string) {
     return this.epicList$
       .asObservable()
-      .pipe(delay(Math.floor(Math.random() * 5001)));
+      .pipe(delay(Math.floor(Math.random() * 1501)));
   }
 
   getEpic(epicId: string) {
@@ -49,6 +49,6 @@ export class EpicService {
 
     return this.epic$
       .asObservable()
-      .pipe(delay(Math.floor(Math.random() * 5001)));
+      .pipe(delay(Math.floor(Math.random() * 1501)));
   }
 }
