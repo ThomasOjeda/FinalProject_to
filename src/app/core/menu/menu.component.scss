@@ -4,9 +4,15 @@
   left: -50rem;
   background-color: beige;
   height: 100vh;
-  width: 15rem;
-  transition-property: all;
+  width: 85%;
+  transition-property: left;
   transition-duration: 0.5s;
+}
+
+@media (min-width: 22rem) {
+  .menu {
+    width: 19rem;
+  }
 }
 
 .open-menu {
