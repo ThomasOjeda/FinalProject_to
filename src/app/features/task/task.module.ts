@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
+import { AddTaskDialogComponent } from './add-task-dialog/add-task-dialog.component';
 import { ListComponent } from './list/list.component';
 
 import { TaskComponent } from './task/task.component';
@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   declarations: [
-    AddTaskFormComponent,
+    AddTaskDialogComponent,
     ListComponent,
     TaskComponent,
     TaskNameComponent,
@@ -28,6 +28,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     RouterModule,
     SharedModule,
   ],
-  exports: [ListComponent, AddTaskFormComponent],
+  exports: [ListComponent, AddTaskDialogComponent],
 })
 export class TaskModule {}

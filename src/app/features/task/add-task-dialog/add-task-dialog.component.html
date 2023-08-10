@@ -1,0 +1,43 @@
+<dialog #dialog class="dialog" [ngClass]="{ open: isOpen }">
+  <form [formGroup]="taskForm" (ngSubmit)="submit()">
+    <div>
+      <label for="name">Name: </label>
+      <input id="name" type="text" formControlName="name" />
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        rows="5"
+        cols="33"
+        formControlName="description"
+      >
+      </textarea>
+    </div>
+
+    <div>
+      <label for="due-date">Due date: </label>
+      <input id="due-date" type="date" formControlName="dueDate" />
+    </div>
+
+    <div>
+      <label for="done">Is done: </label>
+      <input id="done" type="checkbox" formControlName="done" />
+    </div>
+
+    <app-custom-button
+      [buttonType]="'text&icon'"
+      [text]="'Create'"
+      [iconAlt]="'close dialog'"
+      [iconPath]="'assets/close-svgrepo-com.svg'"
+    ></app-custom-button>
+  </form>
+
+  <app-custom-button
+    [buttonType]="'icon'"
+    [iconAlt]="'close dialog'"
+    [iconPath]="'assets/close-svgrepo-com.svg'"
+    (clickedButtonEvent)="handleCloseDialogButtonClick()"
+  ></app-custom-button>
+</dialog>
