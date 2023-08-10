@@ -9,7 +9,11 @@
     [done]="task.done ?? false"
     (checkboxEvent)="receiveDoneEvent($event)"
   ></app-checkbox>
-  <app-task-name [styleTask]="task.done ?? false" class="task-name-container">
+  <app-task-name
+    [styleTask]="task.done ?? false"
+    class="task-name-container"
+    (click)="handleTaskNameClick()"
+  >
     {{ task.name }}
   </app-task-name>
   <app-custom-button

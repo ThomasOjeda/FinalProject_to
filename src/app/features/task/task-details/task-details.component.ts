@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Task } from 'src/models/task';
 import { TaskService } from '../services/task.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-task-details',
@@ -9,13 +10,19 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['./task-details.component.scss'],
 })
 export class TaskDetailsComponent implements OnInit {
-  task!: Task;
+  task: Task | undefined;
 
-  constructor(private ar: ActivatedRoute, private taskService: TaskService) {}
+  constructor(
+    private activatedRouteService: ActivatedRoute,
+    private taskService: TaskService
+  ) {}
 
   ngOnInit() {
-    let taskId = this.ar.snapshot.paramMap.get('task-id');
-    /*     if (taskId) this.task = this.taskService.getTask(taskId as unknown as number);
-     */
+    let taskId = this.activatedRouteService.snapshot.paramMap.get('task-id');
+    if (taskId)
+      this.taskService
+        .getTask$(taskId)
+        .pipe(take(1))
+        .subscribe((task) => (this.task = task));
   }
 }

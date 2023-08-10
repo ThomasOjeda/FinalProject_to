@@ -8,6 +8,7 @@ import { SettingsComponent } from './features/settings/settings/settings.compone
 import { ProjectDetailsComponent } from './features/project/project-details/project-details.component';
 import { EpicDetailsComponent } from './features/epic/epic-details/epic-details.component';
 import { StoryDetailsComponent } from './features/story/story-details/story-details.component';
+import { TaskDetailsComponent } from './features/task/task-details/task-details.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path: 'my-projects/:project-id/:epic-id/:story-id',
         component: StoryDetailsComponent,
+      },
+      {
+        path: 'my-projects/:project-id/:epic-id/:story-id/:task-id',
+        component: TaskDetailsComponent,
       },
       {
         path: 'my-stories',

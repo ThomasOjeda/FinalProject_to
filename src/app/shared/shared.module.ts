@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SummaryCardComponent } from './summary-card/summary-card.component';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
+import { DividerComponent } from './divider/divider.component';
 
 @NgModule({
-  declarations: [SummaryCardComponent, CustomButtonComponent],
+  declarations: [SummaryCardComponent, CustomButtonComponent, DividerComponent],
   imports: [CommonModule],
-  exports: [SummaryCardComponent, CustomButtonComponent],
+  exports: [SummaryCardComponent, CustomButtonComponent, DividerComponent],
 })
 export class SharedModule {}

@@ -1,20 +1,11 @@
-<form
-  action=""
-  [ngClass]="{
-    'form-theme-system': theme == 'system',
-    'form-theme-light': theme == 'light',
-    'form-theme-dark': theme == 'dark'
-  }"
->
-  <app-add-task-input
-    (valueChangedEvent)="handleInputChange($event)"
-    class="add-task-input-container"
-  ></app-add-task-input>
-  <app-custom-button
-    [iconPath]="'/assets/check-svgrepo-com.svg'"
-    [iconAlt]="'add task'"
-    buttonType="icon"
-    (clickedButtonEvent)="handleButtonClick()"
-    class="add-task-btn-container"
-  ></app-custom-button>
-</form>
+<dialog #dialog>
+  <form [formGroup]="myForm" (ngSubmit)="submit()">
+    <input formControlName="name" />
+    <select required formControlName="status">
+      <option value="todo">todo</option>
+      <option value="doing">doing</option>
+      <option value="done">done</option>
+    </select>
+    <button type="submit">Add Task</button>
+  </form>
+</dialog>

@@ -3,6 +3,7 @@ import { Story } from 'src/models/story';
 import { StoryService } from '../services/story.service';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
+import { AddTaskDialogService } from '../../task/services/add-task-dialog.service';
 
 @Component({
   selector: 'app-story-details',
@@ -14,7 +15,8 @@ export class StoryDetailsComponent implements OnInit {
 
   constructor(
     private storyService: StoryService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private addTaskDialogService: AddTaskDialogService
   ) {}
 
   ngOnInit() {
@@ -27,5 +29,9 @@ export class StoryDetailsComponent implements OnInit {
           this.story = story;
         });
     }
+  }
+
+  openAddTaskDialog() {
+    this.addTaskDialogService.setState(true);
   }
 }

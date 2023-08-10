@@ -1,13 +1,14 @@
 import {
   Component,
-  EventEmitter,
+  ElementRef,
   OnDestroy,
   OnInit,
-  Output,
+  ViewChild,
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-/* import { ThemeService } from 'src/app/services/theme.service';
- */ import { TaskService } from '../services/task.service';
+import { TaskService } from '../services/task.service';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AddTaskDialogService } from '../services/add-task-dialog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-task-form',
@@ -15,27 +16,32 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./add-task-form.component.scss'],
 })
 export class AddTaskFormComponent implements OnInit, OnDestroy {
-  newTaskName!: string;
+  myForm!: FormGroup;
+  dialogSubscription: Subscription = new Subscription();
 
-  theme!: string;
-
-  theme$: Observable<string> = new Observable<string>();
-  themeSubscription: Subscription = new Subscription();
+  @ViewChild('dialog') dialog!: ElementRef;
   constructor(
-    private taskService: TaskService /* , private themes: ThemeService */
+    private taskService: TaskService,
+    private formBuilderService: FormBuilder,
+    private addTaskDialogServie: AddTaskDialogService
   ) {}
-  ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
-  }
+
   ngOnInit(): void {
-    /*     this.theme$ = this.themes.getTheme$();
-     */ this.themeSubscription = this.theme$.subscribe((t) => (this.theme = t));
+    this.myForm = this.formBuilderService.group({
+      name: new FormControl(''),
+      status: new FormControl(''),
+    });
+    this.dialogSubscription = this.addTaskDialogServie
+      .getState$()
+      .subscribe((state) => {
+        if (state) this.openDialog();
+      });
   }
-  handleInputChange(newValue: string) {
-    this.newTaskName = newValue;
+  openDialog() {
+    this.dialog.nativeElement.showModal();
   }
-  handleButtonClick() {
-    /*     this.taskService.addTask(this.newTaskName);
-     */
+  submit() {}
+  ngOnDestroy(): void {
+    this.dialogSubscription.unsubscribe();
   }
 }

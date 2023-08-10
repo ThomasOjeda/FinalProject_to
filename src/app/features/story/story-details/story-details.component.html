@@ -9,7 +9,15 @@
   <section>
     <header>
       <h2>Associated Tasks</h2>
+      <app-custom-button
+        [buttonType]="'icon'"
+        [iconAlt]="'add task'"
+        [iconPath]="'assets/add-svgrepo-com.svg'"
+        (clickedButtonEvent)="openAddTaskDialog()"
+      ></app-custom-button>
     </header>
-    <app-tasks-component></app-tasks-component>
+    <app-divider></app-divider>
+    <app-list></app-list>
+    <app-add-task-form></app-add-task-form>
   </section>
 </section>
