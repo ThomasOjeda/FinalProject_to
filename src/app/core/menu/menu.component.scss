@@ -7,6 +7,8 @@
   width: 85%;
   transition-property: left;
   transition-duration: 0.5s;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 22rem) {
@@ -17,4 +19,24 @@
 
 .open-menu {
   left: 0;
+}
+
+.navigation {
+  display: block;
+  overflow-y: scroll;
+  min-height: 2rem;
+  margin-bottom: 2rem;
+  background-color: bisque;
+}
+
+.nav-list {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
 }
