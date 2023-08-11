@@ -10,6 +10,7 @@ import { EpicDetailsComponent } from './features/epic/epic-details/epic-details.
 import { StoryDetailsComponent } from './features/story/story-details/story-details.component';
 import { TaskDetailsComponent } from './features/task/task-details/task-details.component';
 import { LoginComponent } from './auth/login/login.component';
+import { hasTokenGuard } from './auth/guards/has-token.guard';
 
 const routes: Routes = [
   {
@@ -19,34 +20,42 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: 'my-projects',
         component: MyProjectsComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: 'my-projects/:project-id',
         component: ProjectDetailsComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: 'my-projects/:project-id/:epic-id',
         component: EpicDetailsComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: 'my-projects/:project-id/:epic-id/:story-id',
         component: StoryDetailsComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: 'my-projects/:project-id/:epic-id/:story-id/:task-id',
         component: TaskDetailsComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: 'my-stories',
         component: PlaceholderComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: 'settings',
         component: SettingsComponent,
+        canActivate: [hasTokenGuard],
       },
       {
         path: '',

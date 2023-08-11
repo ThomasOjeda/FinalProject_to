@@ -20,11 +20,8 @@ export class LoginComponent {
       next: (response) => {
         let res = response as LoginSuccess;
         this.tokenService.setToken(res.token);
-        console.log(res);
       },
-      error: (error) => {
-        console.log(error);
-      },
+      error: (error) => {},
       complete: () => {
         console.log('completed');
       },
