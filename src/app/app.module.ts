@@ -10,10 +10,13 @@ import { SharedModule } from './shared/shared.module';
 import { EpicModule } from './features/epic/epic.module';
 import { StoryModule } from './features/story/story.module';
 import { TaskModule } from './features/task/task.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, PlaceholderComponent],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,
@@ -23,7 +26,9 @@ import { TaskModule } from './features/task/task.module';
     StoryModule,
     TaskModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
