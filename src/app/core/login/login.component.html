@@ -1,1 +1,46 @@
-<p>login works!</p>
+<form (ngSubmit)="submit()" #loginForm="ngForm">
+  <div>
+    <label for="username">Username: </label>
+    <input
+      id="username"
+      type="text"
+      required
+      minlength="4"
+      [(ngModel)]="loginUsername"
+      #username="ngModel"
+      name="username"
+    />
+    <div *ngIf="username.errors?.['required']  && !username.pristine">
+      Username is required
+    </div>
+    <div *ngIf="username.errors?.['minlength'] && !username.pristine">
+      Username must be at least 4 characters long
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      required
+      minlength="4"
+      [(ngModel)]="loginPassword"
+      #password="ngModel"
+      name="password"
+    />
+    <div *ngIf="password.errors?.['required']  && !password.pristine">
+      Password is required
+    </div>
+    <div *ngIf="password.errors?.['minlength'] && !password.pristine">
+      Password must be at least 4 characters long
+    </div>
+  </div>
+
+  <app-custom-button
+    [buttonType]="'text&icon'"
+    [text]="'LogIn'"
+    [iconAlt]="'login'"
+    [iconPath]="'assets/close-svgrepo-com.svg'"
+  ></app-custom-button>
+</form>

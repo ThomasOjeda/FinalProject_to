@@ -6,10 +6,16 @@ import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HeaderComponent, MenuComponent, LayoutComponent, LoginComponent],
-  imports: [CommonModule, RouterModule, SharedModule],
+  declarations: [
+    HeaderComponent,
+    MenuComponent,
+    LayoutComponent,
+    LoginComponent,
+  ],
+  imports: [CommonModule, FormsModule, RouterModule, SharedModule],
   exports: [HeaderComponent],
 })
 export class CoreModule {}
