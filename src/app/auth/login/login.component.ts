@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { TokenService } from '../services/token.service';
+import { LoginSuccess } from '../models/login-success';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,17 @@ import { TokenService } from '../services/token.service';
 export class LoginComponent {
   loginUsername: string = '';
   loginPassword: string = '';
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private loginService: LoginService,
+    private tokenService: TokenService
+  ) {}
   submit() {
     this.loginService.login(this.loginUsername, this.loginPassword).subscribe({
-      next: (response) => {},
+      next: (response) => {
+        let res = response as LoginSuccess;
+        this.tokenService.setToken(res.token);
+        console.log(res);
+      },
       error: (error) => {
         console.log(error);
       },
@@ -21,5 +29,9 @@ export class LoginComponent {
         console.log('completed');
       },
     });
+  }
+
+  logout() {
+    this.tokenService.deleteToken();
   }
 }

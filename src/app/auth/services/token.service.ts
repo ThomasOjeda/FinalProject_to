@@ -16,6 +16,7 @@ export class TokenService {
 
   setToken(token: string) {
     this.authToken = token;
+    this.localStorageService.setItem('final_project_auth_token', token);
     this.tokenIsAvailable = true;
   }
 
