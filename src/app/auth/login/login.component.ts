@@ -10,10 +10,7 @@ import { TokenService } from '../services/token.service';
 export class LoginComponent {
   loginUsername: string = '';
   loginPassword: string = '';
-  constructor(
-    private loginService: LoginService,
-    private tokenService: TokenService
-  ) {}
+  constructor(private loginService: LoginService) {}
   submit() {
     this.loginService.login(this.loginUsername, this.loginPassword).subscribe({
       next: (response) => {},

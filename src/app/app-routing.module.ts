@@ -9,7 +9,7 @@ import { ProjectDetailsComponent } from './features/project/project-details/proj
 import { EpicDetailsComponent } from './features/epic/epic-details/epic-details.component';
 import { StoryDetailsComponent } from './features/story/story-details/story-details.component';
 import { TaskDetailsComponent } from './features/task/task-details/task-details.component';
-import { LoginComponent } from './core/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {

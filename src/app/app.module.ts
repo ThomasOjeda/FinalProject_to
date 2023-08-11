@@ -11,7 +11,8 @@ import { EpicModule } from './features/epic/epic.module';
 import { StoryModule } from './features/story/story.module';
 import { TaskModule } from './features/task/task.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent, PlaceholderComponent],
@@ -25,6 +26,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     EpicModule,
     StoryModule,
     TaskModule,
+    AuthModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
