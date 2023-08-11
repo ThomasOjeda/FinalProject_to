@@ -29,6 +29,6 @@ export class LoginComponent {
   }
 
   logout() {
-    this.tokenService.deleteToken();
+    this.loginService.logout();
   }
 }

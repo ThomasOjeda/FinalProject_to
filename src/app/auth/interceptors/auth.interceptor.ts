@@ -4,31 +4,38 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 import { TokenService } from '../services/token.service';
+import { LoginService } from '../services/login.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
-    private routerService: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private loginService: LoginService
   ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (this.tokenService.tokenAvailable()) {
-      const authReq = request.clone({
-        headers: request.headers.set('auth', this.tokenService.getToken()),
-      });
+    const authReq = request.clone({
+      headers: request.headers.set('auth', this.tokenService.getToken()),
+    });
 
-      return next.handle(authReq);
-    } else {
-      this.routerService.navigate(['login']);
-      return next.handle(request);
-    }
+    return next.handle(authReq).pipe(
+      tap({
+        error: (error: HttpErrorResponse) => {
+          if (error.status == 401) {
+            console.log(
+              'Error unauthorized, redirecting to login and deleting the auth token'
+            );
+            this.loginService.logout();
+          }
+        },
+      })
+    );
   }
 }
