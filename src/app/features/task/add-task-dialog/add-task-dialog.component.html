@@ -2,7 +2,12 @@
   <form [formGroup]="taskForm" (ngSubmit)="submit()">
     <div>
       <label for="name">Name: </label>
-      <input id="name" type="text" formControlName="name" />
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        [disabled]="requestPending"
+      />
     </div>
 
     <div>
@@ -12,20 +17,31 @@
         rows="5"
         cols="33"
         formControlName="description"
+        [disabled]="requestPending"
       >
       </textarea>
     </div>
 
     <div>
       <label for="due-date">Due date: </label>
-      <input id="due-date" type="date" formControlName="dueDate" />
+      <input
+        id="due-date"
+        type="date"
+        formControlName="dueDate"
+        [disabled]="requestPending"
+      />
     </div>
 
     <div>
       <label for="done">Is done: </label>
-      <input id="done" type="checkbox" formControlName="done" />
+      <input
+        id="done"
+        type="checkbox"
+        formControlName="done"
+        [disabled]="requestPending"
+      />
     </div>
-
+    <p *ngIf="requestPending">Creating task</p>
     <app-custom-button
       [buttonType]="'text&icon'"
       [text]="'Create'"

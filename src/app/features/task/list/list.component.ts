@@ -11,14 +11,14 @@ import { AddTaskDialogService } from '../services/add-task-dialog.service';
 })
 export class ListComponent implements OnInit, OnDestroy {
   taskList: Task[] = [];
-
+  taskCreationSubscription: Subscription = new Subscription();
   constructor(
     private taskService: TaskService,
     private addTaskDialogService: AddTaskDialogService
   ) {}
   ngOnInit(): void {
     this.retrieveTaskList();
-    this.addTaskDialogService
+    this.taskCreationSubscription = this.addTaskDialogService
       .getTaskCreationEvent$()
       .subscribe(() => this.retrieveTaskList());
   }
@@ -29,5 +29,7 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe((tasks) => (this.taskList = tasks.data));
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.taskCreationSubscription.unsubscribe();
+  }
 }
