@@ -27,7 +27,7 @@ export class EpicDetailsComponent implements OnInit {
       this.epicService
         .getEpic(epicId)
         .pipe(take(1))
-        .subscribe((epic) => (this.epic = epic));
+        .subscribe((epic) => (this.epic = epic.data));
 
       this.storyService
         .getStories(epicId)

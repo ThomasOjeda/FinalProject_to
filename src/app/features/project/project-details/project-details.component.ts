@@ -44,10 +44,10 @@ export class ProjectDetailsComponent implements OnInit {
     if (projectId) {
       this.projectService
         .getProject(projectId)
-        .subscribe((project) => console.log(project));
+        .subscribe((project) => (this.project = project.data));
       this.epicService
         .getEpics(projectId)
-        .subscribe((epics) => console.log(epics));
+        .subscribe((epics) => (this.epicList = epics.data));
     }
   }
 

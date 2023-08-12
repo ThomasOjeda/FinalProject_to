@@ -1,13 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, delay } from 'rxjs';
 import { Epic } from 'src/models/epic';
+import { EpicsResponse } from '../models/epics-response';
+import { EpicResponse } from '../models/epic-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EpicService {
   epicList: Epic[] = [];
-  epicList$: BehaviorSubject<Epic[]>;
+  /*   epicList$: BehaviorSubject<Epic[]>;
   epic$: BehaviorSubject<Epic>;
   constructor() {
     this.epicList = [
@@ -50,5 +53,21 @@ export class EpicService {
     return this.epic$
       .asObservable()
       .pipe(delay(Math.floor(Math.random() * 1501)));
+  } */
+
+  constructor(private httpService: HttpClient) {}
+
+  getEpics(projectId: string) {
+    return this.httpService.get<EpicsResponse>(
+      'https://lamansysfaketaskmanagerapi.onrender.com/api/projects/' +
+        projectId +
+        '/epics'
+    );
+  }
+
+  getEpic(epicId: string) {
+    return this.httpService.get<EpicResponse>(
+      'https://lamansysfaketaskmanagerapi.onrender.com/api/epics/' + epicId
+    );
   }
 }

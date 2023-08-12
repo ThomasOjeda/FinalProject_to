@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, delay } from 'rxjs';
 import { Project } from 'src/models/project';
 import { ProjectsResponse } from '../my-projects/models/projects-response';
+import { ProjectResponse } from '../my-projects/models/project-response';
 
 @Injectable({
   providedIn: 'root',
@@ -65,7 +66,7 @@ export class ProjectService {
     );
   }
   getProject(projectId: string) {
-    return this.httpService.get(
+    return this.httpService.get<ProjectResponse>(
       'https://lamansysfaketaskmanagerapi.onrender.com/api/projects/' +
         projectId
     );

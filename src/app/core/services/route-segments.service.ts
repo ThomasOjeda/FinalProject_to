@@ -56,7 +56,7 @@ export class RouteSegmentsService implements OnDestroy {
     this.projectServiceSubscription = this.projectService
       .getProject(this.currentRoute[1])
       .subscribe((project) => {
-        //this.displayRoute[1] = project.name;
+        this.displayRoute[1] = project.data.name;
         this.displayRoute$.next(this.displayRoute);
       });
 
@@ -65,7 +65,7 @@ export class RouteSegmentsService implements OnDestroy {
     this.epicServiceSubscription = this.epicService
       .getEpic(this.currentRoute[2])
       .subscribe((epic) => {
-        this.displayRoute[2] = epic.name;
+        this.displayRoute[2] = epic.data.name;
         this.displayRoute$.next(this.displayRoute);
       });
 
