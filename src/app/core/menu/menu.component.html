@@ -15,9 +15,9 @@
 
   <nav class="navigation">
     <ul class="nav-list">
-      <li><a routerLink="/"> Home </a></li>
-      <li><a routerLink="/my-projects"> My Projects </a></li>
-      <li><a routerLink="/my-stories"> My Stories </a></li>
+      <li><a (click)="navigate('/')"> Home </a></li>
+      <li><a (click)="navigate('/my-projects')"> My Projects </a></li>
+      <li><a (click)="navigate('/my-stories')"> My Stories </a></li>
     </ul>
   </nav>
   <footer class="footer">
