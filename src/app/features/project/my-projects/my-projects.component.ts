@@ -18,12 +18,9 @@ export class MyProjectsComponent implements OnInit {
     private activatedRouteService: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.projectService
-      .getProjects()
-      .pipe(take(1))
-      .subscribe((projects) => {
-        this.projectList = projects;
-      });
+    this.projectService.getProjects().subscribe((projects) => {
+      this.projectList = projects.data;
+    });
   }
 
   handleProjectSelection(projectId: string) {

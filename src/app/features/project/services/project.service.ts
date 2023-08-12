@@ -1,13 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, delay } from 'rxjs';
 import { Project } from 'src/models/project';
+import { ProjectsResponse } from '../my-projects/models/projects-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
   projectList: Project[] = [];
-  projectList$: BehaviorSubject<Project[]>;
+  /*   projectList$: BehaviorSubject<Project[]>;
   project$: BehaviorSubject<Project>;
   constructor() {
     this.projectList = [
@@ -39,9 +41,9 @@ export class ProjectService {
       icon: 'def',
       owner: 'def',
     });
-  }
+  } */
 
-  getProjects() {
+  /*   getProjects() {
     return this.projectList$
       .asObservable()
       .pipe(delay(Math.floor(Math.random() * 1501)));
@@ -53,5 +55,19 @@ export class ProjectService {
     return this.project$
       .asObservable()
       .pipe(delay(Math.floor(Math.random() * 1501)));
+  } */
+
+  constructor(private httpService: HttpClient) {}
+
+  getProjects() {
+    return this.httpService.get<ProjectsResponse>(
+      'https://lamansysfaketaskmanagerapi.onrender.com/api/projects'
+    );
+  }
+  getProject(projectId: string) {
+    return this.httpService.get(
+      'https://lamansysfaketaskmanagerapi.onrender.com/api/projects/' +
+        projectId
+    );
   }
 }

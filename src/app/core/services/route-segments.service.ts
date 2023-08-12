@@ -56,7 +56,7 @@ export class RouteSegmentsService implements OnDestroy {
     this.projectServiceSubscription = this.projectService
       .getProject(this.currentRoute[1])
       .subscribe((project) => {
-        this.displayRoute[1] = project.name;
+        //this.displayRoute[1] = project.name;
         this.displayRoute$.next(this.displayRoute);
       });
 

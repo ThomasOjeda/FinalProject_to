@@ -23,7 +23,7 @@ export class ProjectDetailsComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  /*   ngOnInit() {
     let projectId =
       this.activatedRouteService.snapshot.paramMap.get('project-id');
     if (projectId) {
@@ -35,6 +35,19 @@ export class ProjectDetailsComponent implements OnInit {
         .getEpics(projectId)
         .pipe(take(1))
         .subscribe((epics) => (this.epicList = epics));
+    }
+  } */
+
+  ngOnInit(): void {
+    let projectId =
+      this.activatedRouteService.snapshot.paramMap.get('project-id');
+    if (projectId) {
+      this.projectService
+        .getProject(projectId)
+        .subscribe((project) => console.log(project));
+      this.epicService
+        .getEpics(projectId)
+        .subscribe((epics) => console.log(epics));
     }
   }
 
