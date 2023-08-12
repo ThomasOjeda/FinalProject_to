@@ -20,12 +20,14 @@
   margin: 0;
   padding: 0;
   overflow-x: auto;
+  overflow-y: hidden;
   overflow-anchor: auto;
 }
 
 .segment {
   border: solid blue 0.125rem;
   border-radius: 0.25rem;
+  white-space: nowrap;
 }
 
 .cancel-reverse {
