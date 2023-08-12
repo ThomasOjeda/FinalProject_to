@@ -20,17 +20,19 @@
     </div>
 
     <ol *ngIf="segments.length > 0" class="segmentList">
-      <li
-        *ngFor="
-          let segment of segments;
-          index as i;
-          last as isLast;
-          first as isFirst
-        "
-      >
-        <a (click)="navigateToSegment(i)" class="segment">{{ segment }}</a>
-        <span *ngIf="!isLast">/</span>
-      </li>
+      <div class="cancel-reverse">
+        <li
+          *ngFor="
+            let segment of segments;
+            index as i;
+            last as isLast;
+            first as isFirst
+          "
+        >
+          <a (click)="navigateToSegment(i)" class="segment">{{ segment }}</a>
+          <span *ngIf="!isLast">/</span>
+        </li>
+      </div>
     </ol>
   </nav>
 </header>

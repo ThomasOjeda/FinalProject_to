@@ -16,15 +16,20 @@
 .segmentList {
   list-style: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   margin: 0;
   padding: 0;
   overflow-x: auto;
+  overflow-anchor: auto;
 }
 
 .segment {
   border: solid blue 0.125rem;
   border-radius: 0.25rem;
+}
+
+.cancel-reverse {
+  display: inherit;
 }
 
 .segment:hover {
