@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay } from 'rxjs';
-import { Project } from 'src/models/project';
 import { ProjectsResponse } from '../my-projects/models/projects-response';
 import { ProjectResponse } from '../my-projects/models/project-response';
 
@@ -9,8 +7,8 @@ import { ProjectResponse } from '../my-projects/models/project-response';
   providedIn: 'root',
 })
 export class ProjectService {
-  projectList: Project[] = [];
-  /*   projectList$: BehaviorSubject<Project[]>;
+  /*   projectList: Project[] = [];
+   */ /*   projectList$: BehaviorSubject<Project[]>;
   project$: BehaviorSubject<Project>;
   constructor() {
     this.projectList = [

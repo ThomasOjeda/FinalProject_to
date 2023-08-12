@@ -26,13 +26,11 @@ export class EpicDetailsComponent implements OnInit {
     if (epicId) {
       this.epicService
         .getEpic(epicId)
-        .pipe(take(1))
         .subscribe((epic) => (this.epic = epic.data));
 
       this.storyService
         .getStories(epicId)
-        .pipe(take(1))
-        .subscribe((stories) => (this.storyList = stories));
+        .subscribe((stories) => (this.storyList = stories.data));
     }
   }
 

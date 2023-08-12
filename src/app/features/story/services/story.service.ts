@@ -1,13 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay } from 'rxjs';
-import { Story } from 'src/models/story';
+import { StoriesResponse } from '../models/stories-response';
+import { StoryResponse } from '../models/story-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoryService {
-  storyList: Story[] = [];
-  storyList$: BehaviorSubject<Story[]>;
+  /*   storyList: Story[] = [];
+   */ /*   storyList$: BehaviorSubject<Story[]>;
   story$: BehaviorSubject<Story>;
   constructor() {
     this.storyList = [
@@ -53,5 +54,21 @@ export class StoryService {
     return this.story$
       .asObservable()
       .pipe(delay(Math.floor(Math.random() * 1501)));
+  } */
+
+  constructor(private httpService: HttpClient) {}
+
+  getStories(epicId: string) {
+    return this.httpService.get<StoriesResponse>(
+      'https://lamansysfaketaskmanagerapi.onrender.com/api/epics/' +
+        epicId +
+        '/stories'
+    );
+  }
+
+  getStory(storyId: string) {
+    return this.httpService.get<StoryResponse>(
+      'https://lamansysfaketaskmanagerapi.onrender.com/api/stories/' + storyId
+    );
   }
 }

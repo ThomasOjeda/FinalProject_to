@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay } from 'rxjs';
-import { Epic } from 'src/models/epic';
 import { EpicsResponse } from '../models/epics-response';
 import { EpicResponse } from '../models/epic-response';
 
@@ -9,7 +7,7 @@ import { EpicResponse } from '../models/epic-response';
   providedIn: 'root',
 })
 export class EpicService {
-  epicList: Epic[] = [];
+  /*   epicList: Epic[] = []; */
   /*   epicList$: BehaviorSubject<Epic[]>;
   epic$: BehaviorSubject<Epic>;
   constructor() {
