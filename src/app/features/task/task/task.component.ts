@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Task } from 'src/models/task';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TaskComponent implements OnInit {
   @Input() task: Task = { _id: '', name: '', story: '' };
-
+  @Output() deleteTask = new EventEmitter<Task>();
   theme!: string;
 
   /*   theme$: Observable<string> = new Observable<string>();
@@ -31,7 +31,7 @@ export class TaskComponent implements OnInit {
   }
 
   handleDeleteButtonClick() {
-    //should output a signal to parent
+    this.deleteTask.emit(this.task);
   }
 
   handleTaskNameClick() {
