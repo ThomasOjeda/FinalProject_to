@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EpicsResponse } from '../models/epics-response';
 import { EpicResponse } from '../models/epic-response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -57,15 +58,13 @@ export class EpicService {
 
   getEpics(projectId: string) {
     return this.httpService.get<EpicsResponse>(
-      'https://lamansysfaketaskmanagerapi.onrender.com/api/projects/' +
-        projectId +
-        '/epics'
+      environment.API_URL + '/api/projects/' + projectId + '/epics'
     );
   }
 
   getEpic(epicId: string) {
     return this.httpService.get<EpicResponse>(
-      'https://lamansysfaketaskmanagerapi.onrender.com/api/epics/' + epicId
+      environment.API_URL + '/api/epics/' + epicId
     );
   }
 }

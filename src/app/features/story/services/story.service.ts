@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StoriesResponse } from '../models/stories-response';
 import { StoryResponse } from '../models/story-response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -60,15 +61,13 @@ export class StoryService {
 
   getStories(epicId: string) {
     return this.httpService.get<StoriesResponse>(
-      'https://lamansysfaketaskmanagerapi.onrender.com/api/epics/' +
-        epicId +
-        '/stories'
+      environment.API_URL + '/api/epics/' + epicId + '/stories'
     );
   }
 
   getStory(storyId: string) {
     return this.httpService.get<StoryResponse>(
-      'https://lamansysfaketaskmanagerapi.onrender.com/api/stories/' + storyId
+      environment.API_URL + '/api/stories/' + storyId
     );
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProjectsResponse } from '../my-projects/models/projects-response';
 import { ProjectResponse } from '../my-projects/models/project-response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -60,13 +61,12 @@ export class ProjectService {
 
   getProjects() {
     return this.httpService.get<ProjectsResponse>(
-      'https://lamansysfaketaskmanagerapi.onrender.com/api/projects'
+      environment.API_URL + '/api/projects'
     );
   }
   getProject(projectId: string) {
     return this.httpService.get<ProjectResponse>(
-      'https://lamansysfaketaskmanagerapi.onrender.com/api/projects/' +
-        projectId
+      environment.API_URL + '/api/projects/' + projectId
     );
   }
 }
