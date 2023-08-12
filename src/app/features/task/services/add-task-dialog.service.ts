@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AddTaskDialogService {
   isOpen: boolean = false;
   state$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  taskCreationEvent$: Subject<void> = new Subject();
   constructor() {}
 
   setState(state: boolean) {
@@ -15,5 +16,12 @@ export class AddTaskDialogService {
   }
   getState$() {
     return this.state$.asObservable();
+  }
+  getTaskCreationEvent$() {
+    return this.taskCreationEvent$.asObservable();
+  }
+
+  signalTaskCreation() {
+    this.taskCreationEvent$.next();
   }
 }

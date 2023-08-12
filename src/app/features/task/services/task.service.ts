@@ -79,7 +79,7 @@ export class TaskService {
     );
   }
 
-  addTask(task: Task) {
+  addTask$(task: Task) {
     return this.httpService.post(environment.API_URL + '/api/tasks', task);
   }
 
