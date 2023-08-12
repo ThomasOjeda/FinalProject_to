@@ -22,7 +22,6 @@ export class TaskDetailsComponent implements OnInit {
     if (taskId)
       this.taskService
         .getTask$(taskId)
-        .pipe(take(1))
-        .subscribe((task) => (this.task = task));
+        .subscribe((task) => (this.task = task.data));
   }
 }

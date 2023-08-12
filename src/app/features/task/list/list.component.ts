@@ -10,17 +10,13 @@ import { TaskService } from '../services/task.service';
 })
 export class ListComponent implements OnInit, OnDestroy {
   taskList: Task[] = [];
-  tasks$ = new Observable<Task[]>();
-  tasksSubscription = new Subscription();
+
   constructor(private taskService: TaskService) {}
   ngOnInit(): void {
-    this.tasks$ = this.taskService.getTasks$();
-    this.tasksSubscription = this.tasks$.subscribe(
-      (tasks) => (this.taskList = tasks)
-    );
+    this.taskService
+      .getTasks$()
+      .subscribe((tasks) => (this.taskList = tasks.data));
   }
 
-  ngOnDestroy() {
-    this.tasksSubscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

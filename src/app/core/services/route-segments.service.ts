@@ -54,7 +54,7 @@ export class RouteSegmentsService implements OnDestroy {
     if (this.currentRoute.length < 2) return;
 
     this.projectServiceSubscription = this.projectService
-      .getProject(this.currentRoute[1])
+      .getProject$(this.currentRoute[1])
       .subscribe((project) => {
         this.displayRoute[1] = project.data.name;
         this.displayRoute$.next(this.displayRoute);
@@ -63,7 +63,7 @@ export class RouteSegmentsService implements OnDestroy {
     if (this.currentRoute.length < 3) return;
 
     this.epicServiceSubscription = this.epicService
-      .getEpic(this.currentRoute[2])
+      .getEpic$(this.currentRoute[2])
       .subscribe((epic) => {
         this.displayRoute[2] = epic.data.name;
         this.displayRoute$.next(this.displayRoute);
@@ -72,7 +72,7 @@ export class RouteSegmentsService implements OnDestroy {
     if (this.currentRoute.length < 4) return;
 
     this.storyServiceSubscription = this.storyService
-      .getStory(this.currentRoute[3])
+      .getStory$(this.currentRoute[3])
       .subscribe((story) => {
         this.displayRoute[3] = story.data.name;
         this.displayRoute$.next(this.displayRoute);

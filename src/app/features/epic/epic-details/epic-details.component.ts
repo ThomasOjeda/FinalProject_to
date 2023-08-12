@@ -25,11 +25,11 @@ export class EpicDetailsComponent implements OnInit {
     let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
       this.epicService
-        .getEpic(epicId)
+        .getEpic$(epicId)
         .subscribe((epic) => (this.epic = epic.data));
 
       this.storyService
-        .getStories(epicId)
+        .getStories$(epicId)
         .subscribe((stories) => (this.storyList = stories.data));
     }
   }

@@ -43,10 +43,10 @@ export class ProjectDetailsComponent implements OnInit {
       this.activatedRouteService.snapshot.paramMap.get('project-id');
     if (projectId) {
       this.projectService
-        .getProject(projectId)
+        .getProject$(projectId)
         .subscribe((project) => (this.project = project.data));
       this.epicService
-        .getEpics(projectId)
+        .getEpics$(projectId)
         .subscribe((epics) => (this.epicList = epics.data));
     }
   }

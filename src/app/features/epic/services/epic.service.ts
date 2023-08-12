@@ -56,13 +56,13 @@ export class EpicService {
 
   constructor(private httpService: HttpClient) {}
 
-  getEpics(projectId: string) {
+  getEpics$(projectId: string) {
     return this.httpService.get<EpicsResponse>(
       environment.API_URL + '/api/projects/' + projectId + '/epics'
     );
   }
 
-  getEpic(epicId: string) {
+  getEpic$(epicId: string) {
     return this.httpService.get<EpicResponse>(
       environment.API_URL + '/api/epics/' + epicId
     );

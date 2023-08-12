@@ -59,13 +59,13 @@ export class StoryService {
 
   constructor(private httpService: HttpClient) {}
 
-  getStories(epicId: string) {
+  getStories$(epicId: string) {
     return this.httpService.get<StoriesResponse>(
       environment.API_URL + '/api/epics/' + epicId + '/stories'
     );
   }
 
-  getStory(storyId: string) {
+  getStory$(storyId: string) {
     return this.httpService.get<StoryResponse>(
       environment.API_URL + '/api/stories/' + storyId
     );

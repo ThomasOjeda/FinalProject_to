@@ -59,12 +59,12 @@ export class ProjectService {
 
   constructor(private httpService: HttpClient) {}
 
-  getProjects() {
+  getProjects$() {
     return this.httpService.get<ProjectsResponse>(
       environment.API_URL + '/api/projects'
     );
   }
-  getProject(projectId: string) {
+  getProject$(projectId: string) {
     return this.httpService.get<ProjectResponse>(
       environment.API_URL + '/api/projects/' + projectId
     );
