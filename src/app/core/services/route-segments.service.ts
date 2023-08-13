@@ -73,8 +73,10 @@ export class RouteSegmentsService implements OnDestroy {
     this.storyServiceSubscription.unsubscribe();
     this.taskServiceSubscription.unsubscribe();
 
-    //In case there are fewer segments in the current route, eliminate them from the display route
+    //In case there are fewer segments in the current route, remove them from the display route
     this.displayRoute = this.displayRoute.slice(0, this.currentRoute.length);
+
+    this.displayRoute[0] = beautifyFirstSegment(this.currentRoute[0]);
     this.displayRoute$.next(this.displayRoute);
 
     if (this.invalidIndex(1)) {
@@ -159,4 +161,11 @@ export class RouteSegmentsService implements OnDestroy {
     this.epicServiceSubscription.unsubscribe();
     this.storyServiceSubscription.unsubscribe();
   }
+}
+function beautifyFirstSegment(segment: string): string {
+  if (segment == 'my-projects') return 'My Projects';
+  if (segment == 'home') return 'Home';
+  if (segment == 'my-stories') return 'My User Stories';
+  if (segment == 'settings') return 'Settings';
+  return 'Section';
 }
