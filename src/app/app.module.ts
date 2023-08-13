@@ -13,6 +13,7 @@ import { TaskModule } from './features/task/task.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
+import { SettingsModule } from './features/settings/settings.module';
 
 @NgModule({
   declarations: [AppComponent, PlaceholderComponent],
@@ -27,6 +28,7 @@ import { AuthModule } from './auth/auth.module';
     StoryModule,
     TaskModule,
     AuthModule,
+    SettingsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

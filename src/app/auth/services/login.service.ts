@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenService } from './token.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,13 +15,10 @@ export class LoginService {
   ) {}
 
   login(username: string, password: string) {
-    return this.httpService.post(
-      'https://lamansysfaketaskmanagerapi.onrender.com/api/login',
-      {
-        username: username,
-        password: password,
-      }
-    );
+    return this.httpService.post(environment.API_URL + '/api/login', {
+      username: username,
+      password: password,
+    });
   }
 
   logout() {

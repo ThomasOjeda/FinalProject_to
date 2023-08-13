@@ -1,1 +1,7 @@
-<p>settings works!</p>
+<app-custom-button
+  [buttonType]="'text&icon'"
+  [iconAlt]="'logout'"
+  [iconPath]="'assets/close-svgrepo-com.svg'"
+  [text]="'logout'"
+  (clickedButtonEvent)="handleLogoutButtonClick()"
+></app-custom-button>
