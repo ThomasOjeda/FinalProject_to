@@ -6,12 +6,15 @@
 
 @mixin light-theme($element) {
   @if $element == "icon" {
-    filter: invert(0%)
-      sepia(6%)
-      saturate(58%)
-      hue-rotate(345deg)
-      brightness(91%)
-      contrast(73%);
+  }
+  @if $element == "header" {
+    background-color: color("gray400");
+  }
+  @if $element == "segment" {
+    color: color("black-800");
+  }
+  @if $element == "segment:hover" {
+    color: color("link-primary");
   }
   @if $element == "button" {
     border-color: color("black");
@@ -38,12 +41,15 @@
 
 @mixin dark-theme($element) {
   @if $element == "icon" {
-    filter: invert(100%)
-      sepia(0%)
-      saturate(0%)
-      hue-rotate(10deg)
-      brightness(102%)
-      contrast(101%);
+  }
+  @if $element == "header" {
+    background-color: color("black600");
+  }
+  @if $element == "segment" {
+    color: color("gray100");
+  }
+  @if $element == "segment:hover" {
+    color: color("link-primary");
   }
   @if $element == "button" {
     border-color: color("white");

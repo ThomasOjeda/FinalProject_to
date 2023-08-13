@@ -1,17 +1,25 @@
 $colors: (
-  "black": rgb(34, 34, 34, 1),
-  "black-50": rgba(34, 34, 34, 0.5),
-  "black-10": rgba(34, 34, 34, 0.1),
-  "white": rgba(255, 255, 255, 1),
-  "white-50": rgba(255, 255, 255, 0.5),
-  "white-10": rgba(255, 255, 255, 0.1),
+  "solid-primary": #83eede,
+  "link-primary": #008aa8,
+  "link-tertiary": #70728f,
+  "gray100": #f9f9fb,
+  "gray200": #eceff4,
+  "gray300": #e5e9f0,
+  "gray400": #d8dee9,
+  "black600": #4c566a,
+  "black700": #434c5e,
+  "black800": #3b4252,
+  "black900": #2e3440,
+  "black": #000,
+  "white": #fff,
+  "solid-red": rgba(228, 64, 87, 0.5),
+  "link-red": #e44057,
+  "solid-orange": rgba(234, 123, 75, 0.55),
+  "link-orange": #ea7b4b,
+  "solid-yellow": rgba(246, 201, 92, 0.55),
+  "link-yellow": #f6c95c,
+  "solid-green": rgba(147, 196, 93, 0.55),
+  "link-green": #93c45d,
+  "solid-purple": rgba(202, 129, 190, 0.55),
+  "link-purple": #ca81be,
 );
-
-/* $colors: (
-  ee8434
-
-  DFB2F4
-  F5E960
-  5BC0EB
-  73A580
-); */

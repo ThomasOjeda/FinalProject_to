@@ -14,8 +14,10 @@
   padding: 0.5rem;
 }
 
-@mixin max-width() {
-  max-width: 32rem;
+@mixin reset-list() {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 @mixin visible-borders() {
