@@ -22,5 +22,12 @@
   </nav>
   <footer class="footer">
     <li><a routerLink="/settings"> Settings </a></li>
+    <app-custom-button
+      [buttonType]="'text&icon'"
+      [iconAlt]="'logout'"
+      [iconPath]="'assets/close-svgrepo-com.svg'"
+      [text]="'logout'"
+      (clickedButtonEvent)="handleLogoutButtonClick()"
+    ></app-custom-button>
   </footer>
 </aside>

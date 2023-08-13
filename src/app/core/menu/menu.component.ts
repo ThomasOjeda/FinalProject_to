@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MenuService } from '../services/menu.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/auth/services/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +15,8 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   constructor(
     private menuService: MenuService,
-    private routerService: Router
+    private routerService: Router,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {
     this.menuStateSubscription = this.menuService
@@ -29,6 +31,10 @@ export class MenuComponent implements OnInit, OnDestroy {
   navigate(path: string) {
     this.closeMenu();
     this.routerService.navigate([path]);
+  }
+
+  handleLogoutButtonClick() {
+    this.loginService.logout();
   }
 
   ngOnDestroy(): void {
