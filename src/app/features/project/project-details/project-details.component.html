@@ -8,21 +8,6 @@
       </h2>
     </header>
 
-    <!--     <table>
-      <tr>
-        <th>Description</th>
-        <td>{{ project.description || "No description available" }}</td>
-      </tr>
-      <tr>
-        <th>Amount of members</th>
-        <td>{{ project.members.length }}</td>
-      </tr>
-      <tr>
-        <th>Owner</th>
-        <td>{{ project.owner }}</td>
-      </tr>
-    </table> -->
-
     <app-custom-details
       [rowValues]="[
         project.description,
@@ -41,7 +26,7 @@
     <header>
       <h2>Associated Epics</h2>
     </header>
-    <ul *ngIf="epicList.length > 0">
+    <ul *ngIf="epicList.length > 0" class="epic-list">
       <li *ngFor="let epic of epicList">
         <app-summary-card
           [name]="epic.name"

@@ -1,0 +1,11 @@
+@import "../../../../styles.scss";
+:host {
+  width: 100%;
+}
+.epic-list {
+  @include reset-list();
+
+  li {
+    margin-top: 1rem;
+  }
+}
