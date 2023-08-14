@@ -16,29 +16,56 @@
 
   &:hover {
     background-color: color("link-primary");
-    color: color("gray100");
   }
 }
 
-.btn-large {
-  height: 3rem;
+.btn-red {
+  background-color: color("solid-red");
+
+  &:hover {
+    background-color: color("link-red");
+  }
+}
+.btn-orange {
+  background-color: color("solid-orange");
+
+  &:hover {
+    background-color: color("link-orange");
+  }
+}
+.btn-green {
+  background-color: color("solid-green");
+
+  &:hover {
+    background-color: color("link-green");
+  }
+}
+.btn-yellow {
+  background-color: color("solid-yellow");
+
+  &:hover {
+    background-color: color("link-yellow");
+  }
+}
+.btn-purple {
+  background-color: color("solid-purple");
+
+  &:hover {
+    background-color: color("link-purple");
+  }
 }
 
-.btn-medium {
-  height: 2rem;
-}
-
-.btn-small {
-  height: 1rem;
-}
-
+.btn-large,
 .img-large {
   height: 3rem;
 }
 
+.btn-medium,
 .img-medium {
   height: 2rem;
 }
+
+.btn-small,
 .img-small {
   height: 1rem;
 }

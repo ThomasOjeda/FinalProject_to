@@ -13,8 +13,22 @@ export class CustomIconButtonComponent {
   @Input() iconAlt: string = '';
   @Input() iconHeight: string = '';
 
+  classes = {};
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.classes = {
+      'btn-large': this.iconHeight == 'large',
+      'btn-medium': this.iconHeight == 'medium',
+      'btn-small': this.iconHeight == 'small',
+
+      'btn-primary': this.buttonPaint == 'primary',
+      'btn-red': this.buttonPaint == 'red',
+      'btn-orange': this.buttonPaint == 'orange',
+      'btn-green': this.buttonPaint == 'green',
+      'btn-yellow': this.buttonPaint == 'yellow',
+      'btn-purple': this.buttonPaint == 'purple',
+    };
+  }
   buttonWasClicked($event: Event) {
     this.clickedButtonEvent.emit($event);
   }
