@@ -12,7 +12,7 @@ import { Subscription, take } from 'rxjs';
   styleUrls: ['./project-details.component.scss'],
 })
 export class ProjectDetailsComponent implements OnInit {
-  project: Project | undefined;
+  project!: Project;
   epicList: Epic[] = [];
 
   epicListSubscription: Subscription = new Subscription();

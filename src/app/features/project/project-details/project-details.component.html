@@ -2,12 +2,13 @@
   <section *ngIf="project">
     <header>
       <h2>
-        <span *ngIf="project.icon">{{ project.icon }}</span
-        >Project "{{ project.name }}" details
+        <span *ngIf="project.icon">{{ project.icon }}</span> "{{
+          project.name
+        }}" details
       </h2>
     </header>
 
-    <table>
+    <!--     <table>
       <tr>
         <th>Description</th>
         <td>{{ project.description || "No description available" }}</td>
@@ -20,7 +21,21 @@
         <th>Owner</th>
         <td>{{ project.owner }}</td>
       </tr>
-    </table>
+    </table> -->
+
+    <app-custom-details
+      [rowValues]="[
+        project.description,
+        project.owner,
+        'member list member list1'
+      ]"
+      [rowNames]="[
+        'Description',
+        'Owner',
+        project.members.length.toString() + ' participating members'
+      ]"
+      [states]="[true, true, false]"
+    ></app-custom-details>
   </section>
   <section>
     <header>

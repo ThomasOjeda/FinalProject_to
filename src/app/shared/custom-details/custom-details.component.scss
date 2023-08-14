@@ -1,0 +1,16 @@
+@import "../../../styles.scss";
+.details {
+  @include reset-list();
+}
+
+.detail {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.25s;
+}
+
+.show {
+  height: 1rem;
+}

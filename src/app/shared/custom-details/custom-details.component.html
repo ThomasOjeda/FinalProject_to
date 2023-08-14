@@ -1,0 +1,13 @@
+<ul class="details">
+  <li *ngFor="let elem of rowNames; index as i">
+    <div *ngIf="elem && rowValues[i]">
+      <app-custom-button
+        [text]="elem"
+        [buttonHeight]="'small'"
+        [buttonPaint]="'orange'"
+        (clickedButtonEvent)="handleButtonClickedEvent(i)"
+      ></app-custom-button>
+      <p class="detail" [ngClass]="{ show: states[i] }">{{ rowValues[i] }}</p>
+    </div>
+  </li>
+</ul>
