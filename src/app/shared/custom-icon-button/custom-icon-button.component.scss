@@ -1,6 +1,11 @@
 @import "../../../styles.scss";
 
+:host {
+  width: 100%;
+}
+
 .btn {
+  width: 100%;
   box-sizing: border-box;
 
   @include center-x-y();

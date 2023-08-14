@@ -1,12 +1,3 @@
-<button
-  (click)="buttonWasClicked($event)"
-  class="btn"
-  [ngClass]="{
-    'btn-primary': buttonPaint == 'primary',
-    'btn-small': buttonHeight == 'small',
-    'btn-medium': buttonHeight == 'medium',
-    'btn-large': buttonHeight == 'large'
-  }"
->
+<button (click)="buttonWasClicked($event)" class="btn" [ngClass]="classes">
   <div class="text">{{ this.text }}</div>
 </button>

@@ -1,6 +1,11 @@
 @import "../../../styles.scss";
 
+:host {
+  width: 100%;
+}
+
 .btn {
+  width: 100%;
   box-sizing: border-box;
   padding: 0.5rem 0.5rem;
 
@@ -13,6 +18,7 @@
 }
 
 .text {
+  font-weight: bold;
 }
 
 .btn-primary {
@@ -20,6 +26,46 @@
 
   &:hover {
     background-color: color("link-primary");
+    color: color("gray100");
+  }
+}
+.btn-red {
+  background-color: color("solid-red");
+
+  &:hover {
+    background-color: color("link-red");
+    color: color("gray100");
+  }
+}
+.btn-green {
+  background-color: color("solid-green");
+
+  &:hover {
+    background-color: color("link-green");
+    color: color("gray100");
+  }
+}
+.btn-orange {
+  background-color: color("solid-orange");
+
+  &:hover {
+    background-color: color("link-orange");
+    color: color("gray100");
+  }
+}
+.btn-yellow {
+  background-color: color("solid-yellow");
+
+  &:hover {
+    background-color: color("link-yellow");
+    color: color("gray100");
+  }
+}
+.btn-purple {
+  background-color: color("solid-purple");
+
+  &:hover {
+    background-color: color("link-purple");
     color: color("gray100");
   }
 }

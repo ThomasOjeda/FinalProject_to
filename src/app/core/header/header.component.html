@@ -1,8 +1,9 @@
 <header class="header">
   <nav class="navigation">
     <app-custom-icon-button
+      class="menu-btn"
       *ngIf="segments.length <= 0"
-      [buttonPaint]="'purple'"
+      [buttonPaint]="'red'"
       (clickedButtonEvent)="openMenu()"
       [iconHeight]="'large'"
       [iconPath]="'/assets/menu-svgrepo-com.svg'"
