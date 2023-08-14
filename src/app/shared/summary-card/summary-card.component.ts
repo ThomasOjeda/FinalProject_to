@@ -9,4 +9,5 @@ export class SummaryCardComponent {
   @Input() name: string | undefined;
   @Input() description: string | undefined;
   @Input() icon: string | undefined;
+  @Input() type: string | undefined;
 }

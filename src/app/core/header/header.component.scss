@@ -10,7 +10,7 @@
 }
 
 .navigation {
-  @include center-x-y("left");
+  @include center-x-y(flex-start);
   width: 100%;
 }
 
@@ -48,5 +48,9 @@
 }
 
 .menu-btn {
+  width: 3rem;
+}
+
+.back-btn {
   width: 3rem;
 }

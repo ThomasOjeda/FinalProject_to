@@ -10,8 +10,8 @@
   justify-content: $justify;
 }
 
-@mixin padding() {
-  padding: 0.5rem;
+@mixin content-horizontal-padding() {
+  padding: 0 1rem;
 }
 
 @mixin reset-list() {
@@ -20,20 +20,22 @@
   padding: 0;
 }
 
-@mixin visible-borders() {
+/* @mixin visible-borders() {
   border: 0.0625rem solid;
   border-radius: 0.25rem;
-}
+} */
 
-@mixin invisible-borders() {
+/* @mixin invisible-borders() {
   border: none;
   outline: none;
   border-radius: 0.25rem;
-}
+} */
 
 body {
   margin: 0;
   padding: 0;
+  background-color: color("white");
+
   font-family: "Roboto", sans-serif;
 }
 

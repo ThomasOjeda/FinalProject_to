@@ -1,9 +1,5 @@
 <section>
-  <header>
-    <h1>my projects section</h1>
-  </header>
-
-  <ul *ngIf="projectList.length > 0">
+  <ul *ngIf="projectList.length > 0" class="project-list">
     <li *ngFor="let project of projectList">
       <app-summary-card
         [name]="project.name"

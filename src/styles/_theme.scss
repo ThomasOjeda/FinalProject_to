@@ -5,8 +5,6 @@
 }
 
 @mixin light-theme($element) {
-  @if $element == "icon" {
-  }
   @if $element == "header" {
     background-color: color("gray400");
   }
@@ -19,6 +17,13 @@
   @if $element == "button" {
     border-color: color("black");
     color: color("black");
+  }
+  @if $element == "summary-card" {
+    background-color: color("gray400");
+    color: color("black-800");
+  }
+  @if $element == "summary-card:hover" {
+    color: color("link-primary");
   }
   @if $element == "body" {
     background-color: color("white");
@@ -43,8 +48,6 @@
 }
 
 @mixin dark-theme($element) {
-  @if $element == "icon" {
-  }
   @if $element == "header" {
     background-color: color("black600");
   }
@@ -57,6 +60,10 @@
   @if $element == "button" {
     border-color: color("white");
     color: color("white");
+  }
+  @if $element == "summary-card" {
+    background-color: color("black600");
+    color: color("gray100");
   }
   @if $element == "body" {
     background-color: color("black");

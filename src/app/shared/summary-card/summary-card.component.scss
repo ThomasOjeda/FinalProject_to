@@ -1,0 +1,19 @@
+@import "../../../styles.scss";
+
+.summary-card {
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: color 0.25s, outline 0.25s;
+  outline-color: color("solid-primary");
+  @include theme("summary-card");
+
+  &:hover {
+    @include theme("summary-card:hover");
+    outline: solid color("solid-primary") 1px;
+  }
+}
+
+.description {
+  font-style: italic;
+}

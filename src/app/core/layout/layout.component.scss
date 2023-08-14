@@ -1,4 +1,11 @@
+@import "../../../styles.scss";
+
 .content {
-  display: block;
+  margin: 0 auto;
+  display: flex;
+  @include center-x-y();
+  @include content-horizontal-padding();
   margin-top: 3rem;
+
+  max-width: 50rem;
 }

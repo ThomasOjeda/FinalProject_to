@@ -1,0 +1,12 @@
+@import "../../../../styles.scss";
+
+:host {
+  width: 100%;
+}
+.project-list {
+  @include reset-list();
+
+  li {
+    margin-top: 1rem;
+  }
+}

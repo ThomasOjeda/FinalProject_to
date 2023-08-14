@@ -1,7 +1,8 @@
-<h1>This is a summary</h1>
+<article class="summary-card">
+  <h3 *ngIf="name" class="name">
+    <span *ngIf="icon">{{ icon }}</span
+    >{{ name }}
+  </h3>
 
-<p *ngIf="name">{{ name }}</p>
-
-<p *ngIf="description">{{ description }}</p>
-
-<p *ngIf="icon">{{ icon }}</p>
+  <p *ngIf="description" class="description">{{ description }}</p>
+</article>
