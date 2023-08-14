@@ -4,11 +4,13 @@
     [text]="'Confirm'"
     [buttonPaint]="'primary'"
     (clickedButtonEvent)="handleConfirmButtonClick()"
+    [buttonHeight]="'small'"
   ></app-custom-button>
   <app-custom-button
     [text]="'Close'"
     [buttonPaint]="'primary'"
     (clickedButtonEvent)="handleCloseButtonClick()"
+    [buttonHeight]="'small'"
   ></app-custom-button>
   <p *ngIf="confirmed">Performing action</p>
 </dialog>

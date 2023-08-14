@@ -2,7 +2,6 @@
 
 .btn {
   box-sizing: border-box;
-  height: 3rem;
   padding: 0.5rem 0.5rem;
 
   @include center-x-y();
@@ -14,8 +13,6 @@
 }
 
 .text {
-  font-size: 2rem;
-  line-height: 2rem;
 }
 
 .btn-primary {
@@ -25,4 +22,16 @@
     background-color: color("link-primary");
     color: color("gray100");
   }
+}
+
+.btn-small {
+  height: 1rem;
+}
+
+.btn-medium {
+  height: 2rem;
+}
+
+.btn-large {
+  height: 3rem;
 }

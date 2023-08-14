@@ -45,6 +45,7 @@
     <app-custom-button
       [text]="'Create'"
       [buttonPaint]="'primary'"
+      [buttonHeight]="'small'"
     ></app-custom-button>
   </form>
 
@@ -52,5 +53,6 @@
     [text]="'Close'"
     [buttonPaint]="'primary'"
     (clickedButtonEvent)="handleCloseDialogButtonClick()"
+    [buttonHeight]="'small'"
   ></app-custom-button>
 </dialog>
