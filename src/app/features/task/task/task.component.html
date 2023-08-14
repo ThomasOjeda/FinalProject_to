@@ -17,8 +17,8 @@
     {{ task.name }}
   </app-task-name>
   <app-custom-button
-    [iconPath]="'/assets/tcan.svg'"
-    [iconAlt]="'delete task'"
+    [text]="'Delete'"
+    [buttonPaint]="'primary'"
     buttonType="icon"
     (clickedButtonEvent)="handleDeleteButtonClick()"
   ></app-custom-button>

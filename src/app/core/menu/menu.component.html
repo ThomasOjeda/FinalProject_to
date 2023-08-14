@@ -1,9 +1,8 @@
 <aside class="menu" [ngClass]="{ 'open-menu': isOpen }">
   <header>
     <app-custom-button
-      [buttonType]="'icon'"
-      [iconPath]="'assets/close-svgrepo-com.svg'"
-      [iconAlt]="'close menu'"
+      [text]="'Close'"
+      [buttonPaint]="'primary'"
       (clickedButtonEvent)="closeMenu()"
     ></app-custom-button>
     <h2>APPLOGO</h2>
@@ -32,11 +31,9 @@
       <a> Settings </a>
     </li>
     <app-custom-button
-      [buttonType]="'text&icon'"
-      [iconAlt]="'logout'"
-      [iconPath]="'assets/close-svgrepo-com.svg'"
-      [text]="'logout'"
+      [text]="'Logout'"
       (clickedButtonEvent)="handleLogoutButtonClick()"
+      [buttonPaint]="'primary'"
     ></app-custom-button>
   </footer>
 </aside>

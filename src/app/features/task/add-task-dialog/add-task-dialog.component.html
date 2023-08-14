@@ -43,17 +43,14 @@
     </div>
     <p *ngIf="requestPending">Creating task</p>
     <app-custom-button
-      [buttonType]="'text&icon'"
       [text]="'Create'"
-      [iconAlt]="'close dialog'"
-      [iconPath]="'assets/close-svgrepo-com.svg'"
+      [buttonPaint]="'primary'"
     ></app-custom-button>
   </form>
 
   <app-custom-button
-    [buttonType]="'icon'"
-    [iconAlt]="'close dialog'"
-    [iconPath]="'assets/close-svgrepo-com.svg'"
+    [text]="'Close'"
+    [buttonPaint]="'primary'"
     (clickedButtonEvent)="handleCloseDialogButtonClick()"
   ></app-custom-button>
 </dialog>

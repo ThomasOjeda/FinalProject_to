@@ -2,52 +2,27 @@
 
 .btn {
   box-sizing: border-box;
-  height: 1rem;
-  min-width: 1rem;
-  /*   padding: 0.5rem 0.5rem;
- */
+  height: 3rem;
+  padding: 0.5rem 0.5rem;
+
   @include center-x-y();
-
+  border-radius: 0.25rem;
+  border: none;
   background: none;
-  @include visible-borders();
   cursor: pointer;
-}
-
-.icon-btn {
-  /*   padding: 0.5rem;
- */
-}
-
-.icon {
-  height: 1rem;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .text {
-  margin-left: 0.5rem;
-  font-size: 1rem;
-  line-height: 1rem;
+  font-size: 2rem;
+  line-height: 2rem;
 }
 
-.btn-theme-system {
-  @include theme("button", "theme-system");
-}
+.btn-primary {
+  background-color: color("solid-primary");
 
-.btn-theme-light {
-  @include theme("button", "theme-ligth");
-}
-
-.btn-theme-dark {
-  @include theme("button", "theme-dark");
-}
-
-.icon-theme-system {
-  @include theme("icon", "theme-system");
-}
-
-.icon-theme-light {
-  @include theme("icon", "theme-ligth");
-}
-
-.icon-theme-dark {
-  @include theme("icon", "theme-dark");
+  &:hover {
+    background-color: color("link-primary");
+    color: color("gray100");
+  }
 }

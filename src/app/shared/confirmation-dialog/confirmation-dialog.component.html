@@ -1,15 +1,13 @@
 <dialog #dialog class="dialog" [ngClass]="{ open: isOpen }">
   <ng-content></ng-content>
   <app-custom-button
-    [buttonType]="'icon'"
-    [iconAlt]="'close dialog'"
-    [iconPath]="'assets/tcan-svgrepo-com.svg'"
+    [text]="'Confirm'"
+    [buttonPaint]="'primary'"
     (clickedButtonEvent)="handleConfirmButtonClick()"
   ></app-custom-button>
   <app-custom-button
-    [buttonType]="'icon'"
-    [iconAlt]="'close dialog'"
-    [iconPath]="'assets/close-svgrepo-com.svg'"
+    [text]="'Close'"
+    [buttonPaint]="'primary'"
     (clickedButtonEvent)="handleCloseButtonClick()"
   ></app-custom-button>
   <p *ngIf="confirmed">Performing action</p>

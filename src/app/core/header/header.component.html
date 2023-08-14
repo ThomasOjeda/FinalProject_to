@@ -2,15 +2,15 @@
   <nav class="navigation">
     <app-custom-button
       *ngIf="segments.length <= 0"
-      [buttonType]="'icon'"
-      [iconPath]="'/assets/menu-svgrepo-com.svg'"
+      [text]="'Menu'"
+      [buttonPaint]="'primary'"
       (clickedButtonEvent)="openMenu()"
     >
     </app-custom-button>
     <app-custom-button
       *ngIf="segments.length > 0"
-      [buttonType]="'icon'"
-      [iconPath]="'/assets/arrow-left-svgrepo-com.svg'"
+      [text]="'Back'"
+      [buttonPaint]="'primary'"
       (clickedButtonEvent)="navigateToSegment(segments.length - 2)"
     >
     </app-custom-button>

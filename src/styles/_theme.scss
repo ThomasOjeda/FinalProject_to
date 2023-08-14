@@ -16,16 +16,6 @@
   @if $element == "segment:hover" {
     color: color("link-primary");
   }
-  @if $element == "menu" {
-    background-color: color("black800");
-    color: color("gray100");
-  }
-  @if $element == "menu-item" {
-  }
-  @if $element == "menu-item:hover" {
-    background-color: color("black900");
-    text-shadow: 0 0 0.5rem color("gray100"), 0 0 0.5rem color("gray100");
-  }
   @if $element == "button" {
     border-color: color("black");
     color: color("black");
@@ -63,16 +53,6 @@
   }
   @if $element == "segment:hover" {
     color: color("link-primary");
-  }
-  @if $element == "menu" {
-    background-color: color("black800");
-    color: color("gray100");
-  }
-  @if $element == "menu-item" {
-  }
-  @if $element == "menu-item:hover" {
-    background-color: color("black900");
-    font-weight: bold;
   }
   @if $element == "button" {
     border-color: color("white");
