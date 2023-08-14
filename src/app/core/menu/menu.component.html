@@ -1,11 +1,11 @@
 <aside class="menu" [ngClass]="{ 'open-menu': isOpen }">
   <header>
-    <app-custom-button
-      [text]="'Close'"
+    <app-custom-icon-button
       [buttonPaint]="'primary'"
       (clickedButtonEvent)="closeMenu()"
-      [buttonHeight]="'small'"
-    ></app-custom-button>
+      [iconHeight]="'large'"
+      [iconPath]="'/assets/close-svgrepo-com.svg'"
+    ></app-custom-icon-button>
     <h2>APPLOGO</h2>
     <!--     <figure>
       <img src="" alt="" />

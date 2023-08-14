@@ -1,0 +1,21 @@
+<button
+  (click)="buttonWasClicked($event)"
+  class="btn"
+  [ngClass]="{
+    'btn-primary': buttonPaint == 'primary',
+    'btn-large': iconHeight == 'large',
+    'btn-medium': iconHeight == 'medium',
+    'btn-small': iconHeight == 'small'
+  }"
+>
+  <img
+    [src]="iconPath"
+    [alt]="iconAlt"
+    class="icon"
+    [ngClass]="{
+      'img-large': iconHeight == 'large',
+      'img-medium': iconHeight == 'medium',
+      'img-small': iconHeight == 'small'
+    }"
+  />
+</button>

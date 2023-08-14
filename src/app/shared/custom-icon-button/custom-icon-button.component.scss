@@ -1,0 +1,44 @@
+@import "../../../styles.scss";
+
+.btn {
+  box-sizing: border-box;
+
+  @include center-x-y();
+  border-radius: 0.25rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.btn-primary {
+  background-color: color("solid-primary");
+
+  &:hover {
+    background-color: color("link-primary");
+    color: color("gray100");
+  }
+}
+
+.btn-large {
+  height: 3rem;
+}
+
+.btn-medium {
+  height: 2rem;
+}
+
+.btn-small {
+  height: 1rem;
+}
+
+.img-large {
+  height: 3rem;
+}
+
+.img-medium {
+  height: 2rem;
+}
+.img-small {
+  height: 1rem;
+}

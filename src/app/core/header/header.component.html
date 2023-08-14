@@ -1,13 +1,12 @@
 <header class="header">
   <nav class="navigation">
-    <app-custom-button
+    <app-custom-icon-button
       *ngIf="segments.length <= 0"
-      [text]="'Menu'"
       [buttonPaint]="'primary'"
       (clickedButtonEvent)="openMenu()"
-      [buttonHeight]="'small'"
-    >
-    </app-custom-button>
+      [iconHeight]="'large'"
+      [iconPath]="'/assets/menu-svgrepo-com.svg'"
+    ></app-custom-icon-button>
     <app-custom-button
       *ngIf="segments.length > 0"
       [text]="'Back'"
