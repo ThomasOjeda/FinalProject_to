@@ -16,4 +16,13 @@
 
 .description {
   font-style: italic;
+  white-space: nowrap; //this three properties must be specified for the ellipsis to work
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name {
+  white-space: nowrap; //this three properties must be specified for the ellipsis to work
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

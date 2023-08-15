@@ -14,6 +14,10 @@ import { take } from 'rxjs';
 export class EpicDetailsComponent implements OnInit {
   epic: Epic | undefined;
   storyList: Story[] = [];
+  storyListDone: Story[] = [];
+  storyListRunning: Story[] = [];
+  storyListTodo: Story[] = [];
+
   constructor(
     private epicService: EpicService,
     private storyService: StoryService,
@@ -28,9 +32,18 @@ export class EpicDetailsComponent implements OnInit {
         .getEpic$(epicId)
         .subscribe((epic) => (this.epic = epic.data));
 
-      this.storyService
-        .getStories$(epicId)
-        .subscribe((stories) => (this.storyList = stories.data));
+      this.storyService.getStories$(epicId).subscribe((stories) => {
+        this.storyList = stories.data;
+        this.storyListDone = this.storyList.filter(
+          (story) => story.status == 'done'
+        );
+        this.storyListRunning = this.storyList.filter(
+          (story) => story.status == 'running'
+        );
+        this.storyListTodo = this.storyList.filter(
+          (story) => story.status == 'todo'
+        );
+      });
     }
   }
 

@@ -1,0 +1,29 @@
+@import "../../../../styles.scss";
+
+:host {
+  width: 100%;
+  max-width: 70rem;
+}
+
+.board {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.story-list {
+  @include reset-list();
+}
+
+.board-part {
+  min-width: 0; //Important to let the text shrink as much as its needed
+}
+
+.list-item {
+  margin-top: 1rem;
+  max-width: 30rem;
+}
+
+.summary-card {
+}

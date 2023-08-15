@@ -1,7 +1,9 @@
 @import "../../../../styles.scss";
 :host {
   width: 100%;
+  max-width: 40rem;
 }
+
 .epic-list {
   @include reset-list();
 

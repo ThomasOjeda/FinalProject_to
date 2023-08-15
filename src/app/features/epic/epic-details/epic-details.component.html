@@ -1,25 +1,71 @@
 <section>
-  <section>
+  <section *ngIf="epic">
     <header>
-      <h2>Epic details</h2>
+      <h2>
+        <span *ngIf="epic.icon">{{ epic.icon }}</span> "{{ epic.name }}" details
+      </h2>
     </header>
 
-    {{ this.epic | json }}
+    <app-custom-details
+      [rowValues]="[epic.description]"
+      [rowNames]="['Description']"
+      [states]="[true]"
+    ></app-custom-details>
   </section>
   <section>
     <header>
       <h2>Associated Stories</h2>
     </header>
-    <ul *ngIf="storyList.length > 0">
-      <li *ngFor="let story of storyList">
-        <app-summary-card
-          [name]="story.name"
-          [description]="story.description"
-          [icon]="story.icon"
-          (click)="handleStorySelection(story._id)"
-        ></app-summary-card>
-      </li>
-    </ul>
+
+    <div class="board">
+      <article class="board-part">
+        <header>
+          <h3>ToDo</h3>
+        </header>
+        <ul class="story-list">
+          <li *ngFor="let story of storyListTodo" class="list-item">
+            <app-summary-card
+              [name]="story.name"
+              [description]="story.description"
+              [icon]="story.icon"
+              (click)="handleStorySelection(story._id)"
+            ></app-summary-card>
+          </li>
+        </ul>
+      </article>
+
+      <article class="board-part">
+        <header>
+          <h3>Running</h3>
+        </header>
+        <ul class="story-list">
+          <li *ngFor="let story of storyListRunning" class="list-item">
+            <app-summary-card
+              [name]="story.name"
+              [description]="story.description"
+              [icon]="story.icon"
+              (click)="handleStorySelection(story._id)"
+            ></app-summary-card>
+          </li>
+        </ul>
+      </article>
+
+      <article class="board-part">
+        <header>
+          <h3>Done</h3>
+        </header>
+        <ul class="story-list">
+          <li *ngFor="let story of storyListDone" class="list-item">
+            <app-summary-card
+              [name]="story.name"
+              [description]="story.description"
+              [icon]="story.icon"
+              (click)="handleStorySelection(story._id)"
+            ></app-summary-card>
+          </li>
+        </ul>
+      </article>
+    </div>
 
     <p *ngIf="storyList.length <= 0">No Stories found</p>
   </section>
