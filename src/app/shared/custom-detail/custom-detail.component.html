@@ -1,0 +1,11 @@
+<div>
+  <app-custom-button
+    [text]="name"
+    [buttonHeight]="'small'"
+    [buttonPaint]="'orange'"
+    (clickedButtonEvent)="handleButtonClickedEvent()"
+  ></app-custom-button>
+  <p class="detail" [ngClass]="{ show: state }">
+    <ng-content></ng-content>
+  </p>
+</div>

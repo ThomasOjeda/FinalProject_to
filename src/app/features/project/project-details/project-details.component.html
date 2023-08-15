@@ -8,19 +8,20 @@
       </h2>
     </header>
 
-    <app-custom-details
-      [rowValues]="[
-        project.description,
-        project.owner,
-        'member list member list1'
-      ]"
-      [rowNames]="[
-        'Description',
-        'Owner',
-        project.members.length.toString() + ' participating members'
-      ]"
-      [states]="[true, true, false]"
-    ></app-custom-details>
+    <app-custom-detail *ngIf="project.description" [name]="'Description'">
+      {{ project.description }}
+    </app-custom-detail>
+    <app-custom-detail [name]="'Owner'">
+      {{ project.owner }}
+    </app-custom-detail>
+    <app-custom-detail [name]="'Members'">
+      <div *ngIf="project.members.length > 0">
+        {{ project.members }}
+      </div>
+      <div *ngIf="project.members.length <= 0">
+        There is no members in this project
+      </div>
+    </app-custom-detail>
   </section>
   <section>
     <ul *ngIf="epicList.length > 0" class="epic-list">

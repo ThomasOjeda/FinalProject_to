@@ -15,11 +15,9 @@
         </h2>
       </header>
 
-      <app-custom-details
-        [rowValues]="[epic.description]"
-        [rowNames]="['Description']"
-        [states]="[true]"
-      ></app-custom-details>
+      <app-custom-detail [name]="'Description'">
+        {{ epic.description }}
+      </app-custom-detail>
     </div>
   </section>
   <section>

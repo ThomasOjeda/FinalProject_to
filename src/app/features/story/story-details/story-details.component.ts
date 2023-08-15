@@ -10,8 +10,8 @@ import { AddTaskDialogService } from '../../task/services/add-task-dialog.servic
   styleUrls: ['./story-details.component.scss'],
 })
 export class StoryDetailsComponent implements OnInit {
-  story: Story | undefined;
-
+  story!: Story;
+  loadingStoryDetails: boolean = true;
   constructor(
     private storyService: StoryService,
     private activatedRoute: ActivatedRoute,
@@ -21,8 +21,14 @@ export class StoryDetailsComponent implements OnInit {
   ngOnInit() {
     let storyId = this.activatedRoute.snapshot.paramMap.get('story-id');
     if (storyId) {
-      this.storyService.getStory$(storyId).subscribe((story) => {
-        this.story = story.data;
+      this.storyService.getStory$(storyId).subscribe({
+        next: (story) => {
+          this.story = story.data;
+        },
+        error: () => {},
+        complete: () => {
+          this.loadingStoryDetails = false;
+        },
       });
     }
   }

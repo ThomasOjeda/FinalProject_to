@@ -14,6 +14,7 @@ export class ListComponent implements OnInit, OnDestroy {
   toDelete: Task = { _id: ' ', name: '', story: '' };
   taskCreationSubscription: Subscription = new Subscription();
   taskDeletionDialogCommand: Subject<boolean> = new Subject<boolean>();
+  loadingTasks: boolean = true;
   constructor(
     private taskService: TaskService,
     private addTaskDialogService: AddTaskDialogService
@@ -26,9 +27,17 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   retrieveTaskList() {
-    this.taskService
-      .getTasks$()
-      .subscribe((tasks) => (this.taskList = tasks.data));
+    this.loadingTasks = true;
+
+    this.taskService.getTasks$().subscribe({
+      next: (tasks) => {
+        this.taskList = tasks.data;
+      },
+      error: () => {},
+      complete: () => {
+        this.loadingTasks = false;
+      },
+    });
   }
 
   handleTaskDeletion($event: Task) {

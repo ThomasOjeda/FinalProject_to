@@ -1,10 +1,42 @@
 <section>
   <section>
-    <header>
-      <h2>Story details</h2>
-    </header>
+    <div class="loading-spinner">
+      <app-loading-spinner
+        *ngIf="loadingStoryDetails"
+        color="orange"
+        size="small"
+      ></app-loading-spinner>
+    </div>
+    <div *ngIf="story && !loadingStoryDetails">
+      <header>
+        <h2>
+          <span *ngIf="story.icon">{{ story.icon }}</span> "{{ story.name }}"
+          details
+        </h2>
+      </header>
 
-    {{ this.story | json }}
+      <app-custom-detail *ngIf="story.due" [name]="'Description'">
+        {{ story.description }}
+      </app-custom-detail>
+      <app-custom-detail [name]="'Creation Date'">
+        {{ story.created | date }}
+      </app-custom-detail>
+      <app-custom-detail *ngIf="story.due" [name]="'Due Date'">
+        {{ story.due | date }}
+      </app-custom-detail>
+      <app-custom-detail [name]="'Owner'">
+        {{ story.owner }}
+      </app-custom-detail>
+      <app-custom-detail [name]="'Status'">
+        {{ story.status }}
+      </app-custom-detail>
+      <app-custom-detail *ngIf="story.started" [name]="'Started'">
+        {{ story.started }}
+      </app-custom-detail>
+      <app-custom-detail *ngIf="story.finished" [name]="'Finished'">
+        {{ story.finished }}
+      </app-custom-detail>
+    </div>
   </section>
   <section>
     <header>
