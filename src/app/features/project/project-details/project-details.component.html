@@ -23,9 +23,6 @@
     ></app-custom-details>
   </section>
   <section>
-    <header>
-      <h2>Associated Epics</h2>
-    </header>
     <ul *ngIf="epicList.length > 0" class="epic-list">
       <li *ngFor="let epic of epicList">
         <app-summary-card
