@@ -1,24 +1,38 @@
 <section>
-  <section *ngIf="epic">
-    <header>
-      <h2>
-        <span *ngIf="epic.icon">{{ epic.icon }}</span> "{{ epic.name }}" details
-      </h2>
-    </header>
+  <section>
+    <div class="loading-spinner">
+      <app-loading-spinner
+        *ngIf="loadingEpicDetails"
+        color="orange"
+        size="small"
+      ></app-loading-spinner>
+    </div>
+    <div *ngIf="epic && !loadingEpicDetails">
+      <header>
+        <h2>
+          <span *ngIf="epic.icon">{{ epic.icon }}</span> "{{ epic.name }}"
+          details
+        </h2>
+      </header>
 
-    <app-custom-details
-      [rowValues]="[epic.description]"
-      [rowNames]="['Description']"
-      [states]="[true]"
-    ></app-custom-details>
+      <app-custom-details
+        [rowValues]="[epic.description]"
+        [rowNames]="['Description']"
+        [states]="[true]"
+      ></app-custom-details>
+    </div>
   </section>
   <section>
-    <header>
-      <h2>Associated Stories</h2>
-    </header>
+    <div class="loading-spinner">
+      <app-loading-spinner
+        *ngIf="loadingStories"
+        color="primary"
+        size="small"
+      ></app-loading-spinner>
+    </div>
 
-    <div class="board">
-      <article class="board-part">
+    <div *ngIf="!loadingStories" class="board">
+      <article class="board-sector">
         <header>
           <h3>ToDo</h3>
         </header>
@@ -34,7 +48,7 @@
         </ul>
       </article>
 
-      <article class="board-part">
+      <article class="board-sector">
         <header>
           <h3>Running</h3>
         </header>
@@ -50,7 +64,7 @@
         </ul>
       </article>
 
-      <article class="board-part">
+      <article class="board-sector">
         <header>
           <h3>Done</h3>
         </header>
@@ -67,6 +81,6 @@
       </article>
     </div>
 
-    <p *ngIf="storyList.length <= 0">No Stories found</p>
+    <p *ngIf="storyList.length <= 0 && !loadingStories">No Stories found</p>
   </section>
 </section>

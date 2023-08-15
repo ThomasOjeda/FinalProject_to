@@ -4,7 +4,6 @@ import { EpicService } from '../services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from 'src/models/story';
 import { StoryService } from '../../story/services/story.service';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-epic-details',
@@ -18,6 +17,9 @@ export class EpicDetailsComponent implements OnInit {
   storyListRunning: Story[] = [];
   storyListTodo: Story[] = [];
 
+  loadingStories: boolean = true;
+  loadingEpicDetails: boolean = true;
+
   constructor(
     private epicService: EpicService,
     private storyService: StoryService,
@@ -26,23 +28,37 @@ export class EpicDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadingStories = true;
+    this.loadingEpicDetails = true;
     let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
-      this.epicService
-        .getEpic$(epicId)
-        .subscribe((epic) => (this.epic = epic.data));
+      this.epicService.getEpic$(epicId).subscribe({
+        next: (epic) => {
+          this.epic = epic.data;
+        },
+        error: () => {},
+        complete: () => {
+          this.loadingEpicDetails = false;
+        },
+      });
 
-      this.storyService.getStories$(epicId).subscribe((stories) => {
-        this.storyList = stories.data;
-        this.storyListDone = this.storyList.filter(
-          (story) => story.status == 'done'
-        );
-        this.storyListRunning = this.storyList.filter(
-          (story) => story.status == 'running'
-        );
-        this.storyListTodo = this.storyList.filter(
-          (story) => story.status == 'todo'
-        );
+      this.storyService.getStories$(epicId).subscribe({
+        next: (stories) => {
+          this.storyList = stories.data;
+          this.storyListDone = this.storyList.filter(
+            (story) => story.status == 'done'
+          );
+          this.storyListRunning = this.storyList.filter(
+            (story) => story.status == 'running'
+          );
+          this.storyListTodo = this.storyList.filter(
+            (story) => story.status == 'todo'
+          );
+        },
+        error: () => {},
+        complete: () => {
+          this.loadingStories = false;
+        },
       });
     }
   }

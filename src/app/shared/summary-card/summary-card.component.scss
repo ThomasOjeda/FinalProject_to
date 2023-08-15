@@ -22,7 +22,9 @@
 }
 
 .name {
-  white-space: nowrap; //this three properties must be specified for the ellipsis to work
+  white-space: break-spaces;
+  word-wrap: break-word;
+  /*   white-space: nowrap; //this three properties must be specified for the ellipsis to work
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
