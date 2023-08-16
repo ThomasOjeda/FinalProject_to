@@ -8,12 +8,10 @@
       ></app-loading-spinner>
     </div>
     <div *ngIf="story && !loadingStoryDetails">
-      <header>
-        <h2>
-          <span *ngIf="story.icon">{{ story.icon }}</span> "{{ story.name }}"
-          details
-        </h2>
-      </header>
+      <app-section-header>
+        <span *ngIf="story.icon">{{ story.icon }}</span> "{{ story.name }}"
+        details
+      </app-section-header>
 
       <app-custom-detail *ngIf="story.due" [name]="'Description'">
         {{ story.description }}
@@ -36,18 +34,15 @@
       <app-custom-detail *ngIf="story.finished" [name]="'Finished'">
         {{ story.finished }}
       </app-custom-detail>
+      <app-custom-detail *ngIf="story.points" [name]="'Points'">
+        {{ story.points }}
+      </app-custom-detail>
+      <app-custom-detail *ngIf="story.assignedTo" [name]="'Assigned to...'">
+        {{ story.assignedTo }}
+      </app-custom-detail>
     </div>
   </section>
   <section>
-    <header>
-      <h2>Associated Tasks</h2>
-      <app-custom-button
-        [text]="'Add'"
-        [buttonPaint]="'primary'"
-        (clickedButtonEvent)="openAddTaskDialog()"
-        [buttonHeight]="'small'"
-      ></app-custom-button>
-    </header>
     <app-divider></app-divider>
     <app-list></app-list>
     <app-add-task-dialog></app-add-task-dialog>

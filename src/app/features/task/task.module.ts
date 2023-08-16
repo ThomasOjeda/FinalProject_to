@@ -5,7 +5,6 @@ import { ListComponent } from './list/list.component';
 
 import { TaskComponent } from './task/task.component';
 import { TaskNameComponent } from './task/task-name/task-name.component';
-import { CheckboxComponent } from './task/checkbox/checkbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateTaskComponent } from './update-task/update-task.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
@@ -18,7 +17,6 @@ import { CoreModule } from 'src/app/core/core.module';
     ListComponent,
     TaskComponent,
     TaskNameComponent,
-    CheckboxComponent,
     UpdateTaskComponent,
     TaskDetailsComponent,
   ],

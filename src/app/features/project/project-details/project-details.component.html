@@ -1,12 +1,9 @@
 <section>
   <section *ngIf="project" class="details">
-    <header>
-      <h2>
-        <span *ngIf="project.icon">{{ project.icon }}</span> "{{
-          project.name
-        }}" details
-      </h2>
-    </header>
+    <app-section-header>
+      <span *ngIf="project.icon">{{ project.icon }}</span> "{{ project.name }}"
+      details
+    </app-section-header>
 
     <app-custom-detail *ngIf="project.description" [name]="'Description'">
       {{ project.description }}

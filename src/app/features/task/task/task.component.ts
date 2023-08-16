@@ -26,17 +26,21 @@ export class TaskComponent implements OnInit {
     this.themeSubscription = this.theme$.subscribe((t) => (this.theme = t)); */
   }
 
-  receiveDoneEvent($event: boolean) {
-    //should output a signal to parent
-  }
-
-  handleDeleteButtonClick() {
-    this.deleteTask.emit(this.task);
-  }
-
   handleTaskNameClick() {
     this.routerService.navigate([this.task._id], {
       relativeTo: this.activatedRouteService,
+    });
+  }
+
+  handleCheckboxToggle() {
+    this.task.done = !this.task.done;
+    console.log(this.task.done);
+    this.taskService.updateTask(this.task).subscribe({
+      next: () => {},
+      error: () => {
+        this.task.done = !this.task.done;
+      },
+      complete: () => {},
     });
   }
 }

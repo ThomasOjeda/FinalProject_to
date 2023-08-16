@@ -3,6 +3,8 @@
 .divider {
   height: 0.125rem;
   margin: 0;
+  padding: 0;
   border: none;
-  @include theme("divider");
+  background-color: color("gray200");
+  //@include theme("divider");
 }

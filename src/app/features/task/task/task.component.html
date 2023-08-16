@@ -5,10 +5,14 @@
     'task-theme-dark': theme == 'dark'
   }"
 >
-  <app-checkbox
-    [done]="task.done ?? false"
-    (checkboxEvent)="receiveDoneEvent($event)"
-  ></app-checkbox>
+  <input
+    type="checkbox"
+    name="done"
+    id="done"
+    (change)="handleCheckboxToggle()"
+    [checked]="task.done"
+    class="checkbox"
+  />
   <app-task-name
     [styleTask]="task.done ?? false"
     class="task-name-container"
@@ -16,11 +20,6 @@
   >
     {{ task.name }}
   </app-task-name>
-  <app-custom-button
-    [text]="'Delete'"
-    [buttonPaint]="'primary'"
-    buttonType="icon"
-    (clickedButtonEvent)="handleDeleteButtonClick()"
-    [buttonHeight]="'small'"
-  ></app-custom-button>
+
+  <p>Created at {{ task.created | date }}</p>
 </article>

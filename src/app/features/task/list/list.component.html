@@ -5,21 +5,10 @@
     size="small"
   ></app-loading-spinner>
 </div>
-<app-confirmation-dialog
-  [commands$]="taskDeletionDialogCommand.asObservable()"
-  (result)="receiveResult($event)"
->
-  Are u sure u wanna delete this task?
-  {{ toDelete.name }}</app-confirmation-dialog
->
+
 <ul *ngIf="!loadingTasks">
   <li *ngFor="let task of taskList; let i = index">
-    <app-task
-      class="task"
-      [task]="task"
-      [id]="i"
-      (deleteTask)="handleTaskDeletion($event)"
-    >
-    </app-task>
+    <app-task class="task" [task]="task" [id]="i"> </app-task>
+    <app-divider *ngIf="i < taskList.length - 1"></app-divider>
   </li>
 </ul>

@@ -6,6 +6,7 @@ import { DividerComponent } from './divider/divider.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { CustomIconButtonComponent } from './custom-icon-button/custom-icon-button.component';
 import { CustomDetailComponent } from './custom-detail/custom-detail.component';
+import { SectionHeaderComponent } from './section-header/section-header.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CustomDetailComponent } from './custom-detail/custom-detail.component';
     ConfirmationDialogComponent,
     CustomIconButtonComponent,
     CustomDetailComponent,
+    SectionHeaderComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -24,6 +26,7 @@ import { CustomDetailComponent } from './custom-detail/custom-detail.component';
     ConfirmationDialogComponent,
     CustomIconButtonComponent,
     CustomDetailComponent,
+    SectionHeaderComponent,
   ],
 })
 export class SharedModule {}
