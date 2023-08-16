@@ -6,7 +6,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class AddTaskDialogService {
   isOpen: boolean = false;
-  state$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  state$: Subject<boolean> = new Subject();
   taskCreationEvent$: Subject<void> = new Subject();
   constructor() {}
 

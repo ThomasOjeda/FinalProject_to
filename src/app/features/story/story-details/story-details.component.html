@@ -48,6 +48,13 @@
   </section>
   <section>
     <app-divider></app-divider>
+    <app-custom-button
+      class="add-task-btn"
+      [buttonHeight]="'large'"
+      [buttonPaint]="'green'"
+      [text]="'+ Add a new task to this story...'"
+      (clickedButtonEvent)="openAddTaskDialog()"
+    ></app-custom-button>
     <app-list></app-list>
     <app-add-task-dialog></app-add-task-dialog>
   </section>

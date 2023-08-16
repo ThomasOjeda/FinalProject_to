@@ -1,58 +1,64 @@
 <dialog #dialog class="dialog" [ngClass]="{ open: isOpen }">
-  <form [formGroup]="taskForm" (ngSubmit)="submit()">
+  <app-custom-icon-button
+    class="close-btn"
+    [iconAlt]="'close'"
+    [iconPath]="'assets/close-svgrepo-com.svg'"
+    [buttonPaint]="'red'"
+    (clickedButtonEvent)="handleCloseDialogButtonClick()"
+    [iconHeight]="'medium'"
+  ></app-custom-icon-button>
+  <form [formGroup]="taskForm" (ngSubmit)="submit()" class="form">
     <div>
-      <label for="name">Name: </label>
       <input
+        class="text-input"
+        [ngClass]="{'text-input-error':taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine}"
         id="name"
         type="text"
         formControlName="name"
-        [disabled]="requestPending"
+        placeholder="Subject"
       />
+      <app-input-error
+        *ngIf="taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine"
+      >
+        This value is required
+      </app-input-error>
     </div>
 
     <div>
-      <label for="description">Description:</label>
       <textarea
+        class="text-input text-area-input"
+        [ngClass]="{'text-input-error':taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine}"
         id="description"
         rows="5"
         cols="33"
         formControlName="description"
-        [disabled]="requestPending"
+        placeholder="Please add descriptive text to help others better understand this task"
       >
       </textarea>
+      <app-input-error
+        *ngIf="taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine"
+      >
+        Description must be at least <strong> 4 characters </strong> long
+      </app-input-error>
     </div>
 
     <div>
-      <label for="due-date">Due date: </label>
-      <input
-        id="due-date"
-        type="date"
-        formControlName="dueDate"
-        [disabled]="requestPending"
-      />
+      <label for="due-date" class="label">Due date: </label>
+      <input id="due-date" type="date" formControlName="dueDate" />
     </div>
 
-    <div>
-      <label for="done">Is done: </label>
-      <input
-        id="done"
-        type="checkbox"
-        formControlName="done"
-        [disabled]="requestPending"
-      />
-    </div>
-    <p *ngIf="requestPending">Creating task</p>
     <app-custom-button
+      [disabled]="!taskForm.valid || submitting"
+      class="create-btn"
       [text]="'Create'"
       [buttonPaint]="'primary'"
-      [buttonHeight]="'small'"
+      [buttonHeight]="'medium'"
     ></app-custom-button>
+    <div class="loading-spinner">
+      <app-loading-spinner
+        *ngIf="submitting"
+        [color]="'green'"
+      ></app-loading-spinner>
+    </div>
   </form>
-
-  <app-custom-button
-    [text]="'Close'"
-    [buttonPaint]="'primary'"
-    (clickedButtonEvent)="handleCloseDialogButtonClick()"
-    [buttonHeight]="'small'"
-  ></app-custom-button>
 </dialog>

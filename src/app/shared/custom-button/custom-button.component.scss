@@ -21,6 +21,11 @@
   font-weight: bold;
 }
 
+.btn-disabled {
+  background-color: color("gray400");
+  cursor: not-allowed;
+}
+
 .btn-primary {
   background-color: color("solid-primary");
 

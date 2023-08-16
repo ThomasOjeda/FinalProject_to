@@ -7,6 +7,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { CustomIconButtonComponent } from './custom-icon-button/custom-icon-button.component';
 import { CustomDetailComponent } from './custom-detail/custom-detail.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
+import { InputErrorComponent } from './input-error/input-error.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
     CustomIconButtonComponent,
     CustomDetailComponent,
     SectionHeaderComponent,
+    InputErrorComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -27,6 +29,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
     CustomIconButtonComponent,
     CustomDetailComponent,
     SectionHeaderComponent,
+    InputErrorComponent,
   ],
 })
 export class SharedModule {}

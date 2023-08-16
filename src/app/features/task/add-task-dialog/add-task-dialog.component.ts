@@ -1,4 +1,6 @@
 import {
+  AfterViewChecked,
+  AfterViewInit,
   Component,
   ElementRef,
   OnDestroy,
@@ -27,6 +29,7 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
   taskForm!: FormGroup;
   dialogSubscription: Subscription = new Subscription();
   requestPending: boolean = false;
+  submitting: boolean = false;
 
   @ViewChild('dialog') dialog!: ElementRef;
   constructor(
@@ -38,8 +41,8 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.taskForm = this.formBuilderService.group({
-      name: new FormControl(''),
-      description: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.minLength(4)]),
       dueDate: new FormControl(new Date()),
       done: new FormControl(false),
     });
@@ -58,6 +61,7 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
     setTimeout(() => this.dialog.nativeElement.close(), 200);
   }
   submit() {
+    this.submitting = true;
     let newTask: Task = this.taskForm.value;
     let story = this.activatedRouteService.snapshot.paramMap.get('story-id');
     if (story) {
@@ -66,14 +70,18 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
       this.taskService.addTask$(newTask).subscribe({
         next: () => {},
         error: (error) => {
-          console.log(error);
+          this.submitting = false;
         },
         complete: () => {
+          this.submitting = false;
+
           this.requestPending = false;
           this.handleCloseDialogButtonClick();
           this.addTaskDialogService.signalTaskCreation();
         },
       });
+    } else {
+      this.submitting = false;
     }
   }
 

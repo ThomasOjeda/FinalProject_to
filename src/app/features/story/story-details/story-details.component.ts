@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Story } from 'src/models/story';
 import { StoryService } from '../services/story.service';
 import { ActivatedRoute } from '@angular/router';

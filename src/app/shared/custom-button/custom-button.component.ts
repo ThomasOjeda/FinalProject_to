@@ -10,24 +10,10 @@ export class CustomButtonComponent implements OnInit {
   @Input() text: string = '';
   @Input() buttonPaint: string = '';
   @Input() buttonHeight: string = '';
-
-  classes = {};
+  @Input() disabled: boolean = false;
   constructor() {}
 
-  ngOnInit(): void {
-    this.classes = {
-      'btn-large': this.buttonHeight == 'large',
-      'btn-medium': this.buttonHeight == 'medium',
-      'btn-small': this.buttonHeight == 'small',
-
-      'btn-primary': this.buttonPaint == 'primary',
-      'btn-red': this.buttonPaint == 'red',
-      'btn-orange': this.buttonPaint == 'orange',
-      'btn-green': this.buttonPaint == 'green',
-      'btn-yellow': this.buttonPaint == 'yellow',
-      'btn-purple': this.buttonPaint == 'purple',
-    };
-  }
+  ngOnInit(): void {}
   buttonWasClicked($event: Event) {
     this.clickedButtonEvent.emit($event);
   }
