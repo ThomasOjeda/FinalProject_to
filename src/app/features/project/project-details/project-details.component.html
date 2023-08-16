@@ -5,7 +5,11 @@
       details
     </app-section-header>
 
-    <app-custom-detail *ngIf="project.description" [name]="'Description'">
+    <app-custom-detail
+      *ngIf="project.description"
+      [name]="'Description'"
+      [state]="true"
+    >
       {{ project.description }}
     </app-custom-detail>
     <app-custom-detail [name]="'Owner'">

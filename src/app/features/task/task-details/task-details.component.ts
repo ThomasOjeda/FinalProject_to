@@ -13,7 +13,7 @@ export class TaskDetailsComponent implements OnInit {
   task: Task = { _id: 'a', name: 'a', story: 'a' };
   taskDeletionDialogCommand: Subject<boolean> = new Subject<boolean>();
   taskCreationSubscription: Subscription = new Subscription();
-
+  loadingTask: boolean = true;
   constructor(
     private activatedRouteService: ActivatedRoute,
     private taskService: TaskService,
@@ -23,9 +23,10 @@ export class TaskDetailsComponent implements OnInit {
   ngOnInit() {
     let taskId = this.activatedRouteService.snapshot.paramMap.get('task-id');
     if (taskId)
-      this.taskService
-        .getTask$(taskId)
-        .subscribe((task) => (this.task = task.data));
+      this.taskService.getTask$(taskId).subscribe((task) => {
+        this.task = task.data;
+        this.loadingTask = false;
+      });
   }
 
   handleDeleteButtonClick() {

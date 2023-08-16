@@ -12,7 +12,7 @@
         <span *ngIf="epic.icon">{{ epic.icon }}</span> "{{ epic.name }}" details
       </app-section-header>
 
-      <app-custom-detail [name]="'Description'">
+      <app-custom-detail [name]="'Description'" [state]="true">
         {{ epic.description }}
       </app-custom-detail>
     </div>

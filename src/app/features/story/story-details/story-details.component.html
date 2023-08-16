@@ -13,7 +13,11 @@
         details
       </app-section-header>
 
-      <app-custom-detail *ngIf="story.due" [name]="'Description'">
+      <app-custom-detail
+        *ngIf="story.due"
+        [name]="'Description'"
+        [state]="true"
+      >
         {{ story.description }}
       </app-custom-detail>
       <app-custom-detail [name]="'Creation Date'">

@@ -6,30 +6,40 @@
   {{ task.name }}</app-confirmation-dialog
 >
 
-<article *ngIf="this.task">
-  <h2>Task "{{ this.task.name }}" details...</h2>
+<div class="loading-spinner">
+  <app-loading-spinner
+    *ngIf="loadingTask"
+    color="orange"
+    size="small"
+  ></app-loading-spinner>
+</div>
+<div *ngIf="!loadingTask">
+  <app-custom-detail
+    *ngIf="task.description"
+    [name]="'Description'"
+    [state]="true"
+  >
+    {{ task.description }}</app-custom-detail
+  >
+  <app-custom-detail *ngIf="task.done" [name]="'Status'" [state]="true">
+    {{ task.done }}</app-custom-detail
+  >
+  <app-custom-detail
+    *ngIf="task.created"
+    [name]="'Creation date'"
+    [state]="true"
+  >
+    {{ task.created | date }}</app-custom-detail
+  >
+  <app-custom-detail *ngIf="task.dueDate" [name]="'Due date'" [state]="true">
+    {{ task.dueDate | date }}</app-custom-detail
+  >
 
-  <table>
-    <tr>
-      <th>Descripci&oacute;n</th>
-      <td>{{ this.task.description }}</td>
-    </tr>
-    <tr>
-      <th>Estado</th>
-      <td *ngIf="this.task.done">Finalizada</td>
-      <td *ngIf="!this.task.done">Sin finalizar</td>
-    </tr>
-    <tr>
-      <th>Fecha de creaci&oacute;n</th>
-      <td>{{ this.task.created | date : "dd/MM/yyyy h:mm a" }}</td>
-    </tr>
-  </table>
-</article>
-
-<app-custom-icon-button
-  class="btn-delete"
-  [iconPath]="'/assets/delete-3-svgrepo-com.svg'"
-  [buttonPaint]="'red'"
-  (clickedButtonEvent)="handleDeleteButtonClick()"
-  [iconHeight]="'medium'"
-></app-custom-icon-button>
+  <app-custom-icon-button
+    class="btn-delete"
+    [iconPath]="'/assets/delete-3-svgrepo-com.svg'"
+    [buttonPaint]="'red'"
+    (clickedButtonEvent)="handleDeleteButtonClick()"
+    [iconHeight]="'medium'"
+  ></app-custom-icon-button>
+</div>
