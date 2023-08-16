@@ -6,16 +6,10 @@ import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { LoadingSpinnerComponent } from './loading-screen/loading-spinner.component';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    MenuComponent,
-    LayoutComponent,
-    LoadingSpinnerComponent,
-  ],
+  declarations: [HeaderComponent, MenuComponent, LayoutComponent],
   imports: [CommonModule, FormsModule, RouterModule, SharedModule],
-  exports: [HeaderComponent, LoadingSpinnerComponent],
+  exports: [HeaderComponent],
 })
 export class CoreModule {}

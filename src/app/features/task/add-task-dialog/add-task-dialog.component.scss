@@ -1,26 +1,17 @@
 @import "../../../../styles.scss";
 
 .dialog {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 0.2s;
-  @include center-x-y();
-  flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: none;
-  &:modal {
-    max-width: none;
-    max-height: none;
-    margin: 0;
-  }
+  @include fullscreen-dialog();
 }
 
 .open {
-  opacity: 1;
+  @include fullscren-dialog-open();
+}
+
+.content {
+  box-sizing: border-box;
+  @include center-x-y();
+  height: 100%;
 }
 
 .close-btn {
@@ -37,8 +28,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
-  margin-right: 0;
   gap: 1rem;
   width: 90%;
   max-width: 30rem;

@@ -1,16 +1,25 @@
 <dialog #dialog class="dialog" [ngClass]="{ open: isOpen }">
-  <ng-content></ng-content>
-  <app-custom-button
-    [text]="'Confirm'"
-    [buttonPaint]="'primary'"
-    (clickedButtonEvent)="handleConfirmButtonClick()"
-    [buttonHeight]="'small'"
-  ></app-custom-button>
-  <app-custom-button
-    [text]="'Close'"
-    [buttonPaint]="'primary'"
-    (clickedButtonEvent)="handleCloseButtonClick()"
-    [buttonHeight]="'small'"
-  ></app-custom-button>
-  <p *ngIf="confirmed">Loading...</p>
+  <div class="content">
+    <div class="confirmation-dialog">
+      <ng-content></ng-content>
+      <div class="options">
+        <app-custom-button
+          [text]="'Delete'"
+          [buttonPaint]="'red'"
+          (clickedButtonEvent)="handleConfirmButtonClick()"
+          [buttonHeight]="'medium'"
+        ></app-custom-button>
+        <app-custom-button
+          [text]="'Cancel'"
+          [buttonPaint]="'primary'"
+          (clickedButtonEvent)="handleCloseButtonClick()"
+          [buttonHeight]="'medium'"
+        ></app-custom-button>
+      </div>
+      <app-loading-spinner
+        class="loading-spinner"
+        *ngIf="confirmed"
+      ></app-loading-spinner>
+    </div>
+  </div>
 </dialog>

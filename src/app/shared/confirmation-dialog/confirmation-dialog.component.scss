@@ -1,17 +1,32 @@
 @import "../../../styles.scss";
 
 .dialog {
-  width: 75%;
-  max-width: 40rem;
-
-  border-width: 1px;
-  border-radius: 1rem;
-
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 0.2s;
+  @include fullscreen-dialog();
 }
 
 .open {
-  opacity: 1;
+  @include fullscren-dialog-open();
+}
+
+.content {
+  box-sizing: border-box;
+  @include center-x-y();
+  height: 100%;
+}
+
+.confirmation-dialog {
+  display: flex;
+  flex-direction: column;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.loading-spinner {
+  margin: 1rem auto;
 }

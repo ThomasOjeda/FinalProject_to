@@ -7,58 +7,60 @@
     (clickedButtonEvent)="handleCloseDialogButtonClick()"
     [iconHeight]="'medium'"
   ></app-custom-icon-button>
-  <form [formGroup]="taskForm" (ngSubmit)="submit()" class="form">
-    <div>
-      <input
-        class="text-input"
-        [ngClass]="{'text-input-error':taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine}"
-        id="name"
-        type="text"
-        formControlName="name"
-        placeholder="Subject"
-      />
-      <app-input-error
-        *ngIf="taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine"
-      >
-        This value is required
-      </app-input-error>
-    </div>
+  <div class="content">
+    <form [formGroup]="taskForm" (ngSubmit)="submit()" class="form">
+      <div>
+        <input
+          class="text-input"
+          [ngClass]="{'text-input-error':taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine}"
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Subject"
+        />
+        <app-input-error
+          *ngIf="taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine"
+        >
+          This value is required
+        </app-input-error>
+      </div>
 
-    <div>
-      <textarea
-        class="text-input text-area-input"
-        [ngClass]="{'text-input-error':taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine}"
-        id="description"
-        rows="5"
-        cols="33"
-        formControlName="description"
-        placeholder="Please add descriptive text to help others better understand this task"
-      >
-      </textarea>
-      <app-input-error
-        *ngIf="taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine"
-      >
-        Description must be at least <strong> 4 characters </strong> long
-      </app-input-error>
-    </div>
+      <div>
+        <textarea
+          class="text-input text-area-input"
+          [ngClass]="{'text-input-error':taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine}"
+          id="description"
+          rows="5"
+          cols="33"
+          formControlName="description"
+          placeholder="Please add descriptive text to help others better understand this task"
+        >
+        </textarea>
+        <app-input-error
+          *ngIf="taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine"
+        >
+          Description must be at least <strong> 4 characters </strong> long
+        </app-input-error>
+      </div>
 
-    <div>
-      <label for="due-date" class="label">Due date: </label>
-      <input id="due-date" type="date" formControlName="dueDate" />
-    </div>
+      <div>
+        <label for="due-date" class="label">Due date: </label>
+        <input id="due-date" type="date" formControlName="dueDate" />
+      </div>
 
-    <app-custom-button
-      [disabled]="!taskForm.valid || submitting"
-      class="create-btn"
-      [text]="'Create'"
-      [buttonPaint]="'primary'"
-      [buttonHeight]="'medium'"
-    ></app-custom-button>
-    <div class="loading-spinner">
-      <app-loading-spinner
-        *ngIf="submitting"
-        [color]="'green'"
-      ></app-loading-spinner>
-    </div>
-  </form>
+      <app-custom-button
+        [disabled]="!taskForm.valid || submitting"
+        class="create-btn"
+        [text]="'Create'"
+        [buttonPaint]="'primary'"
+        [buttonHeight]="'medium'"
+      ></app-custom-button>
+      <div class="loading-spinner">
+        <app-loading-spinner
+          *ngIf="submitting"
+          [color]="'green'"
+        ></app-loading-spinner>
+      </div>
+    </form>
+  </div>
 </dialog>

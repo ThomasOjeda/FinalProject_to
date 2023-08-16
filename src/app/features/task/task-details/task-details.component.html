@@ -2,9 +2,8 @@
   [commands$]="taskDeletionDialogCommand.asObservable()"
   (result)="receiveResult($event)"
 >
-  Are you sure you want to delete
-  {{ task.name }}</app-confirmation-dialog
->
+  <p class="delete-msg">Are you sure you want to delete "{{ task.name }}" ?</p>
+</app-confirmation-dialog>
 
 <div class="loading-spinner">
   <app-loading-spinner
