@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/models/task';
 import { TaskService } from '../services/task.service';
 import { Subject, Subscription, take } from 'rxjs';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-task-details',
   templateUrl: './task-details.component.html',
@@ -16,7 +16,8 @@ export class TaskDetailsComponent implements OnInit {
 
   constructor(
     private activatedRouteService: ActivatedRoute,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private locationService: Location
   ) {}
 
   ngOnInit() {
@@ -39,5 +40,14 @@ export class TaskDetailsComponent implements OnInit {
     }
   }
 
-  handleTaskDeletion() {}
+  handleTaskDeletion() {
+    this.taskService.deleteTask(this.task).subscribe({
+      next: () => {},
+      error: () => {},
+      complete: () => {
+        this.taskDeletionDialogCommand.next(false);
+        this.locationService.back();
+      },
+    });
+  }
 }

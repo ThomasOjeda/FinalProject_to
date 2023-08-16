@@ -2,12 +2,12 @@
   [commands$]="taskDeletionDialogCommand.asObservable()"
   (result)="receiveResult($event)"
 >
-  Are u sure u wanna delete this task?
+  Are you sure you want to delete
   {{ task.name }}</app-confirmation-dialog
 >
 
 <article *ngIf="this.task">
-  <h2>Detalles de la tarea "{{ this.task.name }}"...</h2>
+  <h2>Task "{{ this.task.name }}" details...</h2>
 
   <table>
     <tr>
