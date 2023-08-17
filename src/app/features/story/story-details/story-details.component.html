@@ -1,8 +1,19 @@
 <section>
   <section>
-    <div *ngIf="loadingStoryDetails" class="loading-spinner">
+    <div
+      *ngIf="loadingStoryDetails && !errorFetchingStoryDetails"
+      class="loading-spinner"
+    >
       <app-loading-spinner color="orange" size="small"></app-loading-spinner>
     </div>
+    <app-alert-message
+      class="error-alert"
+      *ngIf="errorFetchingStoryDetails"
+      [closable]="false"
+      [color]="'red'"
+    >
+      Error fetching story details...try again later
+    </app-alert-message>
     <div *ngIf="story && !loadingStoryDetails">
       <app-section-header>
         <span *ngIf="story.icon">{{ story.icon }}</span> "{{ story.name }}"
@@ -43,16 +54,8 @@
     </div>
   </section>
   <section>
-    <app-divider></app-divider>
     <app-list></app-list>
-    <app-custom-icon-button
-      class="add-task-btn"
-      [iconHeight]="'large'"
-      [buttonPaint]="'green'"
-      [iconAlt]="'add task'"
-      [iconPath]="'assets/add-svgrepo-com.svg'"
-      (clickedButtonEvent)="openAddTaskDialog()"
-    ></app-custom-icon-button>
+
     <app-add-task-dialog></app-add-task-dialog>
   </section>
 </section>

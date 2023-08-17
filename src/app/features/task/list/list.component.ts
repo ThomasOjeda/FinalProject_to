@@ -13,6 +13,7 @@ export class ListComponent implements OnInit, OnDestroy {
   taskList: Task[] = [];
   taskCreationSubscription: Subscription = new Subscription();
   loadingTasks: boolean = true;
+  errorFetchingTasks: boolean = false;
   constructor(
     private taskService: TaskService,
     private addTaskDialogService: AddTaskDialogService
@@ -26,16 +27,22 @@ export class ListComponent implements OnInit, OnDestroy {
 
   retrieveTaskList() {
     this.loadingTasks = true;
-
+    this.errorFetchingTasks = false;
     this.taskService.getTasks$().subscribe({
       next: (tasks) => {
         this.taskList = tasks.data;
       },
-      error: () => {},
+      error: () => {
+        this.errorFetchingTasks = true;
+        this.loadingTasks = false;
+      },
       complete: () => {
         this.loadingTasks = false;
       },
     });
+  }
+  openAddTaskDialog() {
+    this.addTaskDialogService.setState(true);
   }
 
   ngOnDestroy() {

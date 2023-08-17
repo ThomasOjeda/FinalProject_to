@@ -2,6 +2,14 @@
   <div class="content">
     <div class="confirmation-dialog">
       <ng-content></ng-content>
+      <app-alert-message
+        class="error-alert"
+        *ngIf="error"
+        [closable]="false"
+        [color]="'red'"
+      >
+        {{ errorMessage }}
+      </app-alert-message>
       <div class="options">
         <app-custom-button
           [text]="'Delete'"
@@ -18,7 +26,7 @@
       </div>
       <app-loading-spinner
         class="loading-spinner"
-        *ngIf="confirmed"
+        *ngIf="confirmed && !error"
       ></app-loading-spinner>
     </div>
   </div>

@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-confirmation-dialog',
@@ -19,21 +19,29 @@ import { Observable, Subscription } from 'rxjs';
 export class ConfirmationDialogComponent implements OnInit, OnDestroy {
   isOpen: boolean = false;
   confirmed: boolean = false;
-  @Input() commands$!: Observable<boolean>;
+  @Input() commands$!: Observable<string>;
   commandsSubscription: Subscription = new Subscription();
   @Output() result = new EventEmitter<boolean>();
   @ViewChild('dialog') dialog!: ElementRef;
-
+  error: boolean = false;
+  errorMessage: string = '';
   constructor() {}
 
   ngOnInit(): void {
-    this.commandsSubscription = this.commands$.subscribe((state) => {
-      this.confirmed = false;
-      if (state) {
-        this.openDialog();
-      } else {
-        this.closeDialog();
-      }
+    this.commandsSubscription = this.commands$.subscribe({
+      next: (state) => {
+        this.confirmed = false;
+        if (state == 'true') {
+          this.openDialog();
+        } else if (state == 'false') {
+          this.closeDialog();
+        } else {
+          this.error = true;
+          this.errorMessage = state;
+        }
+      },
+      error: (error) => {},
+      complete: () => {},
     });
   }
   openDialog() {
@@ -46,11 +54,15 @@ export class ConfirmationDialogComponent implements OnInit, OnDestroy {
   }
 
   handleConfirmButtonClick() {
+    this.error = false;
+
     this.confirmed = true;
     this.result.emit(true);
   }
 
   handleCloseButtonClick() {
+    this.error = false;
+
     this.result.emit(false);
   }
 

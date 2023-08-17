@@ -1,14 +1,29 @@
 <section>
   <section>
-    <div *ngIf="loadingEpicDetails" class="loading-spinner">
+    <div
+      *ngIf="loadingEpicDetails && !errorFetchingEpicDetails"
+      class="loading-spinner"
+    >
       <app-loading-spinner color="orange" size="small"></app-loading-spinner>
     </div>
+    <app-alert-message
+      class="error-alert"
+      *ngIf="errorFetchingEpicDetails"
+      [closable]="false"
+      [color]="'red'"
+    >
+      Error fetching epic data...try again later
+    </app-alert-message>
     <div *ngIf="epic && !loadingEpicDetails">
       <app-section-header>
         <span *ngIf="epic.icon">{{ epic.icon }}</span> "{{ epic.name }}" details
       </app-section-header>
 
-      <app-custom-detail [name]="'Description'" [state]="true">
+      <app-custom-detail
+        *ngIf="epic.description"
+        [name]="'Description'"
+        [state]="true"
+      >
         {{ epic.description }}
       </app-custom-detail>
     </div>
@@ -19,14 +34,24 @@
     </div>
     <app-alert-message
       class="no-stories-alert"
-      *ngIf="!loadingStories && storyList.length <= 0"
+      *ngIf="!loadingStories && storyList.length <= 0 && !errorFetchingStories"
       [closable]="false"
       [color]="'yellow'"
     >
       No stories available at this moment
     </app-alert-message>
-
-    <div *ngIf="!loadingStories" class="board">
+    <app-alert-message
+      class="error-alert"
+      *ngIf="errorFetchingStories"
+      [closable]="false"
+      [color]="'red'"
+    >
+      Error fetching story list...try again later
+    </app-alert-message>
+    <div
+      *ngIf="!loadingStories && storyList.length > 0 && !errorFetchingStories"
+      class="board"
+    >
       <article class="board-sector">
         <header>
           <h3>ToDo</h3>
@@ -75,7 +100,5 @@
         </ul>
       </article>
     </div>
-
-    <p *ngIf="storyList.length <= 0 && !loadingStories">No Stories found</p>
   </section>
 </section>

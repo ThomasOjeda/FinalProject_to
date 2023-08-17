@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Story } from 'src/models/story';
 import { StoryService } from '../services/story.service';
 import { ActivatedRoute } from '@angular/router';
-import { AddTaskDialogService } from '../../task/services/add-task-dialog.service';
 
 @Component({
   selector: 'app-story-details',
@@ -12,10 +11,10 @@ import { AddTaskDialogService } from '../../task/services/add-task-dialog.servic
 export class StoryDetailsComponent implements OnInit {
   story!: Story;
   loadingStoryDetails: boolean = true;
+  errorFetchingStoryDetails: boolean = false;
   constructor(
     private storyService: StoryService,
-    private activatedRoute: ActivatedRoute,
-    private addTaskDialogService: AddTaskDialogService
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -25,15 +24,14 @@ export class StoryDetailsComponent implements OnInit {
         next: (story) => {
           this.story = story.data;
         },
-        error: () => {},
+        error: () => {
+          this.loadingStoryDetails = false;
+          this.errorFetchingStoryDetails = true;
+        },
         complete: () => {
           this.loadingStoryDetails = false;
         },
       });
     }
-  }
-
-  openAddTaskDialog() {
-    this.addTaskDialogService.setState(true);
   }
 }

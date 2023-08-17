@@ -1,10 +1,30 @@
-<div *ngIf="loadingTasks" class="loading-spinner">
-  <app-loading-spinner color="primary" size="small"></app-loading-spinner>
-</div>
+<article>
+  <div *ngIf="loadingTasks" class="loading-spinner">
+    <app-loading-spinner color="primary" size="small"></app-loading-spinner>
+  </div>
+  <app-alert-message
+    class="error-alert"
+    *ngIf="errorFetchingTasks"
+    [closable]="false"
+    [color]="'red'"
+  >
+    Error fetching task list...try again later
+  </app-alert-message>
 
-<ul *ngIf="!loadingTasks">
-  <li *ngFor="let task of taskList; let i = index">
-    <app-task class="task" [task]="task" [id]="i"> </app-task>
-    <app-divider *ngIf="i < taskList.length - 1"></app-divider>
-  </li>
-</ul>
+  <ul *ngIf="!loadingTasks">
+    <li *ngFor="let task of taskList; let i = index">
+      <app-task class="task" [task]="task" [id]="i"> </app-task>
+      <app-divider *ngIf="i < taskList.length - 1"></app-divider>
+    </li>
+  </ul>
+
+  <app-custom-icon-button
+    *ngIf="!loadingTasks && !errorFetchingTasks"
+    class="add-task-btn"
+    [iconHeight]="'large'"
+    [buttonPaint]="'green'"
+    [iconAlt]="'add task'"
+    [iconPath]="'assets/add-svgrepo-com.svg'"
+    (clickedButtonEvent)="openAddTaskDialog()"
+  ></app-custom-icon-button>
+</article>

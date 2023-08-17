@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  API_URL: 'https://amansysfaketaskmanagerapi.onrender.com',
+  API_URL: 'https://lamansysfaketaskmanagerapi.onrender.com',
 };

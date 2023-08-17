@@ -19,7 +19,8 @@ export class EpicDetailsComponent implements OnInit {
 
   loadingStories: boolean = true;
   loadingEpicDetails: boolean = true;
-
+  errorFetchingStories: boolean = false;
+  errorFetchingEpicDetails: boolean = false;
   constructor(
     private epicService: EpicService,
     private storyService: StoryService,
@@ -30,13 +31,18 @@ export class EpicDetailsComponent implements OnInit {
   ngOnInit() {
     this.loadingStories = true;
     this.loadingEpicDetails = true;
+    this.errorFetchingEpicDetails = false;
+    this.errorFetchingStories = false;
     let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
       this.epicService.getEpic$(epicId).subscribe({
         next: (epic) => {
           this.epic = epic.data;
         },
-        error: () => {},
+        error: () => {
+          this.errorFetchingEpicDetails = true;
+          this.loadingEpicDetails = false;
+        },
         complete: () => {
           this.loadingEpicDetails = false;
         },
@@ -55,7 +61,10 @@ export class EpicDetailsComponent implements OnInit {
             (story) => story.status == 'todo'
           );
         },
-        error: () => {},
+        error: () => {
+          this.errorFetchingStories = true;
+          this.loadingStories = false;
+        },
         complete: () => {
           this.loadingStories = false;
         },

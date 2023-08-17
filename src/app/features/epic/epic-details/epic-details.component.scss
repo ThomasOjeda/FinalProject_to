@@ -34,7 +34,8 @@
   @include center-x-y();
 }
 
-.no-stories-alert {
+.no-stories-alert,
+.error-alert {
   display: block;
   margin-top: 1rem;
 }

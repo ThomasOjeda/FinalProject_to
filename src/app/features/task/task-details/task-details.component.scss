@@ -12,6 +12,11 @@
   @include center-x-y();
 }
 
+.error-alert {
+  display: block;
+  margin-top: 1rem;
+}
+
 .delete-msg {
   margin: 0;
   padding: 0;

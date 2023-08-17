@@ -1,40 +1,52 @@
-<app-confirmation-dialog
-  [commands$]="taskDeletionDialogCommand.asObservable()"
-  (result)="receiveResult($event)"
->
-  <p class="delete-msg">Are you sure you want to delete "{{ task.name }}" ?</p>
-</app-confirmation-dialog>
+<article>
+  <app-confirmation-dialog
+    [commands$]="taskDeletionDialogCommand.asObservable()"
+    (result)="receiveResult($event)"
+  >
+    <p class="delete-msg">
+      Are you sure you want to delete "{{ task.name }}" ?
+    </p>
+  </app-confirmation-dialog>
 
-<div *ngIf="loadingTask" class="loading-spinner">
-  <app-loading-spinner color="orange" size="small"></app-loading-spinner>
-</div>
-<div *ngIf="!loadingTask">
-  <app-custom-detail
-    *ngIf="task.description"
-    [name]="'Description'"
-    [state]="true"
+  <div *ngIf="loadingTask && !errorFetchingTaskDetails" class="loading-spinner">
+    <app-loading-spinner color="orange" size="small"></app-loading-spinner>
+  </div>
+  <app-alert-message
+    class="error-alert"
+    *ngIf="errorFetchingTaskDetails"
+    [closable]="false"
+    [color]="'red'"
   >
-    {{ task.description }}</app-custom-detail
-  >
-  <app-custom-detail *ngIf="task.done" [name]="'Status'" [state]="true">
-    {{ task.done }}</app-custom-detail
-  >
-  <app-custom-detail
-    *ngIf="task.created"
-    [name]="'Creation date'"
-    [state]="true"
-  >
-    {{ task.created | date }}</app-custom-detail
-  >
-  <app-custom-detail *ngIf="task.dueDate" [name]="'Due date'" [state]="true">
-    {{ task.dueDate | date }}</app-custom-detail
-  >
+    Error fetching task details...try again later
+  </app-alert-message>
+  <div *ngIf="!loadingTask && !errorFetchingTaskDetails">
+    <app-custom-detail
+      *ngIf="task.description"
+      [name]="'Description'"
+      [state]="true"
+    >
+      {{ task.description }}</app-custom-detail
+    >
+    <app-custom-detail *ngIf="task.done" [name]="'Status'" [state]="true">
+      {{ task.done }}</app-custom-detail
+    >
+    <app-custom-detail
+      *ngIf="task.created"
+      [name]="'Creation date'"
+      [state]="true"
+    >
+      {{ task.created | date }}</app-custom-detail
+    >
+    <app-custom-detail *ngIf="task.dueDate" [name]="'Due date'" [state]="true">
+      {{ task.dueDate | date }}</app-custom-detail
+    >
 
-  <app-custom-icon-button
-    class="btn-delete"
-    [iconPath]="'/assets/delete-3-svgrepo-com.svg'"
-    [buttonPaint]="'red'"
-    (clickedButtonEvent)="handleDeleteButtonClick()"
-    [iconHeight]="'medium'"
-  ></app-custom-icon-button>
-</div>
+    <app-custom-icon-button
+      class="btn-delete"
+      [iconPath]="'/assets/delete-3-svgrepo-com.svg'"
+      [buttonPaint]="'red'"
+      (clickedButtonEvent)="handleDeleteButtonClick()"
+      [iconHeight]="'medium'"
+    ></app-custom-icon-button>
+  </div>
+</article>

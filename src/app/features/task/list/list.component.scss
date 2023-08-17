@@ -4,6 +4,11 @@
   @include center-x-y();
 }
 
+.error-alert {
+  display: block;
+  margin-top: 1rem;
+}
+
 ul {
   @include reset-list();
 }
@@ -11,4 +16,12 @@ ul {
 .task {
   display: block;
   margin: 1rem 0rem;
+}
+.add-task-btn {
+  position: sticky;
+  bottom: 0.5rem;
+  margin: 0 auto;
+  display: block;
+  width: 3rem;
+  background-color: white;
 }
