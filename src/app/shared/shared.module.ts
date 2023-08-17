@@ -9,7 +9,7 @@ import { CustomDetailComponent } from './custom-detail/custom-detail.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { InputErrorComponent } from './input-error/input-error.component';
 import { LoadingSpinnerComponent } from './loading-screen/loading-spinner.component';
-import { ErrorMessageComponent } from './error-message/error-message.component';
+import { AlertMessageComponent } from './alert-message/alert-message.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
     SectionHeaderComponent,
     InputErrorComponent,
     LoadingSpinnerComponent,
-    ErrorMessageComponent,
+    AlertMessageComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -35,6 +35,7 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
     SectionHeaderComponent,
     InputErrorComponent,
     LoadingSpinnerComponent,
+    AlertMessageComponent,
   ],
 })
 export class SharedModule {}

@@ -55,6 +55,15 @@
       [size]="'small'"
       [color]="'green'"
     ></app-loading-spinner>
+    <app-alert-message
+      *ngIf="alertOpen"
+      [closable]="true"
+      [color]="'red'"
+      (closeSignal)="handleAlertClosed()"
+    >
+      Error: Invalid username or password
+    </app-alert-message>
+
     <app-custom-button
       class="login-btn"
       [disabled]="!loginForm.valid"

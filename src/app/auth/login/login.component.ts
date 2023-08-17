@@ -12,6 +12,7 @@ export class LoginComponent {
   loginUsername: string = '';
   loginPassword: string = '';
   isLoggingIn: boolean = false;
+  alertOpen: boolean = false;
   constructor(
     private loginService: LoginService,
     private tokenService: TokenService,
@@ -25,6 +26,7 @@ export class LoginComponent {
           this.tokenService.setToken(response.token);
           this.routerService.navigate(['home']);
         } else {
+          this.alertOpen = true;
         }
       },
       error: (error) => {
@@ -38,5 +40,9 @@ export class LoginComponent {
 
   logout() {
     this.loginService.logout();
+  }
+
+  handleAlertClosed() {
+    this.alertOpen = false;
   }
 }
