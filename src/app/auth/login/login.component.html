@@ -1,45 +1,66 @@
-<form (ngSubmit)="submit()" #loginForm="ngForm">
-  <div>
-    <label for="username">Username: </label>
-    <input
-      id="username"
-      type="text"
-      required
-      minlength="4"
-      [(ngModel)]="loginUsername"
-      #username="ngModel"
-      name="username"
-    />
-    <div *ngIf="username.errors?.['required']  && !username.pristine">
-      Username is required
+<div class="center">
+  <form (ngSubmit)="submit()" #loginForm="ngForm">
+    <div>
+      <input
+        class="text-input"
+        [ngClass]="{'text-input-error-border':(username.errors?.['required'] || username.errors?.['minlength']) && !username.pristine}"
+        id="username"
+        type="text"
+        required
+        minlength="4"
+        [(ngModel)]="loginUsername"
+        #username="ngModel"
+        name="username"
+        placeholder="Username..."
+      />
+      <app-input-error
+        *ngIf="username.errors?.['required']  && !username.pristine"
+      >
+        Username is required
+      </app-input-error>
+      <app-input-error
+        *ngIf="username.errors?.['minlength'] && !username.pristine"
+      >
+        Username must be at least 4 characters long
+      </app-input-error>
     </div>
-    <div *ngIf="username.errors?.['minlength'] && !username.pristine">
-      Username must be at least 4 characters long
-    </div>
-  </div>
 
-  <div>
-    <label for="password">Password:</label>
-    <input
-      id="password"
-      type="password"
-      required
-      minlength="4"
-      [(ngModel)]="loginPassword"
-      #password="ngModel"
-      name="password"
-    />
-    <div *ngIf="password.errors?.['required']  && !password.pristine">
-      Password is required
+    <div>
+      <input
+        class="text-input"
+        [ngClass]="{'text-input-error-border':(password.errors?.['required'] || password.errors?.['minlength']) && !password.pristine}"
+        id="password"
+        type="password"
+        required
+        minlength="4"
+        [(ngModel)]="loginPassword"
+        #password="ngModel"
+        name="password"
+        placeholder="Password..."
+      />
+      <app-input-error
+        *ngIf="password.errors?.['required']  && !password.pristine"
+      >
+        Password is required
+      </app-input-error>
+      <app-input-error
+        *ngIf="password.errors?.['minlength'] && !password.pristine"
+      >
+        Password must be at least 4 characters long
+      </app-input-error>
     </div>
-    <div *ngIf="password.errors?.['minlength'] && !password.pristine">
-      Password must be at least 4 characters long
-    </div>
-  </div>
-
-  <app-custom-button
-    [text]="'Login'"
-    [buttonPaint]="'primary'"
-    [buttonHeight]="'small'"
-  ></app-custom-button>
-</form>
+    <app-loading-spinner
+      *ngIf="isLoggingIn"
+      class="loading-spinner"
+      [size]="'small'"
+      [color]="'green'"
+    ></app-loading-spinner>
+    <app-custom-button
+      class="login-btn"
+      [disabled]="!loginForm.valid"
+      [text]="'Login'"
+      [buttonPaint]="'green'"
+      [buttonHeight]="'large'"
+    ></app-custom-button>
+  </form>
+</div>

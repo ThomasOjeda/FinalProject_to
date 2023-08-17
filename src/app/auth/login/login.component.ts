@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { TokenService } from '../services/token.service';
-import { LoginSuccess } from '../models/login-success';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,19 +11,27 @@ import { LoginSuccess } from '../models/login-success';
 export class LoginComponent {
   loginUsername: string = '';
   loginPassword: string = '';
+  isLoggingIn: boolean = false;
   constructor(
     private loginService: LoginService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private routerService: Router
   ) {}
   submit() {
+    this.isLoggingIn = true;
     this.loginService.login(this.loginUsername, this.loginPassword).subscribe({
-      next: (response) => {
-        let res = response as LoginSuccess;
-        this.tokenService.setToken(res.token);
+      next: (response: any) => {
+        if (response.message == 'Authorized') {
+          this.tokenService.setToken(response.token);
+          this.routerService.navigate(['home']);
+        } else {
+        }
       },
-      error: (error) => {},
+      error: (error) => {
+        this.isLoggingIn = false;
+      },
       complete: () => {
-        console.log('completed');
+        this.isLoggingIn = false;
       },
     });
   }

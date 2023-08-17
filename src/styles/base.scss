@@ -1,5 +1,5 @@
 @import "theme";
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @mixin margins() {
   margin: 0 1.5rem;
 }
@@ -37,20 +37,41 @@
   }
 }
 
-@mixin fullscren-dialog-open() {
+@mixin fullscreen-dialog-open() {
   opacity: 1;
 }
 
-/* @mixin visible-borders() {
-  border: 0.0625rem solid;
-  border-radius: 0.25rem;
-} */
+@mixin label() {
+  display: inline-block;
+  padding: 0.5rem;
+  word-wrap: break-word;
+  white-space: break-spaces;
+}
 
-/* @mixin invisible-borders() {
-  border: none;
+@mixin input-text() {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  padding-left: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-width: 1px;
+  border-radius: 0.125rem;
+  border-style: solid;
   outline: none;
-  border-radius: 0.25rem;
-} */
+
+  &:focus {
+    border-color: color("link-primary");
+  }
+
+  &::placeholder {
+    color: #b7bdc9;
+  }
+}
+
+@mixin text-input-error-border {
+  border-color: color("link-red");
+}
 
 body {
   margin: 0;

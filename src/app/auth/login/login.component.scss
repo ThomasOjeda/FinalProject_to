@@ -1,0 +1,44 @@
+@import "../../../styles.scss";
+
+.center {
+  @include center-x-y();
+  height: 30rem;
+  padding: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-sizing: border-box;
+  width: 30rem;
+  padding: 1rem;
+
+  border-radius: 0.125rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.label {
+  @include label();
+}
+
+.text-input {
+  @include input-text();
+  border-color: color("gray400");
+  background-color: color("white");
+}
+
+.text-input-error-border {
+  @include text-input-error-border();
+}
+
+.loading-spinner {
+  display: block;
+  margin: 0 auto;
+}
+
+.login-btn {
+  display: block;
+  margin: 0 auto;
+  width: 5rem;
+}

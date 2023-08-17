@@ -5,7 +5,7 @@
 }
 
 .open {
-  @include fullscren-dialog-open();
+  @include fullscreen-dialog-open();
 }
 
 .content {
@@ -34,33 +34,13 @@
 }
 
 .label {
-  font-weight: bold;
-  word-wrap: break-word;
-  white-space: break-spaces;
+  @include label();
 }
 
 .text-input {
-  width: 100%;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  padding-left: 0.75rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  border-width: 1px;
-  border-radius: 0.125rem;
-  border-style: solid;
-  outline: none;
+  @include input-text();
   border-color: color("gray400");
-
   background-color: color("white");
-
-  &:focus {
-    border-color: color("link-primary");
-  }
-
-  &::placeholder {
-    color: #b7bdc9;
-  }
 }
 
 .text-area-input {
@@ -68,8 +48,8 @@
   min-height: 4rem;
 }
 
-.text-input-error {
-  border-color: color("link-red");
+.text-input-error-border {
+  @include text-input-error-border();
 }
 
 .loading-spinner {
