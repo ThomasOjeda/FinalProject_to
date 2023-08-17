@@ -1,11 +1,7 @@
 <section>
   <section>
-    <div class="loading-spinner">
-      <app-loading-spinner
-        *ngIf="loadingStoryDetails"
-        color="orange"
-        size="small"
-      ></app-loading-spinner>
+    <div *ngIf="loadingStoryDetails" class="loading-spinner">
+      <app-loading-spinner color="orange" size="small"></app-loading-spinner>
     </div>
     <div *ngIf="story && !loadingStoryDetails">
       <app-section-header>

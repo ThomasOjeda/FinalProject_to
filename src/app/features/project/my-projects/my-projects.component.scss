@@ -2,7 +2,19 @@
 
 :host {
   width: 100%;
+  max-width: 40rem;
 }
+.no-projects-alert,
+.error-alert {
+  display: block;
+  margin-top: 1rem;
+}
+.loading-spinner {
+  margin-top: 5rem;
+
+  @include center-x-y();
+}
+
 .project-list {
   @include reset-list();
 

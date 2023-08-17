@@ -5,12 +5,8 @@
   <p class="delete-msg">Are you sure you want to delete "{{ task.name }}" ?</p>
 </app-confirmation-dialog>
 
-<div class="loading-spinner">
-  <app-loading-spinner
-    *ngIf="loadingTask"
-    color="orange"
-    size="small"
-  ></app-loading-spinner>
+<div *ngIf="loadingTask" class="loading-spinner">
+  <app-loading-spinner color="orange" size="small"></app-loading-spinner>
 </div>
 <div *ngIf="!loadingTask">
   <app-custom-detail

@@ -12,14 +12,25 @@ import { Subscription, take } from 'rxjs';
 export class MyProjectsComponent implements OnInit {
   projectList: Project[] = [];
   projectListSubscription: Subscription = new Subscription();
+  loadingProjects: boolean = true;
+  errorFetchingProjects: boolean = false;
   constructor(
     private projectService: ProjectService,
     private router: Router,
     private activatedRouteService: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.projectService.getProjects$().subscribe((projects) => {
-      this.projectList = projects.data;
+    this.projectService.getProjects$().subscribe({
+      next: (projects) => {
+        this.projectList = projects.data;
+      },
+      error: (err) => {
+        this.loadingProjects = false;
+        this.errorFetchingProjects = true;
+      },
+      complete: () => {
+        this.loadingProjects = false;
+      },
     });
   }
 

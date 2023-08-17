@@ -1,4 +1,25 @@
 <section>
+  <div *ngIf="loadingProjects" class="loading-spinner">
+    <app-loading-spinner color="purple" size="small"></app-loading-spinner>
+  </div>
+  <app-alert-message
+    class="no-projects-alert"
+    *ngIf="
+      !loadingProjects && projectList.length <= 0 && !errorFetchingProjects
+    "
+    [closable]="false"
+    [color]="'purple'"
+  >
+    No projects available at this moment
+  </app-alert-message>
+  <app-alert-message
+    class="error-alert"
+    *ngIf="errorFetchingProjects"
+    [closable]="false"
+    [color]="'red'"
+  >
+    Error fetching project list...try again later
+  </app-alert-message>
   <ul *ngIf="projectList.length > 0" class="project-list">
     <li *ngFor="let project of projectList">
       <app-summary-card
@@ -9,6 +30,4 @@
       ></app-summary-card>
     </li>
   </ul>
-
-  <p *ngIf="projectList.length <= 0">No projects available</p>
 </section>

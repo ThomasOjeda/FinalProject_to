@@ -1,11 +1,11 @@
+@import "../../../../styles.scss";
 :host {
   width: 100%;
   max-width: 40rem;
 }
 .loading-spinner {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  margin-top: 5rem;
+  @include center-x-y();
 }
 .add-task-btn {
   position: sticky;

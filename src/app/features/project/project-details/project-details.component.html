@@ -1,4 +1,15 @@
 <section>
+  <div *ngIf="loadingProjectDetails" class="loading-spinner">
+    <app-loading-spinner color="orange" size="small"></app-loading-spinner>
+  </div>
+  <app-alert-message
+    class="error-alert"
+    *ngIf="errorFetchingProjectDetails"
+    [closable]="false"
+    [color]="'red'"
+  >
+    Error fetching project data...try again later
+  </app-alert-message>
   <section *ngIf="project" class="details">
     <app-section-header>
       <span *ngIf="project.icon">{{ project.icon }}</span> "{{ project.name }}"
@@ -25,6 +36,25 @@
     </app-custom-detail>
   </section>
   <section>
+    <div *ngIf="loadingEpics" class="loading-spinner">
+      <app-loading-spinner color="orange" size="small"></app-loading-spinner>
+    </div>
+    <app-alert-message
+      class="no-epics-alert"
+      *ngIf="!loadingEpics && epicList.length <= 0 && !errorFetchingEpics"
+      [closable]="false"
+      [color]="'orange'"
+    >
+      No epics available at this moment
+    </app-alert-message>
+    <app-alert-message
+      class="error-alert"
+      *ngIf="errorFetchingEpics"
+      [closable]="false"
+      [color]="'red'"
+    >
+      Error fetching epic list...try again later
+    </app-alert-message>
     <ul *ngIf="epicList.length > 0" class="epic-list">
       <li *ngFor="let epic of epicList">
         <app-summary-card
@@ -35,7 +65,5 @@
         ></app-summary-card>
       </li>
     </ul>
-
-    <p *ngIf="epicList.length <= 0">No epics found</p>
   </section>
 </section>

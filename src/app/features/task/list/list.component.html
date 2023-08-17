@@ -1,9 +1,5 @@
-<div class="loading-spinner">
-  <app-loading-spinner
-    *ngIf="loadingTasks"
-    color="primary"
-    size="small"
-  ></app-loading-spinner>
+<div *ngIf="loadingTasks" class="loading-spinner">
+  <app-loading-spinner color="primary" size="small"></app-loading-spinner>
 </div>
 
 <ul *ngIf="!loadingTasks">

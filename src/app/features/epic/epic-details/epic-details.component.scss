@@ -30,7 +30,11 @@
 }
 
 .loading-spinner {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  margin-top: 5rem;
+  @include center-x-y();
+}
+
+.no-stories-alert {
+  display: block;
+  margin-top: 1rem;
 }

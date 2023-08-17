@@ -1,11 +1,7 @@
 <section>
   <section>
-    <div class="loading-spinner">
-      <app-loading-spinner
-        *ngIf="loadingEpicDetails"
-        color="orange"
-        size="small"
-      ></app-loading-spinner>
+    <div *ngIf="loadingEpicDetails" class="loading-spinner">
+      <app-loading-spinner color="orange" size="small"></app-loading-spinner>
     </div>
     <div *ngIf="epic && !loadingEpicDetails">
       <app-section-header>
@@ -18,13 +14,17 @@
     </div>
   </section>
   <section>
-    <div class="loading-spinner">
-      <app-loading-spinner
-        *ngIf="loadingStories"
-        color="primary"
-        size="small"
-      ></app-loading-spinner>
+    <div *ngIf="loadingStories" class="loading-spinner">
+      <app-loading-spinner color="yellow" size="small"></app-loading-spinner>
     </div>
+    <app-alert-message
+      class="no-stories-alert"
+      *ngIf="!loadingStories && storyList.length <= 0"
+      [closable]="false"
+      [color]="'yellow'"
+    >
+      No stories available at this moment
+    </app-alert-message>
 
     <div *ngIf="!loadingStories" class="board">
       <article class="board-sector">
