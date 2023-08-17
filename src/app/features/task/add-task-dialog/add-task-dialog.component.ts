@@ -30,6 +30,7 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
   dialogSubscription: Subscription = new Subscription();
   requestPending: boolean = false;
   submitting: boolean = false;
+  thereWasAnError: boolean = false;
 
   @ViewChild('dialog') dialog!: ElementRef;
   constructor(
@@ -71,6 +72,7 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
         next: () => {},
         error: (error) => {
           this.submitting = false;
+          this.thereWasAnError = true;
         },
         complete: () => {
           this.submitting = false;
@@ -87,6 +89,10 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
 
   handleCloseDialogButtonClick() {
     this.addTaskDialogService.setState(false);
+  }
+
+  handleAlertClose() {
+    this.thereWasAnError = false;
   }
   ngOnDestroy(): void {
     this.dialogSubscription.unsubscribe();

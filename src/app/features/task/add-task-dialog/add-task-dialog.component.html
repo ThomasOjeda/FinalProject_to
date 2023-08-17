@@ -48,6 +48,15 @@
         <input id="due-date" type="date" formControlName="dueDate" />
       </div>
 
+      <app-alert-message
+        *ngIf="thereWasAnError"
+        [color]="'red'"
+        [closable]="true"
+        (closeSignal)="handleAlertClose()"
+      >
+        There was a problem creating your task... try again later
+      </app-alert-message>
+
       <app-custom-button
         [disabled]="!taskForm.valid || submitting"
         class="create-btn"
