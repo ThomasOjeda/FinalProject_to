@@ -14,7 +14,6 @@
   <ul *ngIf="!loadingTasks">
     <li *ngFor="let task of taskList; let i = index">
       <app-task class="task" [task]="task" [id]="i"> </app-task>
-      <app-divider *ngIf="i < taskList.length - 1"></app-divider>
     </li>
   </ul>
 

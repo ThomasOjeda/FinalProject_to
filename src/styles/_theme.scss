@@ -19,10 +19,12 @@
     color: color("black");
   }
   @if $element == "summary-card" {
-    background-color: color("gray400");
+    background-color: color("white");
     color: color("black-800");
+    box-shadow: 2px 2px 4px 1px color("gray400");
   }
   @if $element == "summary-card:hover" {
+    box-shadow: 2px 2px 8px 4px color("gray400");
     color: color("link-primary");
   }
   @if $element == "body" {

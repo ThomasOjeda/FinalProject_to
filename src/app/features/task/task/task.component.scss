@@ -1,14 +1,24 @@
 @import "../../../../styles.scss";
 
 article {
-  @include center-x-y();
-  gap: 0.5rem;
-
-  border-radius: 0.25rem;
-  /* @include theme("task"); */
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
   flex-wrap: wrap;
+
+  border-radius: 0.125rem;
+  padding: 0.5rem;
+
+  transition: color 0.25s, outline 0.25s, box-shadow 0.25s;
+
+  @include theme("summary-card");
+
+  &:hover {
+    @include theme("summary-card:hover");
+  }
 }
 
 .task-theme-system {
@@ -31,4 +41,8 @@ article {
 .checkbox {
   height: 2rem;
   width: 2rem;
+}
+
+.creationDate {
+  color: black;
 }

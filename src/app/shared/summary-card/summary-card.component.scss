@@ -1,16 +1,15 @@
 @import "../../../styles.scss";
 
 .summary-card {
-  border-radius: 0.25rem;
+  border-radius: 0.125rem;
   padding: 0.5rem;
   cursor: pointer;
-  transition: color 0.25s, outline 0.25s;
-  outline-color: color("solid-primary");
+
+  transition: color 0.25s, outline 0.25s, box-shadow 0.25s;
   @include theme("summary-card");
 
   &:hover {
     @include theme("summary-card:hover");
-    outline: solid color("solid-primary") 1px;
   }
 }
 
@@ -24,7 +23,4 @@
 .name {
   white-space: break-spaces;
   word-wrap: break-word;
-  /*   white-space: nowrap; //this three properties must be specified for the ellipsis to work
-  overflow: hidden;
-  text-overflow: ellipsis; */
 }
