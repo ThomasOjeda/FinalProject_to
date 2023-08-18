@@ -1,29 +1,15 @@
 <div
   class="alert"
   [ngClass]="{
-
-
     'background-primary': color == 'primary',
     'background-red': color == 'red',
     'background-green': color == 'green',
     'background-yellow': color == 'yellow',
     'background-orange': color == 'orange',
     'background-purple': color == 'purple',
-
   }"
 >
-  <p
-    class="msg"
-    [ngClass]="{
-    'text-primary': color == 'primary',
-    'text-red': color == 'red',
-    'text-green': color == 'green',
-    'text-yellow': color == 'yellow',
-    'text-orange': color == 'orange',
-    'text-purple': color == 'purple',
-
-  }"
-  >
+  <p class="msg">
     <ng-content></ng-content>
   </p>
   <app-custom-icon-button

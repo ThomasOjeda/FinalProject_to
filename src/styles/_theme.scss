@@ -5,6 +5,9 @@
 }
 
 @mixin light-theme($element) {
+  @if $element == "loading-spinner" {
+    border: 0.5rem solid color("gray200");
+  }
   @if $element == "header" {
     background-color: color("gray400");
   }
@@ -20,24 +23,28 @@
   }
   @if $element == "summary-card" {
     background-color: color("white");
-    color: color("black-800");
     box-shadow: 2px 2px 4px 1px color("gray400");
   }
   @if $element == "summary-card:hover" {
     color: color("link-primary");
     box-shadow: 2px 2px 8px 4px color("gray400");
   }
-  @if $element == "body" {
+  @if $element == "board-sector" {
+    background-color: color("gray100");
+    box-shadow: 2px 2px 4px 1px color("gray400");
+  }
+
+  @if $element == "dialog" {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: inherit;
+  }
+
+  @if $element == "text-input" {
+    border-color: color("gray400");
     background-color: color("white");
-    color: color("black");
+    color: color("black900");
   }
-  @if $element == "task" {
-    background-color: color("black-10");
-  }
-  @if $element == "task-form" {
-    background-color: color("black-10");
-    backdrop-filter: blur(0.5rem) saturate(150%);
-  }
+
   @if $element == "task-input" {
     color: color("black");
   }
@@ -47,9 +54,16 @@
   @if $element == "footer" {
     background-color: color("black600");
   }
+  @if $element == "body" {
+    background-color: color("gray100");
+    color: color("black800");
+  }
 }
 
 @mixin dark-theme($element) {
+  @if $element == "loading-spinner" {
+    border: 0.5rem solid color("black600");
+  }
   @if $element == "header" {
     background-color: color("black600");
   }
@@ -65,18 +79,28 @@
   }
   @if $element == "summary-card" {
     background-color: color("black600");
+    box-shadow: 2px 2px 4px 1px color("black800");
+  }
+  @if $element == "summary-card:hover" {
+    color: color("link-primary");
+    box-shadow: 2px 2px 8px 4px color("black800");
+  }
+  @if $element == "board-sector" {
+    background-color: color("black900");
+    box-shadow: 2px 2px 4px 1px color("black900");
+  }
+
+  @if $element == "dialog" {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: inherit;
+  }
+
+  @if $element == "text-input" {
+    border-color: color("black900");
+    background-color: color("black600");
     color: color("gray100");
   }
-  @if $element == "body" {
-    background-color: color("black");
-    color: color("white");
-  }
-  @if $element == "task" {
-    background-color: color("white-10");
-  }
-  @if $element == "task-form" {
-    background-color: color("white-10");
-  }
+
   @if $element == "task-input" {
     color: color("white");
   }
@@ -85,6 +109,10 @@
   }
   @if $element == "footer" {
     background-color: color("black600");
+  }
+  @if $element == "body" {
+    background-color: color("black700");
+    color: color("gray100");
   }
 }
 

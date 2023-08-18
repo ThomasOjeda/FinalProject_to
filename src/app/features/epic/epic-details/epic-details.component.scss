@@ -17,14 +17,14 @@
 }
 
 .board-sector {
-  background-color: color("gray100");
   @include content-horizontal-padding();
   padding-bottom: 1rem;
   border-radius: 0.25rem;
   min-width: 0; //Important to let the text shrink as much as its needed
   max-width: 20rem;
   width: 20rem;
-  box-shadow: 2px 2px 4px 1px color("gray400");
+
+  @include theme("board-sector");
 }
 
 .list-item {

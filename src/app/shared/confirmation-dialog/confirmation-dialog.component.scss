@@ -2,6 +2,7 @@
 
 .dialog {
   @include fullscreen-dialog();
+  @include theme("dialog");
 }
 
 .open {

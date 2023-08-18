@@ -39,13 +39,18 @@
         <app-input-error
           *ngIf="taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine"
         >
-          Description must be at least <strong> 4 characters </strong> long
+          Description must be at least <strong> 10 characters </strong> long
         </app-input-error>
       </div>
 
       <div>
         <label for="due-date" class="label">Due date: </label>
-        <input id="due-date" type="date" formControlName="dueDate" />
+        <input
+          class="text-input"
+          id="due-date"
+          type="date"
+          formControlName="dueDate"
+        />
       </div>
 
       <app-alert-message

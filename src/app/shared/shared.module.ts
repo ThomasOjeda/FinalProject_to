@@ -8,7 +8,7 @@ import { CustomIconButtonComponent } from './custom-icon-button/custom-icon-butt
 import { CustomDetailComponent } from './custom-detail/custom-detail.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { InputErrorComponent } from './input-error/input-error.component';
-import { LoadingSpinnerComponent } from './loading-screen/loading-spinner.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AlertMessageComponent } from './alert-message/alert-message.component';
 
 @NgModule({

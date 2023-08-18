@@ -2,6 +2,7 @@
 
 .dialog {
   @include fullscreen-dialog();
+  @include theme("dialog");
 }
 
 .open {
@@ -39,8 +40,7 @@
 
 .text-input {
   @include input-text();
-  border-color: color("gray400");
-  background-color: color("white");
+  @include theme("text-input");
 }
 
 .text-area-input {

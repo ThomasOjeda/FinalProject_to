@@ -28,7 +28,6 @@
   opacity: 0;
   transition-property: opacity;
   transition-duration: 0.2s;
-  background-color: rgba(255, 255, 255, 0.9);
   border: none;
   &:modal {
     max-width: none;
@@ -42,6 +41,7 @@
 }
 
 @mixin label() {
+  color: inherit;
   display: inline-block;
   padding: 0.5rem;
   word-wrap: break-word;
