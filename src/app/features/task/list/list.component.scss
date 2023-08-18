@@ -22,6 +22,12 @@ ul {
   bottom: 0.5rem;
   margin: 0 auto;
   display: block;
-  width: 3rem;
   backdrop-filter: blur(1rem);
+
+  width: 2rem;
+  height: 2rem;
+  @media (min-width: 18rem) {
+    width: 3rem;
+    height: 3rem;
+  }
 }

@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { Observable, Subscription, catchError } from 'rxjs';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
   selector: 'app-confirmation-dialog',
@@ -25,7 +26,10 @@ export class ConfirmationDialogComponent implements OnInit, OnDestroy {
   @ViewChild('dialog') dialog!: ElementRef;
   error: boolean = false;
   errorMessage: string = '';
-  constructor() {}
+
+  theme: string = '';
+  themeSubscription: Subscription = new Subscription();
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.commandsSubscription = this.commands$.subscribe({
@@ -43,6 +47,10 @@ export class ConfirmationDialogComponent implements OnInit, OnDestroy {
       error: (error) => {},
       complete: () => {},
     });
+
+    this.themeSubscription = this.themeService
+      .getTheme$()
+      .subscribe((theme) => (this.theme = theme));
   }
   openDialog() {
     this.isOpen = true;
@@ -68,5 +76,6 @@ export class ConfirmationDialogComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.commandsSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 }

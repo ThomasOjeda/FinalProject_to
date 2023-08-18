@@ -52,7 +52,14 @@
       *ngIf="!loadingStories && storyList.length > 0 && !errorFetchingStories"
       class="board"
     >
-      <article class="board-sector">
+      <article
+        class="board-sector"
+        [ngClass]="{
+          'board-theme-system': theme == 'system',
+          'board-theme-light': theme == 'light',
+          'board-theme-dark': theme == 'dark'
+        }"
+      >
         <header>
           <h3>ToDo</h3>
         </header>
@@ -68,7 +75,14 @@
         </ul>
       </article>
 
-      <article class="board-sector">
+      <article
+        class="board-sector"
+        [ngClass]="{
+          'board-theme-system': theme == 'system',
+          'board-theme-light': theme == 'light',
+          'board-theme-dark': theme == 'dark'
+        }"
+      >
         <header>
           <h3>Running</h3>
         </header>
@@ -84,7 +98,14 @@
         </ul>
       </article>
 
-      <article class="board-sector">
+      <article
+        class="board-sector"
+        [ngClass]="{
+          'board-theme-system': theme == 'system',
+          'board-theme-light': theme == 'light',
+          'board-theme-dark': theme == 'dark'
+        }"
+      >
         <header>
           <h3>Done</h3>
         </header>

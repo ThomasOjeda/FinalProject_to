@@ -6,10 +6,27 @@
   cursor: pointer;
 
   transition: color 0.25s, outline 0.25s, box-shadow 0.25s;
-  @include theme("summary-card");
+}
+
+.summary-card-theme-system {
+  @include theme("summary-card", "theme-system");
 
   &:hover {
-    @include theme("summary-card:hover");
+    @include theme("summary-card:hover", "theme-system");
+  }
+}
+.summary-card-theme-light {
+  @include theme("summary-card", "theme-light");
+
+  &:hover {
+    @include theme("summary-card:hover", "theme-light");
+  }
+}
+.summary-card-theme-dark {
+  @include theme("summary-card", "theme-dark");
+
+  &:hover {
+    @include theme("summary-card:hover", "theme-dark");
   }
 }
 

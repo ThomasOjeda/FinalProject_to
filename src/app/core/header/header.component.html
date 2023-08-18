@@ -1,8 +1,14 @@
-<header class="header">
+<header
+  class="header"
+  [ngClass]="{
+    'header-theme-system': theme == 'system',
+    'header-theme-light': theme == 'light',
+    'header-theme-dark': theme == 'dark'
+  }"
+>
   <nav class="navigation">
     <app-custom-icon-button
       class="menu-btn"
-      *ngIf="segments.length <= 0"
       [buttonPaint]="'green'"
       [iconHeight]="'large'"
       [iconPath]="'/assets/menu-svgrepo-com.svg'"
@@ -18,7 +24,15 @@
     >
     </app-custom-icon-button>
 
-    <div *ngIf="segments.length <= 0" class="segment">
+    <div
+      *ngIf="segments.length <= 0"
+      class="segment"
+      [ngClass]="{
+        'segment-theme-system': theme == 'system',
+        'segment-theme-light': theme == 'light',
+        'segment-theme-dark': theme == 'dark'
+      }"
+    >
       {{ mainSegment }}
     </div>
 
@@ -32,7 +46,16 @@
             first as isFirst
           "
         >
-          <a (click)="navigateToSegment(i)" class="segment">{{ segment }}</a>
+          <a
+            (click)="navigateToSegment(i)"
+            class="segment"
+            [ngClass]="{
+              'segment-theme-system': theme == 'system',
+              'segment-theme-light': theme == 'light',
+              'segment-theme-dark': theme == 'dark'
+            }"
+            >{{ segment }}</a
+          >
           <span *ngIf="!isLast" class="segment-divider">≫</span>
         </li>
       </div>

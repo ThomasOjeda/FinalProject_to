@@ -2,7 +2,16 @@
 
 .dialog {
   @include fullscreen-dialog();
-  @include theme("dialog");
+}
+
+.dialog-theme-system {
+  @include theme("dialog", "theme-system");
+}
+.dialog-theme-light {
+  @include theme("dialog", "theme-light");
+}
+.dialog-theme-dark {
+  @include theme("dialog", "theme-dark");
 }
 
 .open {

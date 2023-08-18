@@ -23,8 +23,16 @@
   min-width: 0; //Important to let the text shrink as much as its needed
   max-width: 20rem;
   width: 20rem;
+}
 
-  @include theme("board-sector");
+.board-theme-system {
+  @include theme("board-sector", "theme-system");
+}
+.board-theme-light {
+  @include theme("board-sector", "theme-light");
+}
+.board-theme-dark {
+  @include theme("board-sector", "theme-dark");
 }
 
 .list-item {

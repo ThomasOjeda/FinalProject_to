@@ -1,4 +1,13 @@
-<dialog #dialog class="dialog" [ngClass]="{ open: isOpen }">
+<dialog
+  #dialog
+  class="dialog"
+  [ngClass]="{
+    open: isOpen,
+    'dialog-theme-system': theme == 'system',
+    'dialog-theme-light': theme == 'light',
+    'dialog-theme-dark': theme == 'dark'
+  }"
+>
   <div class="content">
     <div class="confirmation-dialog">
       <ng-content></ng-content>

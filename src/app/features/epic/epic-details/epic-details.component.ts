@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Epic } from 'src/models/epic';
 import { EpicService } from '../services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from 'src/models/story';
 import { StoryService } from '../../story/services/story.service';
+import { Subscription } from 'rxjs';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
   selector: 'app-epic-details',
   templateUrl: './epic-details.component.html',
   styleUrls: ['./epic-details.component.scss'],
 })
-export class EpicDetailsComponent implements OnInit {
+export class EpicDetailsComponent implements OnInit, OnDestroy {
   epic: Epic | undefined;
   storyList: Story[] = [];
   storyListDone: Story[] = [];
@@ -21,11 +23,15 @@ export class EpicDetailsComponent implements OnInit {
   loadingEpicDetails: boolean = true;
   errorFetchingStories: boolean = false;
   errorFetchingEpicDetails: boolean = false;
+
+  theme: string = '';
+  themeSubscription: Subscription = new Subscription();
   constructor(
     private epicService: EpicService,
     private storyService: StoryService,
     private router: Router,
-    private activatedRouteService: ActivatedRoute
+    private activatedRouteService: ActivatedRoute,
+    private themeService: ThemeService
   ) {}
 
   ngOnInit() {
@@ -70,11 +76,20 @@ export class EpicDetailsComponent implements OnInit {
         },
       });
     }
+
+    this.themeSubscription = this.themeService
+      .getTheme$()
+      .subscribe((theme) => {
+        this.theme = theme;
+      });
   }
 
   handleStorySelection(storyId: string) {
     this.router.navigate([storyId], {
       relativeTo: this.activatedRouteService,
     });
+  }
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
   }
 }

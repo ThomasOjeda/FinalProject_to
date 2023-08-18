@@ -1,4 +1,11 @@
-<article class="summary-card">
+<article
+  class="summary-card"
+  [ngClass]="{
+    'summary-card-theme-system': theme == 'system',
+    'summary-card-theme-light': theme == 'light',
+    'summary-card-theme-dark': theme == 'dark'
+  }"
+>
   <h3 *ngIf="name" class="name">
     <span *ngIf="icon">{{ icon }}</span
     >{{ name }}

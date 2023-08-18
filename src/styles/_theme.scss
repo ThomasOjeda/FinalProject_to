@@ -17,10 +17,7 @@
   @if $element == "segment:hover" {
     color: color("link-primary");
   }
-  @if $element == "button" {
-    border-color: color("black");
-    color: color("black");
-  }
+
   @if $element == "summary-card" {
     background-color: color("white");
     box-shadow: 2px 2px 4px 1px color("gray400");
@@ -73,10 +70,7 @@
   @if $element == "segment:hover" {
     color: color("link-primary");
   }
-  @if $element == "button" {
-    border-color: color("white");
-    color: color("white");
-  }
+
   @if $element == "summary-card" {
     background-color: color("black600");
     box-shadow: 2px 2px 4px 1px color("black800");
@@ -99,6 +93,7 @@
     border-color: color("black900");
     background-color: color("black600");
     color: color("gray100");
+    color-scheme: dark; //It only takes effect over the date input
   }
 
   @if $element == "task-input" {

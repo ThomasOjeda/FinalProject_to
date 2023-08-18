@@ -10,7 +10,6 @@
   width: 1rem;
   height: 1rem;
   animation: spin 1s linear infinite;
-  @include theme("loading-spinner");
 }
 
 @keyframes spin {
@@ -22,14 +21,22 @@
   }
 }
 
+.loading-spinner-theme-system {
+  @include theme("loading-spinner", "theme-system");
+}
+.loading-spinner-theme-light {
+  @include theme("loading-spinner", "theme-light");
+}
+.loading-spinner-theme-dark {
+  @include theme("loading-spinner", "theme-dark");
+}
+
 .color-primary {
   border-top-color: color("solid-primary");
 }
-
 .color-green {
   border-top-color: color("solid-green");
 }
-
 .color-orange {
   border-top-color: color("solid-orange");
 }

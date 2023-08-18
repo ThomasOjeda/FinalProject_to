@@ -6,29 +6,29 @@ article {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-
   flex-wrap: wrap;
-
   border-radius: 0.125rem;
   padding: 0.5rem;
-
   transition: color 0.25s, outline 0.25s, box-shadow 0.25s;
-
-  @include theme("summary-card");
-
-  &:hover {
-    @include theme("summary-card:hover");
-  }
 }
 
 .task-theme-system {
-  @include theme("task", "theme-system");
+  @include theme("summary-card", "theme-system");
+  &:hover {
+    @include theme("summary-card:hover", "theme-system");
+  }
 }
 .task-theme-light {
-  @include theme("task", "theme-light");
+  @include theme("summary-card", "theme-light");
+  &:hover {
+    @include theme("summary-card:hover", "theme-light");
+  }
 }
 .task-theme-dark {
-  @include theme("task", "theme-dark");
+  @include theme("summary-card", "theme-dark");
+  &:hover {
+    @include theme("summary-card:hover", "theme-dark");
+  }
 }
 
 .task-name-container {

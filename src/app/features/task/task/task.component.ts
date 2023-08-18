@@ -1,29 +1,40 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Task } from 'src/models/task';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ThemeService } from 'src/app/core/services/theme.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, OnDestroy {
   @Input() task: Task = { _id: '', name: '', story: '' };
   @Output() deleteTask = new EventEmitter<Task>();
-  theme!: string;
 
-  /*   theme$: Observable<string> = new Observable<string>();
-  themeSubscription: Subscription = new Subscription(); */
+  theme!: string;
+  themeSubscription: Subscription = new Subscription();
 
   constructor(
     private taskService: TaskService,
     private routerService: Router,
-    private activatedRouteService: ActivatedRoute
+    private activatedRouteService: ActivatedRoute,
+    private themeService: ThemeService
   ) {}
+
   ngOnInit(): void {
-    /*     this.theme$ = this.themes.getTheme$();
-    this.themeSubscription = this.theme$.subscribe((t) => (this.theme = t)); */
+    this.themeSubscription = this.themeService
+      .getTheme$()
+      .subscribe((theme) => (this.theme = theme));
   }
 
   handleTaskNameClick() {
@@ -42,5 +53,9 @@ export class TaskComponent implements OnInit {
       },
       complete: () => {},
     });
+  }
+
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
   }
 }

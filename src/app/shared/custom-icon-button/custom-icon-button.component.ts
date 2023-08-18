@@ -17,10 +17,6 @@ export class CustomIconButtonComponent {
   constructor() {}
   ngOnInit(): void {
     this.classes = {
-      'btn-large': this.iconHeight == 'large',
-      'btn-medium': this.iconHeight == 'medium',
-      'btn-small': this.iconHeight == 'small',
-
       'btn-primary': this.buttonPaint == 'primary',
       'btn-red': this.buttonPaint == 'red',
       'btn-orange': this.buttonPaint == 'orange',

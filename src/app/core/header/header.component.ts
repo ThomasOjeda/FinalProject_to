@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RouteSegmentsService } from '../services/route-segments.service';
 import { MenuService } from '../services/menu.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +13,12 @@ export class HeaderComponent implements OnInit {
   mainSegment: string = '';
   segments: string[] = [];
   displayRouteSubscription: Subscription = new Subscription();
+  themeSubscription: Subscription = new Subscription();
+  theme: string = '';
   constructor(
     private routesSegmentsService: RouteSegmentsService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private themeService: ThemeService
   ) {}
   ngOnInit() {
     this.displayRouteSubscription = this.routesSegmentsService
@@ -22,6 +26,12 @@ export class HeaderComponent implements OnInit {
       .subscribe((dr) => {
         this.mainSegment = dr[0];
         this.segments = dr.slice(1);
+      });
+
+    this.themeSubscription = this.themeService
+      .getTheme$()
+      .subscribe((theme) => {
+        this.theme = theme;
       });
   }
 
@@ -35,5 +45,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnDestroy() {
     this.displayRouteSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 }

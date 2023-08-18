@@ -2,7 +2,16 @@
 
 .dialog {
   @include fullscreen-dialog();
-  @include theme("dialog");
+}
+
+.dialog-theme-system {
+  @include theme("dialog", "theme-system");
+}
+.dialog-theme-light {
+  @include theme("dialog", "theme-light");
+}
+.dialog-theme-dark {
+  @include theme("dialog", "theme-dark");
 }
 
 .open {
@@ -19,6 +28,7 @@
   position: absolute;
   right: 1rem;
   top: 1rem;
+  height: 2rem;
   width: 2rem;
 }
 
@@ -40,7 +50,16 @@
 
 .text-input {
   @include input-text();
-  @include theme("text-input");
+}
+
+.text-input-theme-system {
+  @include theme("text-input", "theme-system");
+}
+.text-input-theme-light {
+  @include theme("text-input", "theme-light");
+}
+.text-input-theme-dark {
+  @include theme("text-input", "theme-dark");
 }
 
 .text-area-input {

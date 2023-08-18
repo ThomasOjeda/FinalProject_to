@@ -1,12 +1,3 @@
 <button (click)="buttonWasClicked($event)" class="btn" [ngClass]="classes">
-  <img
-    [src]="iconPath"
-    [alt]="iconAlt"
-    class="icon"
-    [ngClass]="{
-      'img-large': iconHeight == 'large',
-      'img-medium': iconHeight == 'medium',
-      'img-small': iconHeight == 'small'
-    }"
-  />
+  <img [src]="iconPath" [alt]="iconAlt" class="icon" />
 </button>

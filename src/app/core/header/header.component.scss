@@ -4,9 +4,25 @@
   display: flex;
   position: fixed;
   top: 0px;
-  height: 3rem;
+  height: 2rem;
   width: 100%;
-  @include theme("header");
+
+  font-size: 0.75rem;
+  @media (min-width: 18rem) {
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+
+.header-theme-system {
+  @include theme("header", "theme-system");
+}
+.header-theme-light {
+  @include theme("header", "theme-light");
+}
+.header-theme-dark {
+  @include theme("header", "theme-dark");
 }
 
 .navigation {
@@ -27,14 +43,31 @@
 .segment {
   padding: 0;
   margin: 0 0.5rem;
-  font-weight: bolder;
   white-space: nowrap;
-  @include theme("segment");
+  transition: color 0.25s;
+}
+
+.segment-theme-system {
+  @include theme("segment", "theme-system");
+  &:hover {
+    @include theme("segment:hover", "theme-system");
+  }
+}
+.segment-theme-light {
+  @include theme("segment", "theme-light");
+  &:hover {
+    @include theme("segment:hover", "theme-light");
+  }
+}
+.segment-theme-dark {
+  @include theme("segment", "theme-dark");
+  &:hover {
+    @include theme("segment:hover", "theme-dark");
+  }
 }
 
 .segment:hover {
   cursor: pointer;
-  @include theme("segment:hover");
 }
 
 .segment-divider {
@@ -47,10 +80,12 @@
   display: inherit;
 }
 
-.menu-btn {
-  width: 3rem;
-}
-
+.menu-btn,
 .back-btn {
-  width: 3rem;
+  width: 2rem;
+  height: 2rem;
+  @media (min-width: 18rem) {
+    width: 3rem;
+    height: 3rem;
+  }
 }

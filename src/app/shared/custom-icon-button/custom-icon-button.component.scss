@@ -6,6 +6,7 @@
 
 .btn {
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
 
   @include center-x-y();
@@ -17,10 +18,10 @@
 }
 
 .btn-primary {
-  background-color: color("solid-primary");
+  background-color: color("link-primary");
 
   &:hover {
-    background-color: color("link-primary");
+    background-color: color("solid-primary");
   }
 }
 
@@ -60,17 +61,6 @@
   }
 }
 
-.btn-large,
-.img-large {
-  height: 3rem;
-}
-
-.btn-medium,
-.img-medium {
-  height: 2rem;
-}
-
-.btn-small,
-.img-small {
-  height: 1rem;
+.icon {
+  height: 100%;
 }

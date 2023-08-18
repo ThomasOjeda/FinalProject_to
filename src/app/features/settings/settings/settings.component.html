@@ -27,10 +27,16 @@
 <app-divider></app-divider>
 
 <label for="theme"> Application Theme </label>
-<select name="theme" id="theme">
+<select
+  #themeSelector
+  name="theme"
+  id="theme"
+  [value]="theme"
+  (change)="handleThemeChange(themeSelector.value)"
+>
+  <option value="system">Default</option>
   <option value="light">Light</option>
   <option value="dark">Dark</option>
-  <option value="system">Default</option>
 </select>
 
 <app-divider></app-divider>
