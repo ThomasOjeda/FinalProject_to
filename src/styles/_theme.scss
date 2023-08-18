@@ -24,8 +24,8 @@
     box-shadow: 2px 2px 4px 1px color("gray400");
   }
   @if $element == "summary-card:hover" {
-    box-shadow: 2px 2px 8px 4px color("gray400");
     color: color("link-primary");
+    box-shadow: 2px 2px 8px 4px color("gray400");
   }
   @if $element == "body" {
     background-color: color("white");

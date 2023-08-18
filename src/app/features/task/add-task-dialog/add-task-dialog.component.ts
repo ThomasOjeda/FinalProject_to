@@ -43,7 +43,7 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.taskForm = this.formBuilderService.group({
       name: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.minLength(4)]),
+      description: new FormControl('', [Validators.minLength(10)]),
       dueDate: new FormControl(new Date()),
       done: new FormControl(false),
     });
