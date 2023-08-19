@@ -15,7 +15,7 @@
       (change)="handleSelectorChanged()"
       [(ngModel)]="searchType"
     >
-      <option value="projects" selected>Projects</option>
+      <option value="projects">Projects</option>
       <option value="epics">Epics</option>
       <option value="stories">Stories</option>
       <option value="tasks">Tasks</option>
@@ -24,7 +24,7 @@
 </section>
 
 <ul>
-  <li *ngFor="let result of searchResults">
+  <li *ngFor="let result of searchResults" (click)="handleElementClick(result)">
     {{ result | json }}
   </li>
 </ul>

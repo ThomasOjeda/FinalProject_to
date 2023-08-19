@@ -4,6 +4,7 @@ import { EpicService } from '../../epic/services/epic.service';
 import { StoryService } from '../../story/services/story.service';
 import { TaskService } from '../../task/services/task.service';
 import { Subscription, map } from 'rxjs';
+import { SearchResult } from '../../../../models/search-result';
 
 @Injectable({
   providedIn: 'root',
@@ -37,14 +38,17 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((project) => project.name.toLowerCase().includes(value))
           .map((project) => {
-            return {
+            let result: SearchResult = {
               type: 1,
               data: {
                 _id: project._id,
+                parent: '',
                 name: project.name,
                 description: project.description || '',
+                icon: project.icon,
               },
             };
+            return result;
           })
       )
     );
@@ -56,14 +60,17 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((epic) => epic.name.toLowerCase().includes(value))
           .map((epic) => {
-            return {
-              type: 1,
+            let result: SearchResult = {
+              type: 2,
               data: {
                 _id: epic._id,
+                parent: epic.project,
                 name: epic.name,
                 description: epic.description || '',
+                icon: epic.icon,
               },
             };
+            return result;
           })
       )
     );
@@ -75,14 +82,17 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((story) => story.name.toLowerCase().includes(value))
           .map((story) => {
-            return {
-              type: 1,
+            let result: SearchResult = {
+              type: 3,
               data: {
                 _id: story._id,
+                parent: story.epic,
                 name: story.name,
                 description: story.description || '',
+                icon: story.icon,
               },
             };
+            return result;
           })
       )
     );
@@ -94,14 +104,16 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((task) => task.name.toLowerCase().includes(value))
           .map((task) => {
-            return {
-              type: 1,
+            let result: SearchResult = {
+              type: 4,
               data: {
                 _id: task._id,
+                parent: task.story,
                 name: task.name,
                 description: task.description || '',
               },
             };
+            return result;
           })
       )
     );
