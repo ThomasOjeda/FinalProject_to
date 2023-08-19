@@ -1,0 +1,12 @@
+@import "../../../../styles.scss";
+
+ul {
+  @include reset-list();
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  li {
+    margin-top: 1rem;
+  }
+}

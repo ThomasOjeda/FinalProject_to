@@ -25,6 +25,10 @@
 
 <ul>
   <li *ngFor="let result of searchResults" (click)="handleElementClick(result)">
-    {{ result | json }}
+    <app-summary-card
+      [name]="result.data.name"
+      [description]="result.data.description"
+      [icon]="result.data.icon"
+    ></app-summary-card>
   </li>
 </ul>
