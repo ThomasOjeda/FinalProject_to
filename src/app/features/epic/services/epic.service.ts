@@ -4,6 +4,7 @@ import { EpicsResponse } from '../models/epics-response';
 import { EpicResponse } from '../models/epic-response';
 import { environment } from 'src/environments/environment';
 import { StoriesResponse } from '../../story/models/stories-response';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -72,6 +73,14 @@ export class EpicService {
   getEpics$() {
     return this.httpService.get<EpicsResponse>(
       environment.API_URL + '/api/epics/'
+    );
+  }
+
+  getProjectId$(epicId: string) {
+    return this.getEpic$(epicId).pipe(
+      map((response) => {
+        return response.data._id;
+      })
     );
   }
 }
