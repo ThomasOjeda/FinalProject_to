@@ -1,5 +1,43 @@
 @import "../../../../styles.scss";
 
+:host {
+  width: 100%;
+  max-width: 40rem;
+}
+
+section {
+  margin-top: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.search-input {
+  @include input-text();
+}
+
+.search-type-input {
+  @include input-text();
+  width: 6rem;
+  padding-left: 0;
+}
+
+.search-input-theme-system,
+.search-input-type-theme-system {
+  @include theme("text-input", "theme-system");
+}
+.search-input-theme-light,
+.search-input-type-theme-light {
+  @include theme("text-input", "theme-light");
+}
+.search-input-theme-dark,
+.search-input-type-theme-dark {
+  @include theme("text-input", "theme-dark");
+}
+
 ul {
   @include reset-list();
   display: flex;

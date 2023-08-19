@@ -55,13 +55,13 @@
   padding-left: 0.75rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  border-width: 1px;
-  border-radius: 0.125rem;
-  border-style: solid;
-  outline: none;
+
+  border: none;
+  outline-width: 1px;
 
   &:focus {
-    border-color: color("link-primary");
+    outline-style: solid;
+    outline-color: color("link-primary");
   }
 
   &::placeholder {
@@ -70,7 +70,8 @@
 }
 
 @mixin text-input-error-border {
-  border-color: color("link-red");
+  outline-style: solid;
+  outline-color: color("link-red");
 }
 
 body {
