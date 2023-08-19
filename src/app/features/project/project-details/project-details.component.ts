@@ -63,7 +63,7 @@ export class ProjectDetailsComponent implements OnInit {
           this.loadingProjectDetails = false;
         },
       });
-      this.epicService.getEpics$(projectId).subscribe({
+      this.projectService.getEpics$(projectId).subscribe({
         next: (epics) => {
           this.epicList = epics.data;
         },

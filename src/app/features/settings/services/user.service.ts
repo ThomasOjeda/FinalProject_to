@@ -32,4 +32,16 @@ export class UserService {
       environment.API_URL + '/api/users/'
     );
   }
+
+  getUserId() {
+    let token = this.tokenService.getToken();
+    if (token) {
+      try {
+        let data: any = jwt_decode(token);
+        return data.user._id;
+      } catch (error) {
+        return 'none';
+      }
+    }
+  }
 }

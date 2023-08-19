@@ -3,7 +3,6 @@ import { Epic } from 'src/models/epic';
 import { EpicService } from '../services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from 'src/models/story';
-import { StoryService } from '../../story/services/story.service';
 import { Subscription } from 'rxjs';
 import { ThemeService } from 'src/app/core/services/theme.service';
 
@@ -28,7 +27,6 @@ export class EpicDetailsComponent implements OnInit, OnDestroy {
   themeSubscription: Subscription = new Subscription();
   constructor(
     private epicService: EpicService,
-    private storyService: StoryService,
     private router: Router,
     private activatedRouteService: ActivatedRoute,
     private themeService: ThemeService
@@ -54,7 +52,7 @@ export class EpicDetailsComponent implements OnInit, OnDestroy {
         },
       });
 
-      this.storyService.getStories$(epicId).subscribe({
+      this.epicService.getStories$(epicId).subscribe({
         next: (stories) => {
           this.storyList = stories.data;
           this.storyListDone = this.storyList.filter(

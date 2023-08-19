@@ -9,7 +9,7 @@ export interface Story {
   finished?: Date;
   status?: string;
   points?: number;
-  assignedTo?: string;
+  assignedTo?: string[];
   description?: string;
   icon?: string;
   __v?: number;

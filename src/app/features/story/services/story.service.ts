@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { StoriesResponse } from '../models/stories-response';
 import { StoryResponse } from '../models/story-response';
 import { environment } from 'src/environments/environment';
+import { TasksResponse } from '../../task/models/tasks-response';
 
 @Injectable({
   providedIn: 'root',
@@ -59,15 +60,21 @@ export class StoryService {
 
   constructor(private httpService: HttpClient) {}
 
-  getStories$(epicId: string) {
-    return this.httpService.get<StoriesResponse>(
-      environment.API_URL + '/api/epics/' + epicId + '/stories'
-    );
-  }
-
   getStory$(storyId: string) {
     return this.httpService.get<StoryResponse>(
       environment.API_URL + '/api/stories/' + storyId
+    );
+  }
+
+  getStories$() {
+    return this.httpService.get<StoriesResponse>(
+      environment.API_URL + '/api/stories'
+    );
+  }
+
+  getTasks$(storyId: string) {
+    return this.httpService.get<TasksResponse>(
+      environment.API_URL + '/api/stories/' + storyId + '/tasks'
     );
   }
 }

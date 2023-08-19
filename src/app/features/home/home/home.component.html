@@ -1,1 +1,30 @@
-<p>home works!</p>
+<section>
+  <form #searchForm="ngForm">
+    <input
+      name="search-input"
+      id="search-input"
+      type="search"
+      #searchInput
+      [(ngModel)]="search"
+    />
+
+    <select
+      name="search-type"
+      id="search-type"
+      #searchTypeInput
+      (change)="handleSelectorChanged()"
+      [(ngModel)]="searchType"
+    >
+      <option value="projects" selected>Projects</option>
+      <option value="epics">Epics</option>
+      <option value="stories">Stories</option>
+      <option value="tasks">Tasks</option>
+    </select>
+  </form>
+</section>
+
+<ul>
+  <li *ngFor="let result of searchResults">
+    {{ result | json }}
+  </li>
+</ul>
