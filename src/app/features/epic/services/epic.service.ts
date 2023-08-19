@@ -79,7 +79,7 @@ export class EpicService {
   getProjectId$(epicId: string) {
     return this.getEpic$(epicId).pipe(
       map((response) => {
-        return response.data._id;
+        return response.data.project;
       })
     );
   }

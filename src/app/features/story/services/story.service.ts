@@ -4,6 +4,7 @@ import { StoriesResponse } from '../models/stories-response';
 import { StoryResponse } from '../models/story-response';
 import { environment } from 'src/environments/environment';
 import { TasksResponse } from '../../task/models/tasks-response';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -75,6 +76,14 @@ export class StoryService {
   getTasks$(storyId: string) {
     return this.httpService.get<TasksResponse>(
       environment.API_URL + '/api/stories/' + storyId + '/tasks'
+    );
+  }
+
+  getEpicId$(storyId: string) {
+    return this.getStory$(storyId).pipe(
+      map((response) => {
+        return response.data.epic;
+      })
     );
   }
 }
