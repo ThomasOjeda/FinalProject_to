@@ -12,40 +12,32 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  user: User = {
-    _id: '',
-    name: { first: '', last: '' },
-    username: '',
-    email: '',
-  };
-  userForm!: FormGroup;
+  user!: User;
 
   theme!: string;
   themeSubscription: Subscription = new Subscription();
 
+  loadingUserData: boolean = true;
+  errorLoadingUserData: boolean = false;
   constructor(
     private loginService: LoginService,
-    private formBuilderService: FormBuilder,
     private userService: UserService,
     private themeService: ThemeService
   ) {}
 
   ngOnInit(): void {
-    this.userForm = this.formBuilderService.group({
-      email: new FormControl(''),
-      username: new FormControl(''),
-      'first-name': new FormControl(''),
-      'last-name': new FormControl(''),
-    });
-    this.userService.getUser$().subscribe((user) => {
-      this.user = user.data;
-
-      this.userForm.setValue({
-        username: this.user.username,
-        email: this.user.email,
-        'first-name': this.user.name?.first,
-        'last-name': this.user.name?.last,
-      });
+    this.loadingUserData = true;
+    this.userService.getUser$().subscribe({
+      next: (user) => {
+        this.user = user.data;
+      },
+      error: (error) => {
+        this.loadingUserData = false;
+        this.errorLoadingUserData = true;
+      },
+      complete: () => {
+        this.loadingUserData = false;
+      },
     });
 
     this.themeSubscription = this.themeService
