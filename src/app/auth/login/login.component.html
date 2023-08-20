@@ -3,7 +3,11 @@
     <div>
       <input
         class="text-input"
-        [ngClass]="{'text-input-error-border':(username.errors?.['required'] || username.errors?.['minlength']) && !username.pristine}"
+        [ngClass]="{'text-input-error-border':(username.errors?.['required'] || username.errors?.['minlength']) && !username.pristine,
+
+        'text-input-theme-system': theme == 'system',
+        'text-input-theme-light': theme == 'light',
+        'text-input-theme-dark': theme == 'dark'}"
         id="username"
         type="text"
         required
@@ -28,7 +32,11 @@
     <div>
       <input
         class="text-input"
-        [ngClass]="{'text-input-error-border':(password.errors?.['required'] || password.errors?.['minlength']) && !password.pristine}"
+        [ngClass]="{'text-input-error-border':(password.errors?.['required'] || password.errors?.['minlength']) && !password.pristine,
+      
+        'text-input-theme-system': theme == 'system',
+        'text-input-theme-light': theme == 'light',
+        'text-input-theme-dark': theme == 'dark'}"
         id="password"
         type="password"
         required

@@ -15,7 +15,7 @@ form {
   padding: 1rem;
 
   border-radius: 0.125rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 4px 0 color("link-primary");
 }
 
 .label {
@@ -26,6 +26,16 @@ form {
   @include input-text();
   border-color: color("gray400");
   background-color: color("white");
+}
+
+.text-input-theme-system {
+  @include theme("text-input", "theme-system");
+}
+.text-input-theme-light {
+  @include theme("text-input", "theme-light");
+}
+.text-input-theme-dark {
+  @include theme("text-input", "theme-dark");
 }
 
 .text-input-error-border {
