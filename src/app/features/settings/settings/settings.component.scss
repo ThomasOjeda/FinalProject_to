@@ -12,7 +12,8 @@ section {
 }
 h4,
 p,
-label {
+label,
+strong {
   white-space: break-spaces;
   word-wrap: break-word;
 }
@@ -23,6 +24,7 @@ ul {
 
 .theme-selector {
   @include input-text();
+  width: 6rem;
 }
 
 .theme-selector-theme-system {
