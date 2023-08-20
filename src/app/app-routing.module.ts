@@ -11,6 +11,7 @@ import { StoryDetailsComponent } from './features/story/story-details/story-deta
 import { TaskDetailsComponent } from './features/task/task-details/task-details.component';
 import { LoginComponent } from './auth/login/login.component';
 import { hasTokenGuard } from './auth/guards/has-token.guard';
+import { MyStoriesComponent } from './features/story/my-stories/my-stories.component';
 
 const routes: Routes = [
   {
@@ -49,7 +50,7 @@ const routes: Routes = [
       },
       {
         path: 'my-stories',
-        component: PlaceholderComponent,
+        component: MyStoriesComponent,
         canActivate: [hasTokenGuard],
       },
       {
