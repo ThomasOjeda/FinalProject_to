@@ -26,8 +26,9 @@
           [name]="story.name"
           [description]="story.description"
           [icon]="story.icon"
-          [accent]="'#b977ae'"
+          [accent]="'#c49f49'"
           id="nocursor"
+          (click)="handleStoryClick(story)"
         ></app-summary-card>
       </li>
     </ul>

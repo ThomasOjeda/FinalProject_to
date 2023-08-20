@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Story } from 'src/models/story';
 import { StoryService } from '../services/story.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EpicService } from '../../epic/services/epic.service';
 
 @Component({
   selector: 'app-my-stories',
@@ -16,7 +17,8 @@ export class MyStoriesComponent implements OnInit {
   errorFetchingStories: boolean = false;
   constructor(
     private storyService: StoryService,
-
+    private epicService:EpicService,
+    private router:Router
   ) {}
   ngOnInit(): void {
     this.storyService.getStories$().subscribe({
@@ -31,6 +33,11 @@ export class MyStoriesComponent implements OnInit {
         this.loadingStories = false;
       },
     });
+  }
+  handleStoryClick(story:Story){
+    this.epicService.getProjectId$(story.epic).subscribe((project)=>{
+      this.router.navigate(["my-projects",project,story.epic,story._id])
+    })
   }
 
 }
