@@ -42,6 +42,7 @@
       [name]="result.data.name"
       [description]="result.data.description"
       [icon]="result.data.icon"
+      [accent]=(configureAccent(result.type))
     ></app-summary-card>
   </li>
 </ul>

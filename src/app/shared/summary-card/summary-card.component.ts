@@ -12,7 +12,7 @@ export class SummaryCardComponent implements OnInit, OnDestroy {
   @Input() description: string | undefined;
   @Input() icon: string | undefined;
   @Input() type: string | undefined;
-
+  @Input() accent: string | undefined;
   theme: string = '';
   themeSubscription: Subscription = new Subscription();
   constructor(private themeService: ThemeService) {}

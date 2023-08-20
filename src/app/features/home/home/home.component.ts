@@ -147,6 +147,21 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
+  configureAccent(type: number) {
+    switch (type) {
+      case 1:
+        return '#b977ae';
+      case 2:
+        return '#ce6c42';
+      case 3:
+        return '#c49f49';
+      case 4:
+        return '#83eede';
+      default:
+        return '#83eede';
+    }
+  }
+
   ngOnDestroy(): void {
     this.searchInputSubscription.unsubscribe();
     this.searchServiceSubscription.unsubscribe();

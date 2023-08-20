@@ -40,11 +40,8 @@ form {
 
 ul {
   @include reset-list();
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  li {
-    margin-top: 1rem;
-  }
 }
