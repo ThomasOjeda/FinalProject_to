@@ -6,7 +6,7 @@
   @include content-horizontal-padding();
   margin-top: 2rem;
 
-  @media (min-width: 18rem) {
+  @media (min-width: $big-screen) {
     margin-top: 3rem;
   }
 }

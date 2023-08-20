@@ -15,16 +15,21 @@
   color: color("gray100");
 }
 
+h2 {
+  white-space: break-spaces;
+  word-wrap: break-word;
+}
+
 .close-btn {
   height: 2rem;
   width: 2rem;
-  @media (min-width: 18rem) {
+  @media (min-width: $big-screen) {
     height: 3rem;
     width: 3rem;
   }
 }
 
-@media (min-width: 18rem) {
+@media (min-width: $big-screen) {
   .menu {
     width: 15rem;
   }
