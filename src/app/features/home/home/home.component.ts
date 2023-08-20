@@ -38,6 +38,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   searchResults: SearchResult[] = [];
 
+  loadingResults: boolean = true;
+  errorFetchingResults: boolean = false;
+
   theme: string = '';
   themeSubscription: Subscription = new Subscription();
   constructor(
@@ -76,14 +79,28 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   searchFor(value: string) {
+    this.loadingResults = true;
+    this.errorFetchingResults = false;
     this.searchResults = [];
     this.searchServiceSubscription.unsubscribe();
     this.searchServiceSubscription = this.searchService
       .search(value, this.searchType)
-      .subscribe((results) => (this.searchResults = results));
+      .subscribe({
+        next: (results) => {
+          this.searchResults = results;
+        },
+        error: () => {
+          this.loadingResults = false;
+          this.errorFetchingResults = true;
+        },
+        complete: () => {
+          this.loadingResults = false;
+        },
+      });
   }
 
   handleElementClick(clicked: SearchResult) {
+    this.loadingResults = true;
     switch (clicked.type) {
       case 1:
         this.navigateToProject(clicked);

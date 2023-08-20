@@ -34,15 +34,42 @@
       <option value="tasks">Tasks</option>
     </select>
   </form>
-</section>
 
-<ul>
-  <li *ngFor="let result of searchResults" (click)="handleElementClick(result)">
-    <app-summary-card
-      [name]="result.data.name"
-      [description]="result.data.description"
-      [icon]="result.data.icon"
-      [accent]=(configureAccent(result.type))
-    ></app-summary-card>
-  </li>
-</ul>
+  <div *ngIf="loadingResults" class="loading-spinner">
+    <app-loading-spinner [color]="'primary'"></app-loading-spinner>
+  </div>
+
+  <app-alert-message
+    *ngIf="
+      searchResults.length <= 0 && !loadingResults && !errorFetchingResults
+    "
+    [closable]="false"
+    [color]="'primary'"
+    class="no-results-alert"
+  >
+    No elements found</app-alert-message
+  >
+
+  <app-alert-message
+    *ngIf="errorFetchingResults"
+    [closable]="false"
+    [color]="'red'"
+    class="error-alert"
+  >
+    Error fetching results...try again later</app-alert-message
+  >
+
+  <ul *ngIf="!loadingResults">
+    <li
+      *ngFor="let result of searchResults"
+      (click)="handleElementClick(result)"
+    >
+      <app-summary-card
+        [name]="result.data.name"
+        [description]="result.data.description"
+        [icon]="result.data.icon"
+        [accent]="configureAccent(result.type)"
+      ></app-summary-card>
+    </li>
+  </ul>
+</section>
