@@ -1,1 +1,34 @@
-<p>my-stories works!</p>
+<section>
+    <div *ngIf="loadingStories" class="loading-spinner">
+      <app-loading-spinner color="yellow" size="small"></app-loading-spinner>
+    </div>
+    <app-alert-message
+      class="no-stories-alert"
+      *ngIf="
+        !loadingStories && storyList.length <= 0 && !errorFetchingStories
+      "
+      [closable]="false"
+      [color]="'yellow'"
+    >
+      No stories available at this moment
+    </app-alert-message>
+    <app-alert-message
+      class="error-alert"
+      *ngIf="errorFetchingStories"
+      [closable]="false"
+      [color]="'red'"
+    >
+      Error fetching project list...try again later
+    </app-alert-message>
+    <ul *ngIf="storyList.length > 0" class="story-list">
+      <li *ngFor="let story of storyList">
+        <app-summary-card
+          [name]="story.name"
+          [description]="story.description"
+          [icon]="story.icon"
+          [accent]="'#b977ae'"
+          id="nocursor"
+        ></app-summary-card>
+      </li>
+    </ul>
+  </section>

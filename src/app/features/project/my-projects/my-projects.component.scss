@@ -19,6 +19,8 @@
   @include reset-list();
 
   li {
+    cursor: pointer;
+
     margin-top: 1rem;
   }
 }
