@@ -32,31 +32,23 @@ export class RouteSegmentsService implements OnDestroy {
     private storyService: StoryService,
     private taskService: TaskService
   ) {
-    //this.currentRoute = this.routeToArray(this.routerService.url);
-    //this.currentRoute$ = new BehaviorSubject<string[]>(this.currentRoute);
     this.currentRoute$ = new BehaviorSubject<string[]>([]);
-    //this.displayRoute[0] = this.currentRoute[0];
-    //this.displayRoute = [...this.currentRoute];
-    //this.displayRoute$ = new BehaviorSubject<string[]>(this.displayRoute);
     this.displayRoute$ = new BehaviorSubject<string[]>([]);
-
-    //this.beautifyDisplayRoute();
     this.routerSubscription = this.routerService.events.subscribe(
       (event: Event) => {
         if (event instanceof NavigationEnd) {
           this.lastRoute = [...this.currentRoute];
           this.currentRoute = this.routeToArray(event.urlAfterRedirects);
           this.currentRoute$.next(this.currentRoute);
-          //this.displayRoute = [...this.currentRoute];
-          //this.displayRoute$.next(this.displayRoute);
+
           this.beautifyDisplayRoute();
         }
       }
     );
   }
 
-  invalidIndex(index: number) {
-    return this.currentRoute.length - 1 < index; //The requested index is invalid
+  validIndex(index: number) {
+    return index < this.currentRoute.length; //The requested index is invalid
   }
 
   segmentHasChanged(index: number) {
@@ -79,7 +71,7 @@ export class RouteSegmentsService implements OnDestroy {
     this.displayRoute[0] = beautifyFirstSegment(this.currentRoute[0]);
     this.displayRoute$.next(this.displayRoute);
 
-    if (this.invalidIndex(1)) {
+    if (!this.validIndex(1)) {
       return;
     }
     if (this.segmentHasChanged(1)) {
@@ -93,7 +85,7 @@ export class RouteSegmentsService implements OnDestroy {
         });
     }
 
-    if (this.invalidIndex(2)) {
+    if (!this.validIndex(2)) {
       return;
     }
     if (this.segmentHasChanged(2)) {
@@ -107,7 +99,7 @@ export class RouteSegmentsService implements OnDestroy {
         });
     }
 
-    if (this.invalidIndex(3)) {
+    if (!this.validIndex(3)) {
       return;
     }
     if (this.segmentHasChanged(3)) {
@@ -121,7 +113,7 @@ export class RouteSegmentsService implements OnDestroy {
         });
     }
 
-    if (this.invalidIndex(4)) {
+    if (!this.validIndex(4)) {
       return;
     }
     if (this.segmentHasChanged(4)) {
@@ -163,9 +155,16 @@ export class RouteSegmentsService implements OnDestroy {
   }
 }
 function beautifyFirstSegment(segment: string): string {
-  if (segment == 'my-projects') return 'My Projects';
-  if (segment == 'home') return 'Home';
-  if (segment == 'my-stories') return 'My User Stories';
-  if (segment == 'settings') return 'Settings';
-  return 'Section';
+  switch (segment) {
+    case 'my-projects':
+      return 'My Projects';
+    case 'home':
+      return 'Home';
+    case 'my-stories':
+      return 'My User Stories';
+    case 'settings':
+      return 'Settings';
+    default:
+      return 'Section';
+  }
 }
