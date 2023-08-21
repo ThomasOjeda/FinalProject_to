@@ -2,11 +2,12 @@
   #dialog
   class="dialog"
   [ngClass]="{
-    open: isOpen,
-    'dialog-theme-system': theme == 'system',
-    'dialog-theme-light': theme == 'light',
-    'dialog-theme-dark': theme == 'dark'
+    open: isOpen
   }"
+  appTheme
+  [systemThemeClass]="'dialog-theme-system'"
+  [lightThemeClass]="'dialog-theme-light'"
+  [darkThemeClass]="'dialog-theme-dark'"
 >
   <app-custom-icon-button
     class="close-btn"
@@ -22,11 +23,11 @@
       <div>
         <input
           class="text-input"
-          [ngClass]="{'text-input-error-border':taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine,
-        
-          'text-input-theme-system': theme == 'system',
-          'text-input-theme-light': theme == 'light',
-          'text-input-theme-dark': theme == 'dark'}"
+          [ngClass]="{'text-input-error-border':taskForm.get('name')?.errors?.['required']  && !taskForm.get('name')?.pristine}"
+          appTheme
+          [systemThemeClass]="'text-input-theme-system'"
+          [lightThemeClass]="'text-input-theme-light'"
+          [darkThemeClass]="'text-input-theme-dark'"
           id="name"
           type="text"
           formControlName="name"
@@ -42,11 +43,11 @@
       <div>
         <textarea
           class="text-input text-area-input"
-          [ngClass]="{'text-input-error-border':taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine,
-        
-          'text-input-theme-system': theme == 'system',
-          'text-input-theme-light': theme == 'light',
-          'text-input-theme-dark': theme == 'dark'}"
+          [ngClass]="{'text-input-error-border':taskForm.get('description')?.errors?.['minlength']  && !taskForm.get('description')?.pristine}"
+          appTheme
+          [systemThemeClass]="'text-input-theme-system'"
+          [lightThemeClass]="'text-input-theme-light'"
+          [darkThemeClass]="'text-input-theme-dark'"
           id="description"
           rows="5"
           cols="33"
@@ -65,11 +66,10 @@
         <label for="due-date" class="label">Due date: </label>
         <input
           class="text-input"
-          [ngClass]="{
-            'text-input-theme-system': theme == 'system',
-            'text-input-theme-light': theme == 'light',
-            'text-input-theme-dark': theme == 'dark'
-          }"
+          appTheme
+          [systemThemeClass]="'text-input-theme-system'"
+          [lightThemeClass]="'text-input-theme-light'"
+          [darkThemeClass]="'text-input-theme-dark'"
           id="due-date"
           type="date"
           formControlName="dueDate"

@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from 'src/app/auth/services/login.service';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
-import { ThemeService } from 'src/app/core/services/theme.service';
 import { Subscription } from 'rxjs';
+import { ThemeService } from 'src/app/shared/services/theme.service';
 
 @Component({
   selector: 'app-settings',

@@ -1,9 +1,8 @@
 <article
-  [ngClass]="{
-    'task-theme-system': theme == 'system',
-    'task-theme-light': theme == 'light',
-    'task-theme-dark': theme == 'dark'
-  }"
+  appTheme
+  [systemThemeClass]="'task-theme-system'"
+  [lightThemeClass]="'task-theme-light'"
+  [darkThemeClass]="'task-theme-dark'"
 >
   <input
     type="checkbox"

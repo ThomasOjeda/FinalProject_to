@@ -1,10 +1,9 @@
 <article
   class="summary-card"
-  [ngClass]="{
-    'summary-card-theme-system': theme == 'system',
-    'summary-card-theme-light': theme == 'light',
-    'summary-card-theme-dark': theme == 'dark'
-  }"
+  appTheme
+  [systemThemeClass]="'summary-card-theme-system'"
+  [lightThemeClass]="'summary-card-theme-light'"
+  [darkThemeClass]="'summary-card-theme-dark'"
   [ngStyle]="{ 'border-right-color': accent }"
 >
   <h3 *ngIf="name" class="name">

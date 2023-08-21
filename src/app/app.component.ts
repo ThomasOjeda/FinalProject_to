@@ -1,6 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
-import { ThemeService } from './core/services/theme.service';
 import { Observable, Subscription } from 'rxjs';
+import { ThemeService } from './shared/services/theme.service';
 
 @Component({
   selector: 'app-root',

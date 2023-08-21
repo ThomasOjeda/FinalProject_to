@@ -1,6 +1,4 @@
 import {
-  AfterViewChecked,
-  AfterViewInit,
   Component,
   ElementRef,
   OnDestroy,
@@ -18,7 +16,6 @@ import { AddTaskDialogService } from '../services/add-task-dialog.service';
 import { Subscription } from 'rxjs';
 import { Task } from 'src/models/task';
 import { ActivatedRoute } from '@angular/router';
-import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
   selector: 'app-add-task-dialog',
@@ -33,15 +30,12 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
   submitting: boolean = false;
   thereWasAnError: boolean = false;
 
-  theme: string = '';
-  themeSubscription: Subscription = new Subscription();
   @ViewChild('dialog') dialog!: ElementRef;
   constructor(
     private taskService: TaskService,
     private formBuilderService: FormBuilder,
     private addTaskDialogService: AddTaskDialogService,
-    private activatedRouteService: ActivatedRoute,
-    private themeService: ThemeService
+    private activatedRouteService: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -58,10 +52,6 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
         if (state) this.openDialog();
         else this.closeDialog();
       });
-
-    this.themeSubscription = this.themeService
-      .getTheme$()
-      .subscribe((theme) => (this.theme = theme));
   }
   openDialog() {
     this.dialog.nativeElement.showModal();
@@ -104,6 +94,5 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.dialogSubscription.unsubscribe();
-    this.themeSubscription.unsubscribe();
   }
 }

@@ -2,11 +2,10 @@
   <form #searchForm="ngForm">
     <input
       class="search-input"
-      [ngClass]="{
-        'search-input-theme-system': theme == 'system',
-        'search-input-theme-light': theme == 'light',
-        'search-input-theme-dark': theme == 'dark'
-      }"
+      appTheme
+      [systemThemeClass]="'search-input-theme-system'"
+      [lightThemeClass]="'search-input-theme-light'"
+      [darkThemeClass]="'search-input-theme-dark'"
       name="search-input"
       id="search-input"
       type="search"
@@ -17,11 +16,10 @@
 
     <select
       class="search-type-input"
-      [ngClass]="{
-        'search-input-type-theme-system': theme == 'system',
-        'search-input-type-theme-light': theme == 'light',
-        'search-input-type-theme-dark': theme == 'dark'
-      }"
+      appTheme
+      [systemThemeClass]="'search-input-type-theme-system'"
+      [lightThemeClass]="'search-input-type-theme-light'"
+      [darkThemeClass]="'search-input-type-theme-dark'"
       name="search-type"
       id="search-type"
       #searchTypeInput

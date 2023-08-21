@@ -34,11 +34,10 @@
     [value]="theme"
     (change)="handleThemeChange(themeSelector.value)"
     class="theme-selector"
-    [ngClass]="{
-      'theme-selector-theme-system': theme == 'system',
-      'theme-selector-theme-light': theme == 'light',
-      'theme-selector-theme-dark': theme == 'dark'
-    }"
+    appTheme
+    [systemThemeClass]="'theme-selector-theme-system'"
+    [lightThemeClass]="'theme-selector-theme-light'"
+    [darkThemeClass]="'theme-selector-theme-dark'"
   >
     <option value="system">Default</option>
     <option value="light">Light</option>

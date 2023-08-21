@@ -2,11 +2,12 @@
   #dialog
   class="dialog"
   [ngClass]="{
-    open: isOpen,
-    'dialog-theme-system': theme == 'system',
-    'dialog-theme-light': theme == 'light',
-    'dialog-theme-dark': theme == 'dark'
+    open: isOpen
   }"
+  appTheme
+  [systemThemeClass]="'dialog-theme-system'"
+  [lightThemeClass]="'dialog-theme-light'"
+  [darkThemeClass]="'dialog-theme-dark'"
 >
   <div class="content">
     <div class="confirmation-dialog">

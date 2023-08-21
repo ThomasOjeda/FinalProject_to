@@ -54,11 +54,10 @@
     >
       <article
         class="board-sector"
-        [ngClass]="{
-          'board-theme-system': theme == 'system',
-          'board-theme-light': theme == 'light',
-          'board-theme-dark': theme == 'dark'
-        }"
+        appTheme
+        [systemThemeClass]="'board-input-theme-system'"
+        [lightThemeClass]="'board-theme-light'"
+        [darkThemeClass]="'board-theme-dark'"
       >
         <header>
           <h3>ToDo</h3>
@@ -78,11 +77,10 @@
 
       <article
         class="board-sector"
-        [ngClass]="{
-          'board-theme-system': theme == 'system',
-          'board-theme-light': theme == 'light',
-          'board-theme-dark': theme == 'dark'
-        }"
+        appTheme
+        [systemThemeClass]="'board-theme-system'"
+        [lightThemeClass]="'board-theme-light'"
+        [darkThemeClass]="'board-theme-dark'"
       >
         <header>
           <h3>Running</h3>
@@ -95,7 +93,6 @@
               [icon]="story.icon"
               (click)="handleStorySelection(story._id)"
               [accent]="'#c49f49'"
-
             ></app-summary-card>
           </li>
         </ul>
@@ -103,11 +100,10 @@
 
       <article
         class="board-sector"
-        [ngClass]="{
-          'board-theme-system': theme == 'system',
-          'board-theme-light': theme == 'light',
-          'board-theme-dark': theme == 'dark'
-        }"
+        appTheme
+        [systemThemeClass]="'board-theme-system'"
+        [lightThemeClass]="'board-theme-light'"
+        [darkThemeClass]="'board-theme-dark'"
       >
         <header>
           <h3>Done</h3>
@@ -120,7 +116,6 @@
               [icon]="story.icon"
               (click)="handleStorySelection(story._id)"
               [accent]="'#c49f49'"
-
             ></app-summary-card>
           </li>
         </ul>

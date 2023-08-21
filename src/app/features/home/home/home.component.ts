@@ -16,19 +16,17 @@ import {
   Subscription,
 } from 'rxjs';
 import { SearchService } from '../services/search.service';
-import { Project } from 'src/models/project';
 import { SearchResult } from '../../../../models/search-result';
 import { Router } from '@angular/router';
 import { EpicService } from '../../epic/services/epic.service';
 import { StoryService } from '../../story/services/story.service';
-import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('searchInput') searchInput!: ElementRef;
 
   search: string = '';
@@ -41,21 +39,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   loadingResults: boolean = true;
   errorFetchingResults: boolean = false;
 
-  theme: string = '';
-  themeSubscription: Subscription = new Subscription();
   constructor(
     private searchService: SearchService,
     private epicService: EpicService,
     private storyService: StoryService,
-    private routerService: Router,
-    private themeService: ThemeService
+    private routerService: Router
   ) {}
-
-  ngOnInit(): void {
-    this.themeSubscription = this.themeService
-      .getTheme$()
-      .subscribe((theme) => (this.theme = theme));
-  }
 
   ngAfterViewInit(): void {
     this.searchInputSubscription = fromEvent<KeyboardEvent>(
@@ -182,6 +171,5 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.searchInputSubscription.unsubscribe();
     this.searchServiceSubscription.unsubscribe();
-    this.themeSubscription.unsubscribe();
   }
 }

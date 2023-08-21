@@ -3,11 +3,11 @@
     <div>
       <input
         class="text-input"
-        [ngClass]="{'text-input-error-border':(username.errors?.['required'] || username.errors?.['minlength']) && !username.pristine,
-
-        'text-input-theme-system': theme == 'system',
-        'text-input-theme-light': theme == 'light',
-        'text-input-theme-dark': theme == 'dark'}"
+        [ngClass]="{'text-input-error-border':(username.errors?.['required'] || username.errors?.['minlength']) && !username.pristine}"
+        appTheme
+        [systemThemeClass]="'text-input-theme-system'"
+        [lightThemeClass]="'text-input-theme-light'"
+        [darkThemeClass]="'text-input-theme-dark'"
         id="username"
         type="text"
         required
@@ -32,11 +32,11 @@
     <div>
       <input
         class="text-input"
-        [ngClass]="{'text-input-error-border':(password.errors?.['required'] || password.errors?.['minlength']) && !password.pristine,
-      
-        'text-input-theme-system': theme == 'system',
-        'text-input-theme-light': theme == 'light',
-        'text-input-theme-dark': theme == 'dark'}"
+        [ngClass]="{'text-input-error-border':(password.errors?.['required'] || password.errors?.['minlength']) && !password.pristine}"
+        appTheme
+        [systemThemeClass]="'text-input-theme-system'"
+        [lightThemeClass]="'text-input-theme-light'"
+        [darkThemeClass]="'text-input-theme-dark'"
         id="password"
         type="password"
         required

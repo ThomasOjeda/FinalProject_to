@@ -10,6 +10,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
 import { InputErrorComponent } from './input-error/input-error.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AlertMessageComponent } from './alert-message/alert-message.component';
+import { ThemeDirective } from './directives/theme.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AlertMessageComponent } from './alert-message/alert-message.component';
     InputErrorComponent,
     LoadingSpinnerComponent,
     AlertMessageComponent,
+    ThemeDirective,
   ],
   imports: [CommonModule],
   exports: [
@@ -36,6 +38,7 @@ import { AlertMessageComponent } from './alert-message/alert-message.component';
     InputErrorComponent,
     LoadingSpinnerComponent,
     AlertMessageComponent,
+    ThemeDirective,
   ],
 })
 export class SharedModule {}

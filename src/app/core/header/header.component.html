@@ -1,10 +1,9 @@
 <header
   class="header"
-  [ngClass]="{
-    'header-theme-system': theme == 'system',
-    'header-theme-light': theme == 'light',
-    'header-theme-dark': theme == 'dark'
-  }"
+  appTheme
+  [systemThemeClass]="'header-theme-system'"
+  [lightThemeClass]="'header-theme-light'"
+  [darkThemeClass]="'header-theme-dark'"
 >
   <nav class="navigation">
     <app-custom-icon-button
@@ -27,11 +26,10 @@
     <div
       *ngIf="segments.length <= 0"
       class="segment"
-      [ngClass]="{
-        'segment-theme-system': theme == 'system',
-        'segment-theme-light': theme == 'light',
-        'segment-theme-dark': theme == 'dark'
-      }"
+      appTheme
+      [systemThemeClass]="'segment-theme-system'"
+      [lightThemeClass]="'segment-theme-light'"
+      [darkThemeClass]="'segment-theme-dark'"
     >
       {{ mainSegment }}
     </div>
@@ -49,11 +47,10 @@
           <a
             (click)="navigateToSegment(i)"
             class="segment"
-            [ngClass]="{
-              'segment-theme-system': theme == 'system',
-              'segment-theme-light': theme == 'light',
-              'segment-theme-dark': theme == 'dark'
-            }"
+            appTheme
+            [systemThemeClass]="'segment-theme-system'"
+            [lightThemeClass]="'segment-theme-light'"
+            [darkThemeClass]="'segment-theme-dark'"
             >{{ segment }}</a
           >
           <span *ngIf="!isLast" class="segment-divider">≫</span>
