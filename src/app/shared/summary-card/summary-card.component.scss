@@ -31,14 +31,22 @@
   }
 }
 
-.description {
-  font-style: italic;
-  white-space: nowrap; //this three properties must be specified for the ellipsis to work
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .name {
   white-space: break-spaces;
   word-wrap: break-word;
+
+  font-size: 0.75rem;
+  @media (min-width: $big-screen) {
+    font-size: 1rem;
+  }
+}
+
+.description {
+  font-style: italic;
+  @include overflow-ellipsis();
+
+  font-size: 0.5rem;
+  @media (min-width: $big-screen) {
+    font-size: 0.75rem;
+  }
 }

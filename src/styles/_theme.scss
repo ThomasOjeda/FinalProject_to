@@ -28,7 +28,7 @@
   }
   @if $element == "board-sector" {
     background-color: color("gray100");
-    box-shadow: 2px 2px 4px 1px color("gray400");
+    box-shadow: 4px 4px 12px 1px color("gray400");
   }
 
   @if $element == "dialog" {
@@ -81,7 +81,7 @@
   }
   @if $element == "board-sector" {
     background-color: color("black900");
-    box-shadow: 2px 2px 4px 1px color("black900");
+    box-shadow: 4px 4px 12px 1px color("black900");
   }
 
   @if $element == "dialog" {

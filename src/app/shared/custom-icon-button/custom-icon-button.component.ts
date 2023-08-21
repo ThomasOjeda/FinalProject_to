@@ -12,7 +12,8 @@ export class CustomIconButtonComponent {
   @Input() iconPath: string = '';
   @Input() iconAlt: string = '';
   @Input() iconHeight: string = '';
-
+  @Input() invisible: boolean = false;
+  @Input() rounded: boolean = false;
   classes = {};
   constructor() {}
   ngOnInit(): void {
@@ -23,6 +24,10 @@ export class CustomIconButtonComponent {
       'btn-green': this.buttonPaint == 'green',
       'btn-yellow': this.buttonPaint == 'yellow',
       'btn-purple': this.buttonPaint == 'purple',
+      'btn-gray': this.buttonPaint == 'gray',
+
+      'btn-invisible': this.invisible,
+      'btn-rounded': this.rounded,
     };
   }
   buttonWasClicked($event: Event) {

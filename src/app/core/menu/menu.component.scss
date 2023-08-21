@@ -13,26 +13,30 @@
   flex-direction: column;
   background-color: color("black800");
   color: color("gray100");
+
+  @media (min-width: $big-screen) {
+    width: 15rem;
+  }
 }
 
-h2 {
-  white-space: break-spaces;
-  word-wrap: break-word;
+h1 {
+  margin: 0;
+  padding: 0;
+  @include center-x-y();
+}
+.logo {
+  height: 7rem;
+  width: 7rem;
+}
+
+.close-btn-container {
+  @include center-x-y(flex-end);
+  padding: 1rem 1rem 0 0;
 }
 
 .close-btn {
-  height: 2rem;
-  width: 2rem;
-  @media (min-width: $big-screen) {
-    height: 3rem;
-    width: 3rem;
-  }
-}
-
-@media (min-width: $big-screen) {
-  .menu {
-    width: 15rem;
-  }
+  height: 3rem;
+  width: 3rem;
 }
 
 .open-menu {

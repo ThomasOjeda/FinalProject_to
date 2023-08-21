@@ -1,3 +1,5 @@
+@import "../../../../../styles.scss";
+
 .line-through-decoration {
   text-decoration: line-through;
 }
@@ -10,7 +12,10 @@
   margin-block-start: 0;
   margin-block-end: 0;
 
-  white-space: nowrap; //this three properties must be specified for the ellipsis to work
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @include overflow-ellipsis();
+
+  font-size: 0.75rem;
+  @media (min-width: $big-screen) {
+    font-size: 1rem;
+  }
 }

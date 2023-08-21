@@ -60,6 +60,21 @@
     background-color: color("link-purple");
   }
 }
+.btn-gray {
+  background-color: color("gray500");
+
+  &:hover {
+    background-color: color("gray300");
+  }
+}
+
+.btn-invisible {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.btn-rounded {
+  border-radius: 50%;
+}
 
 .icon {
   height: 100%;

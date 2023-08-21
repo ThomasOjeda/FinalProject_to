@@ -23,6 +23,12 @@ $big-screen: 27rem;
   padding: 0;
 }
 
+@mixin overflow-ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @mixin fullscreen-dialog() {
   box-sizing: border-box;
   width: 100%;

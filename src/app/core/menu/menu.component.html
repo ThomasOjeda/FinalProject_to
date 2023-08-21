@@ -1,16 +1,17 @@
 <aside class="menu" [ngClass]="{ 'open-menu': isOpen }">
   <header>
-    <app-custom-icon-button
-      class="close-btn"
-      [buttonPaint]="'red'"
-      (clickedButtonEvent)="closeMenu()"
-      [iconPath]="'/assets/close-svgrepo-com.svg'"
-    ></app-custom-icon-button>
-    <h2>APPLOGO</h2>
-    <!--     <figure>
-      <img src="" alt="" />
-      <caption></caption>
-    </figure> -->
+    <div class="close-btn-container">
+      <app-custom-icon-button
+        class="close-btn"
+        [buttonPaint]="'gray'"
+        (clickedButtonEvent)="closeMenu()"
+        [iconPath]="'/assets/close-svgrepo-com.svg'"
+        [rounded]="true"
+      ></app-custom-icon-button>
+    </div>
+    <h1>
+      <img src="/assets/angular_whiteTransparent.png" alt="logo" class="logo" />
+    </h1>
   </header>
 
   <nav class="navigation">
@@ -27,15 +28,8 @@
     </ul>
   </nav>
   <footer class="footer">
-    <app-divider></app-divider>
     <li class="nav-list-item" (click)="navigate('/settings')">
       <a> Settings </a>
     </li>
-    <app-custom-button
-      [text]="'Logout'"
-      (clickedButtonEvent)="handleLogoutButtonClick()"
-      [buttonPaint]="'red'"
-      [buttonHeight]="'medium'"
-    ></app-custom-button>
   </footer>
 </aside>

@@ -5,6 +5,7 @@ article {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   flex-wrap: wrap;
   border-radius: 0.125rem;
@@ -34,15 +35,24 @@ article {
 .task-name-container {
   flex: 1;
   font-size: 1.5rem;
-  min-width: 10rem;
+  min-width: 5rem;
   cursor: pointer;
 }
 
 .checkbox {
-  height: 2rem;
-  width: 2rem;
+  height: 1rem;
+  width: 1rem;
+
+  @media (min-width: $big-screen) {
+    height: 2rem;
+    width: 2rem;
+  }
 }
 
 .creationDate {
   color: inherit;
+  font-size: 0.5rem;
+  @media (min-width: $big-screen) {
+    font-size: 0.75rem;
+  }
 }

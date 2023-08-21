@@ -15,6 +15,7 @@
     [buttonPaint]="'red'"
     (clickedButtonEvent)="handleCloseDialogButtonClick()"
     [iconHeight]="'medium'"
+    [rounded]="true"
   ></app-custom-icon-button>
   <div class="content">
     <form [formGroup]="taskForm" (ngSubmit)="submit()" class="form">
