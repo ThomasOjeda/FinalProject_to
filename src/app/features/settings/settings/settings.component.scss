@@ -14,8 +14,7 @@ h4,
 p,
 label,
 strong {
-  white-space: break-spaces;
-  word-wrap: break-word;
+  @include break-words();
 }
 
 ul {

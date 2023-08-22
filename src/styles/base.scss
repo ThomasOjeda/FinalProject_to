@@ -45,12 +45,16 @@ $big-screen: 27rem;
   opacity: 1;
 }
 
+@mixin break-words() {
+  white-space: break-spaces;
+  word-wrap: break-word;
+}
+
 @mixin label() {
   color: inherit;
   display: inline-block;
   padding: 0.5rem;
-  word-wrap: break-word;
-  white-space: break-spaces;
+  @include break-words();
 }
 
 @mixin input-text() {

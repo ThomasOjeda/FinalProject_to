@@ -22,6 +22,5 @@
   margin: 0;
   padding: 0;
   text-align: center;
-  white-space: break-spaces;
-  word-wrap: break-word;
+  @include break-words();
 }

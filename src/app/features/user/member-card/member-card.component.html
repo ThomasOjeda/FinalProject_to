@@ -1,0 +1,12 @@
+<article
+  class="member-card"
+  appTheme
+  [systemThemeClass]="'member-card-theme-system'"
+  [lightThemeClass]="'member-card-theme-light'"
+  [darkThemeClass]="'member-card-theme-dark'"
+>
+  <p class="main-info">{{ name | titlecase }} {{ lastName | titlecase }}</p>
+  <p class="secondary-info">
+    {{ email }}
+  </p>
+</article>

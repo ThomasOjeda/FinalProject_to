@@ -1,8 +1,7 @@
 @import "../../../styles.scss";
 
 .section-header {
-  white-space: break-spaces;
-  word-wrap: break-word;
+  @include break-words();
 
   font-size: 1rem;
   @media (min-width: $big-screen) {

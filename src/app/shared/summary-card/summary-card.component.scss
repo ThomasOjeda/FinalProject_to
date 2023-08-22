@@ -32,8 +32,7 @@
 }
 
 .name {
-  white-space: break-spaces;
-  word-wrap: break-word;
+  @include break-words();
 
   font-size: 0.75rem;
   @media (min-width: $big-screen) {

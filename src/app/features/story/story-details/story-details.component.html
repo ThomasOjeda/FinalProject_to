@@ -23,15 +23,19 @@
       >
       </app-section-header>
 
+      <app-member-card
+        class="owner"
+        *ngIf="story.owner"
+        [memberId]="story.owner"
+      ></app-member-card>
+
       <app-custom-detail [name]="'Creation Date'">
         {{ story.created | date }}
       </app-custom-detail>
       <app-custom-detail *ngIf="story.due" [name]="'Due Date'">
         {{ story.due | date }}
       </app-custom-detail>
-      <app-custom-detail [name]="'Owner'">
-        {{ story.owner }}
-      </app-custom-detail>
+
       <app-custom-detail [name]="'Status'">
         {{ story.status }}
       </app-custom-detail>
