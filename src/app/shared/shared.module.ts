@@ -12,6 +12,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { AlertMessageComponent } from './alert-message/alert-message.component';
 import { ThemeDirective } from './directives/theme.directive';
 import { ElementHeaderComponent } from './element-header/element-header.component';
+import { MemberCardComponent } from './user/member-card/member-card.component';
+import { MembersDialogComponent } from './members-dialog/members-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,10 @@ import { ElementHeaderComponent } from './element-header/element-header.componen
     InputErrorComponent,
     LoadingSpinnerComponent,
     AlertMessageComponent,
-    ThemeDirective,
     ElementHeaderComponent,
+    MemberCardComponent,
+    ThemeDirective,
+    MembersDialogComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -40,6 +44,7 @@ import { ElementHeaderComponent } from './element-header/element-header.componen
     InputErrorComponent,
     LoadingSpinnerComponent,
     AlertMessageComponent,
+    MemberCardComponent,
     ThemeDirective,
   ],
 })
