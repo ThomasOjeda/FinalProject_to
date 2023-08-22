@@ -14,6 +14,7 @@ import { ThemeDirective } from './directives/theme.directive';
 import { ElementHeaderComponent } from './element-header/element-header.component';
 import { MemberCardComponent } from './user/member-card/member-card.component';
 import { MembersDialogComponent } from './members-dialog/members-dialog.component';
+import { ClosableDialogComponent } from './closable-dialog/closable-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MembersDialogComponent } from './members-dialog/members-dialog.componen
     MemberCardComponent,
     ThemeDirective,
     MembersDialogComponent,
+    ClosableDialogComponent,
   ],
   imports: [CommonModule],
   exports: [

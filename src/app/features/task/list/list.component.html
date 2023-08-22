@@ -26,4 +26,9 @@
     [iconPath]="'assets/add-svgrepo-com.svg'"
     (clickedButtonEvent)="openAddTaskDialog()"
   ></app-custom-icon-button>
+
+  <app-add-task-dialog
+    (result)="handleResultFromDialog($event)"
+    [commands$]="taskCreationDialogCommand.asObservable()"
+  ></app-add-task-dialog>
 </article>

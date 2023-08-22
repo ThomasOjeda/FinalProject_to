@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Task } from 'src/models/task';
-import { AddTaskDialogService } from '../services/add-task-dialog.service';
 import { ActivatedRoute } from '@angular/router';
 import { StoryService } from '../../story/services/story.service';
 
@@ -10,21 +9,18 @@ import { StoryService } from '../../story/services/story.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent implements OnInit {
   taskList: Task[] = [];
-  taskCreationSubscription: Subscription = new Subscription();
   loadingTasks: boolean = true;
   errorFetchingTasks: boolean = false;
+
+  taskCreationDialogCommand: Subject<string> = new Subject<string>();
   constructor(
     private storyService: StoryService,
-    private addTaskDialogService: AddTaskDialogService,
     private activatedRouteService: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.retrieveTaskList();
-    this.taskCreationSubscription = this.addTaskDialogService
-      .getTaskCreationEvent$()
-      .subscribe(() => this.retrieveTaskList());
   }
 
   retrieveTaskList() {
@@ -48,10 +44,10 @@ export class ListComponent implements OnInit, OnDestroy {
     }
   }
   openAddTaskDialog() {
-    this.addTaskDialogService.setState(true);
+    this.taskCreationDialogCommand.next('open');
   }
 
-  ngOnDestroy() {
-    this.taskCreationSubscription.unsubscribe();
+  handleResultFromDialog(result: boolean) {
+    if (result) this.retrieveTaskList();
   }
 }

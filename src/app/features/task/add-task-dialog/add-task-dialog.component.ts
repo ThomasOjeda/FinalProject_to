@@ -1,8 +1,11 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { TaskService } from '../services/task.service';
@@ -12,8 +15,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AddTaskDialogService } from '../services/add-task-dialog.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Task } from 'src/models/task';
 import { ActivatedRoute } from '@angular/router';
 
@@ -25,7 +27,9 @@ import { ActivatedRoute } from '@angular/router';
 export class AddTaskDialogComponent implements OnInit, OnDestroy {
   isOpen: boolean = false;
   taskForm!: FormGroup;
-  dialogSubscription: Subscription = new Subscription();
+  @Input() commands$!: Observable<string>;
+  commandsSubscription: Subscription = new Subscription();
+  @Output() result = new EventEmitter<boolean>();
   requestPending: boolean = false;
   submitting: boolean = false;
   thereWasAnError: boolean = false;
@@ -34,7 +38,6 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
   constructor(
     private taskService: TaskService,
     private formBuilderService: FormBuilder,
-    private addTaskDialogService: AddTaskDialogService,
     private activatedRouteService: ActivatedRoute
   ) {}
 
@@ -45,20 +48,13 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
       dueDate: new FormControl(new Date()),
       done: new FormControl(false),
     });
-    this.dialogSubscription = this.addTaskDialogService
-      .getState$()
-      .subscribe((state) => {
-        this.isOpen = state;
-        if (state) this.openDialog();
-        else this.closeDialog();
-      });
+    this.commandsSubscription = this.commands$.subscribe((state) => {
+      if (state == 'open') {
+        this.openDialog();
+      } else this.closeDialog();
+    });
   }
-  openDialog() {
-    this.dialog.nativeElement.showModal();
-  }
-  closeDialog() {
-    setTimeout(() => this.dialog.nativeElement.close(), 200);
-  }
+
   submit() {
     this.submitting = true;
     let newTask: Task = this.taskForm.value;
@@ -76,8 +72,8 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
           this.submitting = false;
 
           this.requestPending = false;
-          this.handleCloseDialogButtonClick();
-          this.addTaskDialogService.signalTaskCreation();
+          this.closeDialog();
+          this.result.emit(true);
         },
       });
     } else {
@@ -85,14 +81,19 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  handleCloseDialogButtonClick() {
-    this.addTaskDialogService.setState(false);
+  openDialog() {
+    this.isOpen = true;
+    this.dialog.nativeElement.showModal();
+  }
+  closeDialog() {
+    this.isOpen = false;
+    setTimeout(() => this.dialog.nativeElement.close(), 200);
   }
 
   handleAlertClose() {
     this.thereWasAnError = false;
   }
   ngOnDestroy(): void {
-    this.dialogSubscription.unsubscribe();
+    this.commandsSubscription.unsubscribe();
   }
 }
