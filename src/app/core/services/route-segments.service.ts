@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Event, Router } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, map } from 'rxjs';
 import { EpicService } from 'src/app/features/epic/services/epic.service';
 import { ProjectService } from 'src/app/features/project/services/project.service';
 import { StoryService } from 'src/app/features/story/services/story.service';
@@ -20,10 +20,43 @@ export class RouteSegmentsService implements OnDestroy {
 
   lastRoute: string[] = [];
 
-  projectServiceSubscription: Subscription = new Subscription();
-  epicServiceSubscription: Subscription = new Subscription();
-  storyServiceSubscription: Subscription = new Subscription();
-  taskServiceSubscription: Subscription = new Subscription();
+  requestObservables = [
+    (id: string) => {
+      return this.projectService.getProject$(id).pipe(
+        map((response) => {
+          return response.data.name;
+        })
+      );
+    },
+    (id: string) => {
+      return this.epicService.getEpic$(id).pipe(
+        map((response) => {
+          return response.data.name;
+        })
+      );
+    },
+    (id: string) => {
+      return this.storyService.getStory$(id).pipe(
+        map((response) => {
+          return response.data.name;
+        })
+      );
+    },
+    (id: string) => {
+      return this.taskService.getTask$(id).pipe(
+        map((response) => {
+          return response.data.name;
+        })
+      );
+    },
+  ];
+
+  requestSubscriptions = [
+    new Subscription(),
+    new Subscription(),
+    new Subscription(),
+    new Subscription(),
+  ];
 
   constructor(
     private routerService: Router,
@@ -59,72 +92,37 @@ export class RouteSegmentsService implements OnDestroy {
   }
 
   beautifyDisplayRoute() {
-    //Unsubscribe first to stop previous unfinished requests
-    this.projectServiceSubscription.unsubscribe();
-    this.epicServiceSubscription.unsubscribe();
-    this.storyServiceSubscription.unsubscribe();
-    this.taskServiceSubscription.unsubscribe();
-
     //In case there are fewer segments in the current route, remove them from the display route
     this.displayRoute = this.displayRoute.slice(0, this.currentRoute.length);
 
     this.displayRoute[0] = beautifyFirstSegment(this.currentRoute[0]);
     this.displayRoute$.next(this.displayRoute);
 
-    if (!this.validIndex(1)) {
-      return;
-    }
-    if (this.segmentHasChanged(1)) {
-      this.displayRoute[1] = this.currentRoute[1];
-      this.displayRoute$.next(this.displayRoute);
-      this.projectServiceSubscription = this.projectService
-        .getProject$(this.currentRoute[1])
-        .subscribe((project) => {
-          this.displayRoute[1] = project.data.name;
+    for (let index = 1; index < this.currentRoute.length; index++) {
+      if (this.segmentHasChanged(index)) {
+        this.requestSubscriptions[index - 1].unsubscribe(); //cancel old segment subscription
+        this.displayRoute[index] = this.currentRoute[index];
+        this.displayRoute$.next(this.displayRoute); //immediately provide segments even if they're not good looking
+        this.requestSubscriptions[index - 1] = this.requestObservables[
+          index - 1
+        ](this.currentRoute[index]).subscribe((realname) => {
+          this.displayRoute[index] = realname;
           this.displayRoute$.next(this.displayRoute);
         });
+      }
     }
 
-    if (!this.validIndex(2)) {
-      return;
-    }
-    if (this.segmentHasChanged(2)) {
-      this.displayRoute[2] = this.currentRoute[2];
-      this.displayRoute$.next(this.displayRoute);
-      this.epicServiceSubscription = this.epicService
-        .getEpic$(this.currentRoute[2])
-        .subscribe((epic) => {
-          this.displayRoute[2] = epic.data.name;
-          this.displayRoute$.next(this.displayRoute);
-        });
-    }
-
-    if (!this.validIndex(3)) {
-      return;
-    }
-    if (this.segmentHasChanged(3)) {
-      this.displayRoute[3] = this.currentRoute[3];
-      this.displayRoute$.next(this.displayRoute);
-      this.storyServiceSubscription = this.storyService
-        .getStory$(this.currentRoute[3])
-        .subscribe((story) => {
-          this.displayRoute[3] = story.data.name;
-          this.displayRoute$.next(this.displayRoute);
-        });
-    }
-
-    if (!this.validIndex(4)) {
-      return;
-    }
-    if (this.segmentHasChanged(4)) {
-      this.displayRoute[4] = this.currentRoute[4];
-      this.displayRoute$.next(this.displayRoute);
-      this.taskServiceSubscription = this.taskService
-        .getTask$(this.currentRoute[4])
-        .subscribe((task) => {
-          this.displayRoute[4] = task.data.name;
-          this.displayRoute$.next(this.displayRoute);
-        });
+    //The subscriptions belonging to segments that:
+    // - are part of the old route and
+    // - not part of the new one and
+    // - haven't finished yet
+    //must be cancelled
+    for (
+      let index = this.currentRoute.length;
+      index < this.lastRoute.length;
+      index++
+    ) {
+      this.requestSubscriptions[index - 1].unsubscribe();
     }
   }
 
@@ -147,11 +145,9 @@ export class RouteSegmentsService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.routerSubscription.unsubscribe();
-
-    this.projectServiceSubscription.unsubscribe();
-    this.epicServiceSubscription.unsubscribe();
-    this.storyServiceSubscription.unsubscribe();
+    for (let index = 0; index < this.requestSubscriptions.length; index++) {
+      this.requestSubscriptions[index].unsubscribe();
+    }
   }
 }
 function beautifyFirstSegment(segment: string): string {
