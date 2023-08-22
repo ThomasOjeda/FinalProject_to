@@ -48,9 +48,6 @@
   @if $element == "divider" {
     background-color: white;
   }
-  @if $element == "footer" {
-    background-color: color("black600");
-  }
   @if $element == "body" {
     background-color: color("gray100");
     color: color("black800");
@@ -101,9 +98,6 @@
   }
   @if $element == "divider" {
     background-color: white;
-  }
-  @if $element == "footer" {
-    background-color: color("black600");
   }
   @if $element == "body" {
     background-color: color("black700");

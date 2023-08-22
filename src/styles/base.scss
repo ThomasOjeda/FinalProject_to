@@ -3,10 +3,6 @@
 
 $big-screen: 27rem;
 
-@mixin margins() {
-  margin: 0 1.5rem;
-}
-
 @mixin center-x-y($justify: center, $align: center) {
   display: flex;
   align-items: $align;

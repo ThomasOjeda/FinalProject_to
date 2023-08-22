@@ -4,11 +4,13 @@
   width: 100%;
   max-width: 40rem;
 }
+
 .no-projects-alert,
 .error-alert {
   display: block;
   margin-top: 1rem;
 }
+
 .loading-spinner {
   margin-top: 5rem;
 
@@ -20,7 +22,6 @@
 
   li {
     cursor: pointer;
-
     margin-top: 1rem;
   }
 }
