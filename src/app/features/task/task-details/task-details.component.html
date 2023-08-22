@@ -12,21 +12,21 @@
     <app-loading-spinner color="orange" size="small"></app-loading-spinner>
   </div>
   <app-alert-message
-    class="error-alert"
     *ngIf="errorFetchingTaskDetails"
+    class="error-alert"
     [closable]="false"
     [color]="'red'"
   >
     Error fetching task details...try again later
   </app-alert-message>
   <div *ngIf="!loadingTask && !errorFetchingTaskDetails">
-    <app-custom-detail
-      *ngIf="task.description"
-      [name]="'Description'"
-      [state]="true"
+    <app-section-header
+      [name]="task.name"
+      [description]="task.description"
+      [type]="'Task'"
     >
-      {{ task.description }}</app-custom-detail
-    >
+    </app-section-header>
+
     <app-custom-detail *ngIf="task.done" [name]="'Status'" [state]="true">
       {{ task.done }}</app-custom-detail
     >

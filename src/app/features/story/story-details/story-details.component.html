@@ -15,18 +15,14 @@
       Error fetching story details...try again later
     </app-alert-message>
     <div *ngIf="story && !loadingStoryDetails">
-      <app-section-header>
-        <span *ngIf="story.icon">{{ story.icon }}</span> "{{ story.name }}"
-        details
+      <app-section-header
+        [name]="story.name"
+        [icon]="story.icon"
+        [description]="story.description"
+        [type]="'Story'"
+      >
       </app-section-header>
 
-      <app-custom-detail
-        *ngIf="story.due"
-        [name]="'Description'"
-        [state]="true"
-      >
-        {{ story.description }}
-      </app-custom-detail>
       <app-custom-detail [name]="'Creation Date'">
         {{ story.created | date }}
       </app-custom-detail>

@@ -8,4 +8,15 @@
   @media (min-width: $big-screen) {
     font-size: 1.25rem;
   }
+
+  .subheading {
+    padding: 0;
+    margin: 0.5rem 0 0 0rem;
+    font-weight: normal;
+    font-size: 0.75rem;
+    color: color("link-primary");
+    @media (min-width: $big-screen) {
+      font-size: 1rem;
+    }
+  }
 }

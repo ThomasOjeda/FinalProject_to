@@ -11,18 +11,14 @@
     Error fetching project data...try again later
   </app-alert-message>
   <section *ngIf="project" class="details">
-    <app-section-header>
-      <span *ngIf="project.icon">{{ project.icon }}</span> "{{ project.name }}"
-      details
+    <app-section-header
+      [name]="project.name"
+      [icon]="project.icon"
+      [description]="project.description"
+      [type]="'Project'"
+    >
     </app-section-header>
 
-    <app-custom-detail
-      *ngIf="project.description"
-      [name]="'Description'"
-      [state]="true"
-    >
-      {{ project.description }}
-    </app-custom-detail>
     <app-custom-detail [name]="'Owner'">
       {{ project.owner }}
     </app-custom-detail>

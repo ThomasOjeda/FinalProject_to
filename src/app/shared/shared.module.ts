@@ -11,6 +11,7 @@ import { InputErrorComponent } from './input-error/input-error.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AlertMessageComponent } from './alert-message/alert-message.component';
 import { ThemeDirective } from './directives/theme.directive';
+import { ElementHeaderComponent } from './element-header/element-header.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ThemeDirective } from './directives/theme.directive';
     LoadingSpinnerComponent,
     AlertMessageComponent,
     ThemeDirective,
+    ElementHeaderComponent,
   ],
   imports: [CommonModule],
   exports: [

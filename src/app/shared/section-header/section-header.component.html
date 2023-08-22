@@ -1,5 +1,15 @@
 <header>
-  <h2 class="section-header">
-    <ng-content></ng-content>
+  <h2 class="section-header" header>
+    <span *ngIf="icon">{{ icon }}</span> "{{ name }}" details
+    <br />
+    <p class="subheading">
+      {{ type }}
+    </p>
   </h2>
+  <p *ngIf="description">
+    {{ description }}
+  </p>
+  <p *ngIf="!description">
+    <i>No description available at this moment</i>
+  </p>
 </header>
