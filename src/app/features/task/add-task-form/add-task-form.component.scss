@@ -2,7 +2,8 @@
 
 :host {
   width: 100%;
-  @include center-x-y();
+  height: 100%;
+  @include center-x-y(center, start);
 }
 
 .create-btn {
@@ -15,6 +16,7 @@
   gap: 1rem;
   width: 90%;
   max-width: 30rem;
+  margin-top: 10rem;
 }
 
 .label {

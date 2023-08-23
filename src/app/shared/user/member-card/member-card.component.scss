@@ -7,6 +7,10 @@
 .member-card {
   box-sizing: border-box;
   padding: 0.5rem;
+  background-image: url("/assets/avatar-people-person-svgrepo-com.svg");
+  background-size: 1.5rem;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem top 50%;
 
   @include break-words();
   .main-info {

@@ -1,0 +1,12 @@
+<section class="members-section">
+  <h3>Assigned members...</h3>
+
+  <ul *ngIf="memberIdList.length > 0" class="member-list">
+    <li *ngFor="let memberId of memberIdList">
+      <app-member-card [memberId]="memberId"></app-member-card>
+    </li>
+  </ul>
+  <p *ngIf="memberIdList.length <= 0">
+    <i>No members assigned</i>
+  </p>
+</section>

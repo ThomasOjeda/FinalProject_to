@@ -13,8 +13,8 @@ import { AlertMessageComponent } from './alert-message/alert-message.component';
 import { ThemeDirective } from './directives/theme.directive';
 import { ElementHeaderComponent } from './element-header/element-header.component';
 import { MemberCardComponent } from './user/member-card/member-card.component';
-import { MembersDialogComponent } from './members-dialog/members-dialog.component';
 import { ClosableDialogComponent } from './closable-dialog/closable-dialog.component';
+import { MemberListComponent } from './member-list/member-list.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +31,8 @@ import { ClosableDialogComponent } from './closable-dialog/closable-dialog.compo
     ElementHeaderComponent,
     MemberCardComponent,
     ThemeDirective,
-    MembersDialogComponent,
     ClosableDialogComponent,
+    MemberListComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -49,6 +49,7 @@ import { ClosableDialogComponent } from './closable-dialog/closable-dialog.compo
     MemberCardComponent,
     ThemeDirective,
     ClosableDialogComponent,
+    MemberListComponent,
   ],
 })
 export class SharedModule {}

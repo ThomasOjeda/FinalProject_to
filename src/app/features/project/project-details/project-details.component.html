@@ -22,14 +22,23 @@
     <app-custom-detail [name]="'Owner'">
       {{ project.owner }}
     </app-custom-detail>
-    <app-custom-detail [name]="'Members'">
+    <app-custom-button
+      [buttonHeight]="'medium'"
+      [buttonPaint]="'primary'"
+      [text]="'See members...'"
+      (clickedButtonEvent)="seeMembers()"
+    ></app-custom-button>
+    <app-closable-dialog [commands$]="memberListDialogCommand.asObservable()">
+      <app-member-list [memberIdList]="project.members"></app-member-list>
+    </app-closable-dialog>
+    <!--     <app-custom-detail [name]="'Members'">
       <div *ngIf="project.members.length > 0">
         {{ project.members }}
       </div>
       <div *ngIf="project.members.length <= 0">
         There is no members in this project
       </div>
-    </app-custom-detail>
+    </app-custom-detail> -->
   </section>
   <section>
     <div *ngIf="loadingEpics" class="loading-spinner">

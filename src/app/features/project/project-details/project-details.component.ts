@@ -4,7 +4,7 @@ import { Epic } from 'src/models/epic';
 import { EpicService } from '../../epic/services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../services/project.service';
-import { Subscription, take } from 'rxjs';
+import { Subject, Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-project-details',
@@ -21,6 +21,8 @@ export class ProjectDetailsComponent implements OnInit {
   loadingProjectDetails: boolean = true;
   errorFetchingEpics = false;
   errorFetchingProjectDetails = false;
+
+  memberListDialogCommand: Subject<string> = new Subject<string>();
   constructor(
     private projectService: ProjectService,
     private epicService: EpicService,
@@ -80,5 +82,9 @@ export class ProjectDetailsComponent implements OnInit {
 
   handleEpicSelection(epicId: string) {
     this.router.navigate([epicId], { relativeTo: this.activatedRouteService });
+  }
+
+  seeMembers() {
+    this.memberListDialogCommand.next('open');
   }
 }
