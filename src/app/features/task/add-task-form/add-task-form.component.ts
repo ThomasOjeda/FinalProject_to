@@ -40,7 +40,7 @@ export class AddTaskFormComponent implements OnInit {
     this.taskForm = this.formBuilderService.group({
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.minLength(10)]),
-      dueDate: new FormControl(new Date()),
+      dueDate: new FormControl(undefined),
       done: new FormControl(false),
     });
   }
@@ -50,6 +50,7 @@ export class AddTaskFormComponent implements OnInit {
     this.thereWasAnError = false;
 
     let newTask: Task = this.taskForm.value;
+
     let story = this.activatedRouteService.snapshot.paramMap.get('story-id');
     if (story) {
       newTask.story = story;
