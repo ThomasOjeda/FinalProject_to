@@ -36,21 +36,20 @@
         (clickedButtonEvent)="seeMembers()"
       ></app-custom-button>
 
-      <app-custom-detail [name]="'Creation Date'">
+      <app-custom-detail *ngIf="story.created" [name]="'Creation Date'">
         {{ story.created | date }}
       </app-custom-detail>
       <app-custom-detail *ngIf="story.due" [name]="'Due Date'">
         {{ story.due | date }}
       </app-custom-detail>
-
-      <app-custom-detail [name]="'Status'">
+      <app-custom-detail *ngIf="story.status" [name]="'Status'">
         {{ story.status }}
       </app-custom-detail>
       <app-custom-detail *ngIf="story.started" [name]="'Started'">
-        {{ story.started }}
+        {{ story.started | date }}
       </app-custom-detail>
       <app-custom-detail *ngIf="story.finished" [name]="'Finished'">
-        {{ story.finished }}
+        {{ story.finished | date }}
       </app-custom-detail>
       <app-custom-detail *ngIf="story.points" [name]="'Points'">
         {{ story.points }}
