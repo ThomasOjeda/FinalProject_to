@@ -9,7 +9,6 @@
     <app-custom-icon-button
       class="menu-btn"
       [buttonPaint]="'green'"
-      [iconHeight]="'large'"
       [iconPath]="'/assets/menu-svgrepo-com.svg'"
       (clickedButtonEvent)="openMenu()"
     ></app-custom-icon-button>
@@ -18,7 +17,6 @@
       *ngIf="segments.length > 0"
       [buttonPaint]="'primary'"
       [iconPath]="'/assets/arrow-left-svgrepo-com.svg'"
-      [iconHeight]="'large'"
       (clickedButtonEvent)="navigateToSegment(segments.length - 2)"
     >
     </app-custom-icon-button>

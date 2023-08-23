@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddTaskDialogComponent } from './add-task-dialog/add-task-dialog.component';
+import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
 import { ListComponent } from './list/list.component';
 
 import { TaskComponent } from './task/task.component';
@@ -13,7 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
 @NgModule({
   declarations: [
-    AddTaskDialogComponent,
+    AddTaskFormComponent,
     ListComponent,
     TaskComponent,
     TaskNameComponent,
@@ -28,6 +28,6 @@ import { CoreModule } from 'src/app/core/core.module';
     CoreModule,
     SharedModule,
   ],
-  exports: [ListComponent, AddTaskDialogComponent],
+  exports: [ListComponent],
 })
 export class TaskModule {}

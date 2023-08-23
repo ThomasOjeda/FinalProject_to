@@ -48,6 +48,7 @@ import { ClosableDialogComponent } from './closable-dialog/closable-dialog.compo
     AlertMessageComponent,
     MemberCardComponent,
     ThemeDirective,
+    ClosableDialogComponent,
   ],
 })
 export class SharedModule {}

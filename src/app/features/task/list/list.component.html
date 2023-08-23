@@ -20,15 +20,15 @@
   <app-custom-icon-button
     *ngIf="!loadingTasks && !errorFetchingTasks"
     class="add-task-btn"
-    [iconHeight]="'large'"
     [buttonPaint]="'green'"
     [iconAlt]="'add task'"
     [iconPath]="'assets/add-svgrepo-com.svg'"
     (clickedButtonEvent)="openAddTaskDialog()"
   ></app-custom-icon-button>
 
-  <app-add-task-dialog
-    (result)="handleResultFromDialog($event)"
-    [commands$]="taskCreationDialogCommand.asObservable()"
-  ></app-add-task-dialog>
+  <app-closable-dialog [commands$]="taskCreationDialogCommand.asObservable()">
+    <app-add-task-form
+      (result)="handleResultFromDialog($event)"
+    ></app-add-task-form>
+  </app-closable-dialog>
 </article>

@@ -49,5 +49,6 @@ export class ListComponent implements OnInit {
 
   handleResultFromDialog(result: boolean) {
     if (result) this.retrieveTaskList();
+    this.taskCreationDialogCommand.next('close');
   }
 }

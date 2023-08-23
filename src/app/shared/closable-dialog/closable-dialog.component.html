@@ -1,1 +1,23 @@
-<p>closable-dialog works!</p>
+<dialog
+  #dialog
+  class="dialog"
+  [ngClass]="{
+    open: isOpen
+  }"
+  appTheme
+  [systemThemeClass]="'dialog-theme-system'"
+  [lightThemeClass]="'dialog-theme-light'"
+  [darkThemeClass]="'dialog-theme-dark'"
+>
+  <app-custom-icon-button
+    class="close-btn"
+    [iconAlt]="'close'"
+    [iconPath]="'assets/close-svgrepo-com.svg'"
+    [buttonPaint]="'red'"
+    (clickedButtonEvent)="closeDialog()"
+    [rounded]="true"
+  ></app-custom-icon-button>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</dialog>

@@ -20,11 +20,11 @@ import { Task } from 'src/models/task';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-add-task-dialog',
-  templateUrl: './add-task-dialog.component.html',
-  styleUrls: ['./add-task-dialog.component.scss'],
+  selector: 'app-add-task-form',
+  templateUrl: './add-task-form.component.html',
+  styleUrls: ['./add-task-form.component.scss'],
 })
-export class AddTaskDialogComponent implements OnInit, OnDestroy {
+export class AddTaskFormComponent implements OnInit, OnDestroy {
   isOpen: boolean = false;
   taskForm!: FormGroup;
   @Input() commands$!: Observable<string>;
@@ -57,6 +57,8 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
 
   submit() {
     this.submitting = true;
+    this.thereWasAnError = false;
+
     let newTask: Task = this.taskForm.value;
     let story = this.activatedRouteService.snapshot.paramMap.get('story-id');
     if (story) {
@@ -70,8 +72,8 @@ export class AddTaskDialogComponent implements OnInit, OnDestroy {
         },
         complete: () => {
           this.submitting = false;
-
           this.requestPending = false;
+          this.thereWasAnError = false;
           this.closeDialog();
           this.result.emit(true);
         },

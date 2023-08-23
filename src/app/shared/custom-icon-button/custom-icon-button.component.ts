@@ -11,7 +11,6 @@ export class CustomIconButtonComponent {
 
   @Input() iconPath: string = '';
   @Input() iconAlt: string = '';
-  @Input() iconHeight: string = '';
   @Input() invisible: boolean = false;
   @Input() rounded: boolean = false;
   classes = {};
