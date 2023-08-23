@@ -61,6 +61,7 @@ export class AddTaskFormComponent implements OnInit {
           this.thereWasAnError = true;
         },
         complete: () => {
+          this.taskForm.reset();
           this.submitting = false;
           this.thereWasAnError = false;
           this.result.emit(true);
