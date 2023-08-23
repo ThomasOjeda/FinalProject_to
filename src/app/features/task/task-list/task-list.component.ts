@@ -1,15 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Task } from 'src/models/task';
 import { ActivatedRoute } from '@angular/router';
 import { StoryService } from '../../story/services/story.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  selector: 'app-task-list',
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss'],
 })
-export class ListComponent implements OnInit {
+export class TaskListComponent implements OnInit {
   taskList: Task[] = [];
   loadingTasks: boolean = true;
   errorFetchingTasks: boolean = false;

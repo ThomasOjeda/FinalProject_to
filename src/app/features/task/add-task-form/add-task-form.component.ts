@@ -2,7 +2,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Input,
   OnDestroy,
   OnInit,
   Output,
@@ -15,7 +14,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
 import { Task } from 'src/models/task';
 import { ActivatedRoute } from '@angular/router';
 
@@ -24,17 +22,14 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './add-task-form.component.html',
   styleUrls: ['./add-task-form.component.scss'],
 })
-export class AddTaskFormComponent implements OnInit, OnDestroy {
+export class AddTaskFormComponent implements OnInit {
   isOpen: boolean = false;
   taskForm!: FormGroup;
-  @Input() commands$!: Observable<string>;
-  commandsSubscription: Subscription = new Subscription();
+
   @Output() result = new EventEmitter<boolean>();
-  requestPending: boolean = false;
   submitting: boolean = false;
   thereWasAnError: boolean = false;
 
-  @ViewChild('dialog') dialog!: ElementRef;
   constructor(
     private taskService: TaskService,
     private formBuilderService: FormBuilder,
@@ -48,11 +43,6 @@ export class AddTaskFormComponent implements OnInit, OnDestroy {
       dueDate: new FormControl(new Date()),
       done: new FormControl(false),
     });
-    this.commandsSubscription = this.commands$.subscribe((state) => {
-      if (state == 'open') {
-        this.openDialog();
-      } else this.closeDialog();
-    });
   }
 
   submit() {
@@ -63,7 +53,6 @@ export class AddTaskFormComponent implements OnInit, OnDestroy {
     let story = this.activatedRouteService.snapshot.paramMap.get('story-id');
     if (story) {
       newTask.story = story;
-      this.requestPending = true;
       this.taskService.addTask$(newTask).subscribe({
         next: () => {},
         error: (error) => {
@@ -72,9 +61,7 @@ export class AddTaskFormComponent implements OnInit, OnDestroy {
         },
         complete: () => {
           this.submitting = false;
-          this.requestPending = false;
           this.thereWasAnError = false;
-          this.closeDialog();
           this.result.emit(true);
         },
       });
@@ -83,19 +70,7 @@ export class AddTaskFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialog() {
-    this.isOpen = true;
-    this.dialog.nativeElement.showModal();
-  }
-  closeDialog() {
-    this.isOpen = false;
-    setTimeout(() => this.dialog.nativeElement.close(), 200);
-  }
-
   handleAlertClose() {
     this.thereWasAnError = false;
-  }
-  ngOnDestroy(): void {
-    this.commandsSubscription.unsubscribe();
   }
 }

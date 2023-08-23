@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
-import { ListComponent } from './list/list.component';
+import { TaskListComponent } from './task-list/task-list.component';
 
 import { TaskComponent } from './task/task.component';
 import { TaskNameComponent } from './task/task-name/task-name.component';
@@ -14,7 +14,7 @@ import { CoreModule } from 'src/app/core/core.module';
 @NgModule({
   declarations: [
     AddTaskFormComponent,
-    ListComponent,
+    TaskListComponent,
     TaskComponent,
     TaskNameComponent,
     UpdateTaskComponent,
@@ -28,6 +28,6 @@ import { CoreModule } from 'src/app/core/core.module';
     CoreModule,
     SharedModule,
   ],
-  exports: [ListComponent],
+  exports: [TaskListComponent],
 })
 export class TaskModule {}
