@@ -34,6 +34,7 @@
 
 .segmentList {
   @include reset-list();
+  height: 100%;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
