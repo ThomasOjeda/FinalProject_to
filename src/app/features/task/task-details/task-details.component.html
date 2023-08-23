@@ -27,7 +27,11 @@
     >
     </app-section-header>
 
-    <app-custom-detail *ngIf="task.done" [name]="'Status'" [state]="true">
+    <app-custom-detail
+      *ngIf="task.done !== undefined"
+      [name]="'Status'"
+      [state]="true"
+    >
       {{ task.done }}</app-custom-detail
     >
     <app-custom-detail
