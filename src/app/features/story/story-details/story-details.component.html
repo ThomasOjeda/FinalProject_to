@@ -14,7 +14,7 @@
     >
       Error fetching story details...try again later
     </app-alert-message>
-    <div *ngIf="story && !loadingStoryDetails">
+    <section *ngIf="story && !loadingStoryDetails" class="details">
       <app-section-header
         [name]="story.name"
         [icon]="story.icon"
@@ -23,11 +23,18 @@
       >
       </app-section-header>
 
-      <app-member-card
-        class="owner"
+      <app-owner-details
         *ngIf="story.owner"
-        [memberId]="story.owner"
-      ></app-member-card>
+        [ownerId]="story.owner"
+      ></app-owner-details>
+
+      <app-custom-button
+        class="members-btn"
+        [buttonHeight]="'medium'"
+        [buttonPaint]="'primary'"
+        [text]="'See members...'"
+        (clickedButtonEvent)="seeMembers()"
+      ></app-custom-button>
 
       <app-custom-detail [name]="'Creation Date'">
         {{ story.created | date }}
@@ -48,10 +55,13 @@
       <app-custom-detail *ngIf="story.points" [name]="'Points'">
         {{ story.points }}
       </app-custom-detail>
-      <app-custom-detail *ngIf="story.assignedTo" [name]="'Assigned to...'">
-        {{ story.assignedTo }}
-      </app-custom-detail>
-    </div>
+
+      <app-closable-dialog [commands$]="assignedToDialogCommand.asObservable()"
+        ><app-member-list
+          [memberIdList]="story.assignedTo || []"
+        ></app-member-list
+      ></app-closable-dialog>
+    </section>
   </section>
   <section>
     <app-list></app-list>

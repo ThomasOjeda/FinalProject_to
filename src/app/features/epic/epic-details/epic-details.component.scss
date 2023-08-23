@@ -5,6 +5,12 @@
   max-width: 70rem;
 }
 
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .board {
   display: flex;
   flex-direction: row;

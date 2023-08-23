@@ -19,7 +19,7 @@
   >
     Error fetching task details...try again later
   </app-alert-message>
-  <div *ngIf="!loadingTask && !errorFetchingTaskDetails">
+  <section *ngIf="!loadingTask && !errorFetchingTaskDetails" class="details">
     <app-section-header
       [name]="task.name"
       [description]="task.description"
@@ -47,5 +47,5 @@
       [buttonPaint]="'red'"
       (clickedButtonEvent)="handleDeleteButtonClick()"
     ></app-custom-icon-button>
-  </div>
+  </section>
 </article>

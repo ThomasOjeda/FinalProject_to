@@ -1,0 +1,25 @@
+@import "../../../styles.scss";
+
+.owner-sector {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.owner-label {
+  margin: 0;
+  padding: 0;
+
+  font-size: 0.75rem;
+
+  @media (min-width: $big-screen) {
+    font-size: 1rem;
+  }
+}
+
+.owner {
+  width: 15rem;
+  min-width: 0;
+}

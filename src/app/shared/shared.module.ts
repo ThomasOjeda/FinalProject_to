@@ -15,6 +15,7 @@ import { ElementHeaderComponent } from './element-header/element-header.componen
 import { MemberCardComponent } from './user/member-card/member-card.component';
 import { ClosableDialogComponent } from './closable-dialog/closable-dialog.component';
 import { MemberListComponent } from './member-list/member-list.component';
+import { OwnerDetailsComponent } from './owner-details/owner-details.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MemberListComponent } from './member-list/member-list.component';
     ThemeDirective,
     ClosableDialogComponent,
     MemberListComponent,
+    OwnerDetailsComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -50,6 +52,7 @@ import { MemberListComponent } from './member-list/member-list.component';
     ThemeDirective,
     ClosableDialogComponent,
     MemberListComponent,
+    OwnerDetailsComponent,
   ],
 })
 export class SharedModule {}

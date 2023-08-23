@@ -14,7 +14,7 @@
     >
       Error fetching epic data...try again later
     </app-alert-message>
-    <div *ngIf="epic && !loadingEpicDetails">
+    <section *ngIf="epic && !loadingEpicDetails" class="details">
       <app-section-header
         [name]="epic.name"
         [icon]="epic.icon"
@@ -22,7 +22,7 @@
         [type]="'Epic'"
       >
       </app-section-header>
-    </div>
+    </section>
   </section>
   <section>
     <div *ngIf="loadingStories" class="loading-spinner">

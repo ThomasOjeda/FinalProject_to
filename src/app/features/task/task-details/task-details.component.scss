@@ -24,3 +24,9 @@
   text-align: center;
   @include break-words();
 }
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
