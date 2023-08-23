@@ -4,7 +4,8 @@
   @include center-x-y();
 }
 
-.error-alert {
+.error-alert,
+.no-tasks-alert {
   display: block;
   margin-top: 1rem;
 }
