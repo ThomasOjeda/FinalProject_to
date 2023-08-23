@@ -13,6 +13,14 @@ export class MenuComponent implements OnInit, OnDestroy {
   isOpen: boolean = false;
   menuStateSubscription: Subscription = new Subscription();
 
+  mainElements = [
+    { url: '/', name: 'Home', selected: false },
+    { url: 'my-projects', name: 'My Projects', selected: false },
+    { url: '/my-stories', name: 'My Stories', selected: false },
+  ];
+
+  footerElements = [{ url: '/settings', name: 'Settings', selected: false }];
+
   constructor(
     private menuService: MenuService,
     private routerService: Router,
@@ -28,9 +36,27 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.menuService.closeMenu();
   }
 
-  navigate(path: string) {
+  navigateMain(path: string, index: number) {
+    this.clearAllSelections();
+    this.mainElements[index].selected = true;
     this.closeMenu();
     this.routerService.navigate([path]);
+  }
+
+  navigateFooter(path: string, index: number) {
+    this.clearAllSelections();
+    this.footerElements[index].selected = true;
+    this.closeMenu();
+    this.routerService.navigate([path]);
+  }
+
+  clearAllSelections() {
+    this.mainElements.forEach((element) => {
+      element.selected = false;
+    });
+    this.footerElements.forEach((element) => {
+      element.selected = false;
+    });
   }
 
   handleLogoutButtonClick() {

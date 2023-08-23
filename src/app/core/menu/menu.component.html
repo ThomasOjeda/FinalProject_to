@@ -16,20 +16,26 @@
 
   <nav class="navigation">
     <ul class="nav-list">
-      <li class="nav-list-item" (click)="navigate('/')">
-        <a> Home </a>
-      </li>
-      <li class="nav-list-item" (click)="navigate('/my-projects')">
-        <a> My Projects </a>
-      </li>
-      <li class="nav-list-item" (click)="navigate('/my-stories')">
-        <a> My Stories </a>
+      <li
+        *ngFor="let element of mainElements; index as i"
+        class="nav-list-item"
+        [ngClass]="{ selected: element.selected }"
+        (click)="navigateMain(element.url, i)"
+      >
+        <a>{{ element.name }} </a>
       </li>
     </ul>
   </nav>
   <footer class="footer">
-    <li class="nav-list-item" (click)="navigate('/settings')">
-      <a> Settings </a>
-    </li>
+    <ul class="nav-list">
+      <li
+        *ngFor="let element of footerElements; index as i"
+        class="nav-list-item"
+        [ngClass]="{ selected: element.selected }"
+        (click)="navigateFooter(element.url, i)"
+      >
+        <a>{{ element.name }} </a>
+      </li>
+    </ul>
   </footer>
 </aside>
