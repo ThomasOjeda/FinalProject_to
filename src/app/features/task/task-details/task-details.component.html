@@ -32,7 +32,7 @@
       [name]="'Status'"
       [state]="true"
     >
-      {{ task.done }}</app-custom-detail
+      {{ task.done ? "Finished" : "Pending" }}</app-custom-detail
     >
     <app-custom-detail
       *ngIf="task.created"
