@@ -1,15 +1,21 @@
 @import "../../../../styles.scss";
 
 :host {
-  width: 20rem;
+  width: 100%;
   max-width: 20rem;
 }
+
 section {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
+.loading-spinner {
+  @include center-x-y();
+}
+
 h4,
 p,
 label,
@@ -29,12 +35,15 @@ ul {
 .theme-selector-theme-system {
   @include theme("text-input", "theme-system");
 }
+
 .theme-selector-theme-light {
   @include theme("text-input", "theme-light");
 }
+
 .theme-selector-theme-dark {
   @include theme("text-input", "theme-dark");
 }
+
 .logout-btn {
   width: 4rem;
   display: block;

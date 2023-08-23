@@ -45,6 +45,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.theme = theme;
       });
   }
+
   handleLogoutButtonClick() {
     this.loginService.logout();
   }
@@ -52,7 +53,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   handleThemeChange(theme: string) {
     this.themeService.setTheme(theme);
   }
-  submit() {}
 
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
