@@ -36,36 +36,46 @@
         (clickedButtonEvent)="seeMembers()"
       ></app-custom-button>
 
-      <app-custom-detail
-        *ngIf="story.created"
-        [name]="'Creation Date'"
-        [state]="true"
-      >
-        {{ story.created | date }}
-      </app-custom-detail>
-      <app-custom-detail *ngIf="story.due" [name]="'Due Date'" [state]="true">
-        {{ story.due | date }}
-      </app-custom-detail>
-      <app-custom-detail *ngIf="story.status" [name]="'Status'" [state]="true">
-        {{ story.status | titlecase }}
-      </app-custom-detail>
-      <app-custom-detail
-        *ngIf="story.started"
-        [name]="'Started'"
-        [state]="true"
-      >
-        {{ story.started | date }}
-      </app-custom-detail>
-      <app-custom-detail
-        *ngIf="story.finished"
-        [name]="'Finished'"
-        [state]="true"
-      >
-        {{ story.finished | date }}
-      </app-custom-detail>
-      <app-custom-detail *ngIf="story.points" [name]="'Points'" [state]="true">
-        {{ story.points }}
-      </app-custom-detail>
+      <div class="columns">
+        <app-custom-detail
+          *ngIf="story.created"
+          [name]="'Creation Date'"
+          [state]="true"
+        >
+          {{ story.created | date }}
+        </app-custom-detail>
+        <app-custom-detail *ngIf="story.due" [name]="'Due Date'" [state]="true">
+          {{ story.due | date }}
+        </app-custom-detail>
+        <app-custom-detail
+          *ngIf="story.status"
+          [name]="'Status'"
+          [state]="true"
+        >
+          {{ story.status | titlecase }}
+        </app-custom-detail>
+        <app-custom-detail
+          *ngIf="story.started"
+          [name]="'Started'"
+          [state]="true"
+        >
+          {{ story.started | date }}
+        </app-custom-detail>
+        <app-custom-detail
+          *ngIf="story.finished"
+          [name]="'Finished'"
+          [state]="true"
+        >
+          {{ story.finished | date }}
+        </app-custom-detail>
+        <app-custom-detail
+          *ngIf="story.points"
+          [name]="'Points'"
+          [state]="true"
+        >
+          {{ story.points }}
+        </app-custom-detail>
+      </div>
 
       <app-closable-dialog [commands$]="assignedToDialogCommand.asObservable()"
         ><app-member-list

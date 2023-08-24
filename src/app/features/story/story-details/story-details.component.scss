@@ -21,3 +21,13 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.columns {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  app-custom-detail {
+    width: 8rem;
+  }
+}
