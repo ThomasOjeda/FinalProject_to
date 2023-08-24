@@ -2,10 +2,11 @@
   <div class="confirmation-component">
     <ng-content></ng-content>
     <app-alert-message
-      class="error-alert"
       *ngIf="error"
-      [closable]="false"
+      class="error-alert"
+      [closable]="true"
       [color]="'red'"
+      (closeSignal)="handleAlertClose()"
     >
       {{ errorMessage }}
     </app-alert-message>
@@ -25,7 +26,7 @@
     </div>
     <app-loading-spinner
       class="loading-spinner"
-      *ngIf="waitingForFeedback && !error"
+      *ngIf="waitingForFeedback"
     ></app-loading-spinner>
   </div>
 </div>

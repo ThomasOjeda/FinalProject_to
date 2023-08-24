@@ -36,13 +36,15 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.commandsSubscription = this.commands$.subscribe({
       next: (state) => {
-        this.waitingForFeedback = false;
         if (state != 'open' && state != 'close') {
           this.error = true;
+          this.waitingForFeedback = false;
           this.errorMessage = state;
         }
       },
-      error: (error) => {},
+      error: (error) => {
+        this.waitingForFeedback = false;
+      },
       complete: () => {},
     });
   }
@@ -55,9 +57,11 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   handleOption2Click() {
     this.error = false;
-    this.waitingForFeedback = true;
-
     this.result.emit('op2');
+  }
+
+  handleAlertClose() {
+    this.error = false;
   }
 
   ngOnDestroy(): void {
