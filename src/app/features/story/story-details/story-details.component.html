@@ -47,7 +47,7 @@
         {{ story.due | date }}
       </app-custom-detail>
       <app-custom-detail *ngIf="story.status" [name]="'Status'" [state]="true">
-        {{ story.status }}
+        {{ story.status | titlecase }}
       </app-custom-detail>
       <app-custom-detail
         *ngIf="story.started"
