@@ -36,22 +36,34 @@
         (clickedButtonEvent)="seeMembers()"
       ></app-custom-button>
 
-      <app-custom-detail *ngIf="story.created" [name]="'Creation Date'">
+      <app-custom-detail
+        *ngIf="story.created"
+        [name]="'Creation Date'"
+        [state]="true"
+      >
         {{ story.created | date }}
       </app-custom-detail>
-      <app-custom-detail *ngIf="story.due" [name]="'Due Date'">
+      <app-custom-detail *ngIf="story.due" [name]="'Due Date'" [state]="true">
         {{ story.due | date }}
       </app-custom-detail>
-      <app-custom-detail *ngIf="story.status" [name]="'Status'">
+      <app-custom-detail *ngIf="story.status" [name]="'Status'" [state]="true">
         {{ story.status }}
       </app-custom-detail>
-      <app-custom-detail *ngIf="story.started" [name]="'Started'">
+      <app-custom-detail
+        *ngIf="story.started"
+        [name]="'Started'"
+        [state]="true"
+      >
         {{ story.started | date }}
       </app-custom-detail>
-      <app-custom-detail *ngIf="story.finished" [name]="'Finished'">
+      <app-custom-detail
+        *ngIf="story.finished"
+        [name]="'Finished'"
+        [state]="true"
+      >
         {{ story.finished | date }}
       </app-custom-detail>
-      <app-custom-detail *ngIf="story.points" [name]="'Points'">
+      <app-custom-detail *ngIf="story.points" [name]="'Points'" [state]="true">
         {{ story.points }}
       </app-custom-detail>
 
