@@ -23,9 +23,9 @@ export class ClosableDialogComponent {
 
   ngOnInit(): void {
     this.commandsSubscription = this.commands$.subscribe((state) => {
-      if (state == 'open') {
-        this.openDialog();
-      } else this.closeDialog();
+      if (state == 'open') this.openDialog();
+
+      if (state == 'close') this.closeDialog();
     });
   }
 
