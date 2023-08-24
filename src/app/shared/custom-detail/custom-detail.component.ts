@@ -8,10 +8,10 @@ import { Component, Input } from '@angular/core';
 export class CustomDetailComponent {
   @Input() name: string = '';
   @Input() state: boolean = false;
-
+  @Input() expandable: boolean = false;
   constructor() {}
 
   handleButtonClickedEvent() {
-    this.state = !this.state;
+    if (this.expandable) this.state = !this.state;
   }
 }

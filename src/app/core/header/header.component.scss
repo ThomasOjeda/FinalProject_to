@@ -56,6 +56,9 @@
   transition: color 0.25s;
   @include overflow-ellipsis();
   max-width: 15rem;
+  @media (min-width: $big-screen) {
+    max-width: none;
+  }
 }
 
 .segment-theme-system {
