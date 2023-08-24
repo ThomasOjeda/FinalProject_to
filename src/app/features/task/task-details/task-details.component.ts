@@ -38,14 +38,15 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   handleDeleteButtonClick() {
-    this.taskDeletionDialogCommand.next('true');
+    this.taskDeletionDialogCommand.next('open');
   }
 
-  receiveResult($event: boolean) {
-    if ($event) {
+  receiveResult($event: string) {
+    if ($event == 'op1') {
       this.handleTaskDeletion();
-    } else {
-      this.taskDeletionDialogCommand.next('false');
+    }
+    if ($event == 'op2') {
+      this.taskDeletionDialogCommand.next('close');
     }
   }
 
@@ -58,7 +59,7 @@ export class TaskDetailsComponent implements OnInit {
         );
       },
       complete: () => {
-        this.taskDeletionDialogCommand.next('false');
+        this.taskDeletionDialogCommand.next('close');
         this.locationService.back();
       },
     });

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SummaryCardComponent } from './summary-card/summary-card.component';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { DividerComponent } from './divider/divider.component';
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CustomIconButtonComponent } from './custom-icon-button/custom-icon-button.component';
 import { CustomDetailComponent } from './custom-detail/custom-detail.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
@@ -22,7 +22,7 @@ import { OwnerDetailsComponent } from './owner-details/owner-details.component';
     SummaryCardComponent,
     CustomButtonComponent,
     DividerComponent,
-    ConfirmationDialogComponent,
+    ConfirmationComponent,
     CustomIconButtonComponent,
     CustomDetailComponent,
     SectionHeaderComponent,
@@ -41,7 +41,7 @@ import { OwnerDetailsComponent } from './owner-details/owner-details.component';
     SummaryCardComponent,
     CustomButtonComponent,
     DividerComponent,
-    ConfirmationDialogComponent,
+    ConfirmationComponent,
     CustomIconButtonComponent,
     CustomDetailComponent,
     SectionHeaderComponent,

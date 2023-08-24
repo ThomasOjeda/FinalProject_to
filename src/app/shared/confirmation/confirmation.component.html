@@ -1,0 +1,31 @@
+<div class="content">
+  <div class="confirmation-component">
+    <ng-content></ng-content>
+    <app-alert-message
+      class="error-alert"
+      *ngIf="error"
+      [closable]="false"
+      [color]="'red'"
+    >
+      {{ errorMessage }}
+    </app-alert-message>
+    <div class="options">
+      <app-custom-button
+        [text]="option1"
+        [buttonPaint]="option1Color"
+        (clickedButtonEvent)="handleOption1Click()"
+        [buttonHeight]="'medium'"
+      ></app-custom-button>
+      <app-custom-button
+        [text]="option2"
+        [buttonPaint]="option2Color"
+        (clickedButtonEvent)="handleOption2Click()"
+        [buttonHeight]="'medium'"
+      ></app-custom-button>
+    </div>
+    <app-loading-spinner
+      class="loading-spinner"
+      *ngIf="waitingForFeedback && !error"
+    ></app-loading-spinner>
+  </div>
+</div>

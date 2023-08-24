@@ -1,12 +1,18 @@
 <article>
-  <app-confirmation-dialog
-    [commands$]="taskDeletionDialogCommand.asObservable()"
-    (result)="receiveResult($event)"
-  >
-    <p class="delete-msg">
-      Are you sure you want to delete <strong>"{{ task.name }}"</strong> ?
-    </p>
-  </app-confirmation-dialog>
+  <app-closable-dialog [commands$]="taskDeletionDialogCommand.asObservable()">
+    <app-confirmation
+      [commands$]="taskDeletionDialogCommand.asObservable()"
+      (result)="receiveResult($event)"
+      [option1]="'Delete'"
+      [option2]="'Cancel'"
+      [option1Color]="'red'"
+      [option2Color]="'primary'"
+    >
+      <p class="delete-msg">
+        Are you sure you want to delete <strong>"{{ task.name }}"</strong> ?
+      </p>
+    </app-confirmation>
+  </app-closable-dialog>
 
   <div *ngIf="loadingTask && !errorFetchingTaskDetails" class="loading-spinner">
     <app-loading-spinner color="orange" size="small"></app-loading-spinner>
