@@ -10,7 +10,6 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { CoreModule } from 'src/app/core/core.module';
 @NgModule({
   declarations: [
     AddTaskFormComponent,
@@ -25,7 +24,6 @@ import { CoreModule } from 'src/app/core/core.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    CoreModule,
     SharedModule,
   ],
   exports: [TaskListComponent],

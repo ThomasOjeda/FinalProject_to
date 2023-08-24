@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SummaryCardComponent } from './summary-card/summary-card.component';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
-import { DividerComponent } from './divider/divider.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { CustomIconButtonComponent } from './custom-icon-button/custom-icon-button.component';
 import { CustomDetailComponent } from './custom-detail/custom-detail.component';
@@ -11,7 +10,6 @@ import { InputErrorComponent } from './input-error/input-error.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AlertMessageComponent } from './alert-message/alert-message.component';
 import { ThemeDirective } from './directives/theme.directive';
-import { ElementHeaderComponent } from './element-header/element-header.component';
 import { MemberCardComponent } from './user/member-card/member-card.component';
 import { ClosableDialogComponent } from './closable-dialog/closable-dialog.component';
 import { MemberListComponent } from './member-list/member-list.component';
@@ -21,7 +19,6 @@ import { OwnerDetailsComponent } from './owner-details/owner-details.component';
   declarations: [
     SummaryCardComponent,
     CustomButtonComponent,
-    DividerComponent,
     ConfirmationComponent,
     CustomIconButtonComponent,
     CustomDetailComponent,
@@ -29,7 +26,6 @@ import { OwnerDetailsComponent } from './owner-details/owner-details.component';
     InputErrorComponent,
     LoadingSpinnerComponent,
     AlertMessageComponent,
-    ElementHeaderComponent,
     MemberCardComponent,
     ThemeDirective,
     ClosableDialogComponent,
@@ -40,7 +36,6 @@ import { OwnerDetailsComponent } from './owner-details/owner-details.component';
   exports: [
     SummaryCardComponent,
     CustomButtonComponent,
-    DividerComponent,
     ConfirmationComponent,
     CustomIconButtonComponent,
     CustomDetailComponent,
