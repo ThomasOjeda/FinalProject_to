@@ -21,6 +21,7 @@ export class LoginComponent {
   ) {}
 
   submit() {
+    this.alertOpen = false;
     this.isLoggingIn = true;
     this.loginService.login(this.loginUsername, this.loginPassword).subscribe({
       next: (response: any) => {
@@ -33,6 +34,7 @@ export class LoginComponent {
       },
       error: (error) => {
         this.isLoggingIn = false;
+        this.alertOpen = true;
       },
       complete: () => {
         this.isLoggingIn = false;

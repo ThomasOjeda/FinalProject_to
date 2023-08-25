@@ -29,9 +29,6 @@ export class AuthInterceptor implements HttpInterceptor {
       tap({
         error: (error: HttpErrorResponse) => {
           if (error.status == 401) {
-            console.log(
-              'Error unauthorized, redirecting to login and deleting the auth token'
-            );
             this.loginService.logout();
           }
         },
