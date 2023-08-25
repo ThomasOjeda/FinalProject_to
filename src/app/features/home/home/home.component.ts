@@ -53,7 +53,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     )
       .pipe(
         map((event) => {
-          if (event.target) return (event.target as HTMLInputElement).value;
+          if (event.target)
+            return (event.target as HTMLInputElement).value.toLowerCase();
           return '';
         }),
         startWith(''),
