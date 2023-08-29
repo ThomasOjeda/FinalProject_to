@@ -1,0 +1,25 @@
+<section>
+  <div
+    *ngIf="loadingEpicDetails && !errorLoadingEpicDetails"
+    class="loading-spinner"
+  >
+    <app-loading-spinner color="orange" size="small"></app-loading-spinner>
+  </div>
+  <app-alert-message
+    class="error-alert"
+    *ngIf="errorLoadingEpicDetails"
+    [closable]="false"
+    [color]="'red'"
+  >
+    Error fetching epic data...try again later
+  </app-alert-message>
+  <section *ngIf="epic && !loadingEpicDetails" class="details">
+    <app-section-header
+      [name]="epic.name"
+      [icon]="epic.icon"
+      [description]="epic.description"
+      [type]="'Epic'"
+    >
+    </app-section-header>
+  </section>
+</section>

@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Epic } from 'src/models/epic';
-import { EpicService } from '../services/epic.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Story } from 'src/models/story';
+import { EpicService } from '../../services/epic.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-epic-details',
-  templateUrl: './epic-details.component.html',
-  styleUrls: ['./epic-details.component.scss'],
+  selector: 'app-epic-stories',
+  templateUrl: './epic-stories.component.html',
+  styleUrls: ['./epic-stories.component.scss'],
 })
-export class EpicDetailsComponent implements OnInit {
-  epic: Epic | undefined;
+export class EpicStoriesComponent {
   storyList: Story[] = [];
   storyListDone: Story[] = [];
   storyListRunning: Story[] = [];
   storyListTodo: Story[] = [];
 
   loadingStories: boolean = true;
-  loadingEpicDetails: boolean = true;
-  errorFetchingStories: boolean = false;
-  errorFetchingEpicDetails: boolean = false;
+  errorLoadingStories: boolean = false;
 
   constructor(
     private epicService: EpicService,
@@ -29,24 +25,9 @@ export class EpicDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.loadingStories = true;
-    this.loadingEpicDetails = true;
-    this.errorFetchingEpicDetails = false;
-    this.errorFetchingStories = false;
+    this.errorLoadingStories = false;
     let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
-      this.epicService.getEpic$(epicId).subscribe({
-        next: (epic) => {
-          this.epic = epic.data;
-        },
-        error: () => {
-          this.errorFetchingEpicDetails = true;
-          this.loadingEpicDetails = false;
-        },
-        complete: () => {
-          this.loadingEpicDetails = false;
-        },
-      });
-
       this.epicService.getStories$(epicId).subscribe({
         next: (stories) => {
           this.storyList = stories.data;
@@ -61,7 +42,7 @@ export class EpicDetailsComponent implements OnInit {
           );
         },
         error: () => {
-          this.errorFetchingStories = true;
+          this.errorLoadingStories = true;
           this.loadingStories = false;
         },
         complete: () => {

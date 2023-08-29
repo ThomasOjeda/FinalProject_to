@@ -1,15 +1,4 @@
-@import "../../../../styles.scss";
-
-:host {
-  width: 100%;
-  max-width: 70rem;
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+@import "../../../../../styles.scss";
 
 .board {
   display: flex;

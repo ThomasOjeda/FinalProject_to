@@ -5,7 +5,7 @@ import { LayoutComponent } from './core/layout/layout.component';
 import { MyProjectsComponent } from './features/project/my-projects/my-projects.component';
 import { SettingsComponent } from './features/settings/settings/settings.component';
 import { ProjectDataComponent } from './features/project/project-data/project-data.component';
-import { EpicDetailsComponent } from './features/epic/epic-details/epic-details.component';
+import { EpicDataComponent } from './features/epic/epic-data/epic-data.component';
 import { StoryDetailsComponent } from './features/story/story-details/story-details.component';
 import { TaskDetailsComponent } from './features/task/task-details/task-details.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -34,7 +34,7 @@ const routes: Routes = [
       },
       {
         path: 'my-projects/:project-id/:epic-id',
-        component: EpicDetailsComponent,
+        component: EpicDataComponent,
         canActivate: [hasTokenGuard],
       },
       {

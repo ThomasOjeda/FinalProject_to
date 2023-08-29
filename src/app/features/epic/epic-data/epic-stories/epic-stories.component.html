@@ -1,0 +1,94 @@
+<section>
+  <div *ngIf="loadingStories" class="loading-spinner">
+    <app-loading-spinner color="yellow" size="small"></app-loading-spinner>
+  </div>
+  <app-alert-message
+    class="no-stories-alert"
+    *ngIf="!loadingStories && storyList.length <= 0 && !errorLoadingStories"
+    [closable]="false"
+    [color]="'yellow'"
+  >
+    No stories available at this moment
+  </app-alert-message>
+  <app-alert-message
+    class="error-alert"
+    *ngIf="errorLoadingStories"
+    [closable]="false"
+    [color]="'red'"
+  >
+    Error fetching story list...try again later
+  </app-alert-message>
+  <div
+    *ngIf="!loadingStories && storyList.length > 0 && !errorLoadingStories"
+    class="board"
+  >
+    <article
+      class="board-sector"
+      appTheme
+      [systemThemeClass]="'board-theme-system'"
+      [lightThemeClass]="'board-theme-light'"
+      [darkThemeClass]="'board-theme-dark'"
+    >
+      <header>
+        <h3>ToDo</h3>
+      </header>
+      <ul class="story-list">
+        <li *ngFor="let story of storyListTodo" class="list-item">
+          <app-summary-card
+            [name]="story.name"
+            [description]="story.description"
+            [icon]="story.icon"
+            (click)="handleStorySelection(story._id)"
+            [accent]="'#c49f49'"
+          ></app-summary-card>
+        </li>
+      </ul>
+    </article>
+
+    <article
+      class="board-sector"
+      appTheme
+      [systemThemeClass]="'board-theme-system'"
+      [lightThemeClass]="'board-theme-light'"
+      [darkThemeClass]="'board-theme-dark'"
+    >
+      <header>
+        <h3>Running</h3>
+      </header>
+      <ul class="story-list">
+        <li *ngFor="let story of storyListRunning" class="list-item">
+          <app-summary-card
+            [name]="story.name"
+            [description]="story.description"
+            [icon]="story.icon"
+            (click)="handleStorySelection(story._id)"
+            [accent]="'#c49f49'"
+          ></app-summary-card>
+        </li>
+      </ul>
+    </article>
+
+    <article
+      class="board-sector"
+      appTheme
+      [systemThemeClass]="'board-theme-system'"
+      [lightThemeClass]="'board-theme-light'"
+      [darkThemeClass]="'board-theme-dark'"
+    >
+      <header>
+        <h3>Done</h3>
+      </header>
+      <ul class="story-list">
+        <li *ngFor="let story of storyListDone" class="list-item">
+          <app-summary-card
+            [name]="story.name"
+            [description]="story.description"
+            [icon]="story.icon"
+            (click)="handleStorySelection(story._id)"
+            [accent]="'#c49f49'"
+          ></app-summary-card>
+        </li>
+      </ul>
+    </article>
+  </div>
+</section>
