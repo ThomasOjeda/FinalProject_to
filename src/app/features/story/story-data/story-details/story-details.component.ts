@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Story } from 'src/models/story';
-import { StoryService } from '../services/story.service';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Story } from 'src/models/story';
+import { StoryService } from '../../services/story.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-story-details',
   templateUrl: './story-details.component.html',
   styleUrls: ['./story-details.component.scss'],
 })
-export class StoryDetailsComponent implements OnInit {
+export class StoryDetailsComponent {
   story!: Story;
   loadingStoryDetails: boolean = true;
-  errorFetchingStoryDetails: boolean = false;
+  errorLoadingStoryDetails: boolean = false;
 
   assignedToDialogCommand: Subject<string> = new Subject<string>();
   constructor(
@@ -29,7 +29,7 @@ export class StoryDetailsComponent implements OnInit {
         },
         error: () => {
           this.loadingStoryDetails = false;
-          this.errorFetchingStoryDetails = true;
+          this.errorLoadingStoryDetails = true;
         },
         complete: () => {
           this.loadingStoryDetails = false;

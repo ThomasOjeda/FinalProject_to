@@ -1,4 +1,4 @@
-<article>
+<section>
   <div *ngIf="loadingTasks" class="loading-spinner">
     <app-loading-spinner color="primary" size="small"></app-loading-spinner>
   </div>
@@ -40,4 +40,4 @@
       (result)="handleResultFromDialog($event)"
     ></app-add-task-form>
   </app-closable-dialog>
-</article>
+</section>

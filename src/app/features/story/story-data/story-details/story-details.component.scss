@@ -1,8 +1,5 @@
-@import "../../../../styles.scss";
-:host {
-  width: 100%;
-  max-width: 40rem;
-}
+@import "../../../../../styles.scss";
+
 .loading-spinner {
   margin-top: 5rem;
   @include center-x-y();
