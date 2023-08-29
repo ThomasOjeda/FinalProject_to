@@ -4,7 +4,7 @@
   </div>
   <app-alert-message
     class="error-alert"
-    *ngIf="errorFetchingProjectDetails"
+    *ngIf="errorLoadingProjectDetails"
     [closable]="false"
     [color]="'red'"
   >
@@ -34,37 +34,5 @@
     <app-closable-dialog [commands$]="memberListDialogCommand.asObservable()">
       <app-member-list [memberIdList]="project.members"></app-member-list>
     </app-closable-dialog>
-  </section>
-  <section>
-    <div *ngIf="loadingEpics" class="loading-spinner">
-      <app-loading-spinner color="orange" size="small"></app-loading-spinner>
-    </div>
-    <app-alert-message
-      class="no-epics-alert"
-      *ngIf="!loadingEpics && epicList.length <= 0 && !errorFetchingEpics"
-      [closable]="false"
-      [color]="'orange'"
-    >
-      No epics available at this moment
-    </app-alert-message>
-    <app-alert-message
-      class="error-alert"
-      *ngIf="errorFetchingEpics"
-      [closable]="false"
-      [color]="'red'"
-    >
-      Error fetching epic list...try again later
-    </app-alert-message>
-    <ul *ngIf="epicList.length > 0" class="epic-list">
-      <li *ngFor="let epic of epicList">
-        <app-summary-card
-          [name]="epic.name"
-          [description]="epic.description"
-          [icon]="epic.icon"
-          (click)="handleEpicSelection(epic._id)"
-          [accent]="'#ce6c42'"
-        ></app-summary-card>
-      </li>
-    </ul>
   </section>
 </section>

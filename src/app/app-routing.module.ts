@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { HomeComponent } from './features/home/home/home.component';
 import { LayoutComponent } from './core/layout/layout.component';
 import { MyProjectsComponent } from './features/project/my-projects/my-projects.component';
 import { SettingsComponent } from './features/settings/settings/settings.component';
-import { ProjectDetailsComponent } from './features/project/project-details/project-details.component';
+import { ProjectDataComponent } from './features/project/project-data/project-data.component';
 import { EpicDetailsComponent } from './features/epic/epic-details/epic-details.component';
 import { StoryDetailsComponent } from './features/story/story-details/story-details.component';
 import { TaskDetailsComponent } from './features/task/task-details/task-details.component';
@@ -30,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'my-projects/:project-id',
-        component: ProjectDetailsComponent,
+        component: ProjectDataComponent,
         canActivate: [hasTokenGuard],
       },
       {

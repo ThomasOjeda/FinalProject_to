@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module'; //Do not remove
-import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { ProjectModule } from './features/project/project.module'; //Do not remove
 import { SharedModule } from './shared/shared.module';
 import { EpicModule } from './features/epic/epic.module';
@@ -17,7 +16,7 @@ import { SettingsModule } from './features/settings/settings.module';
 import { HomeModule } from './features/home/home.module';
 
 @NgModule({
-  declarations: [AppComponent, PlaceholderComponent],
+  declarations: [AppComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
