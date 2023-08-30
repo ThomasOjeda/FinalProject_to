@@ -1,8 +1,13 @@
 @import "../../../../../styles.scss";
 
+.board {
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
 h3 {
   margin: 0;
-
+  cursor: pointer;
   span {
     margin-left: auto;
     display: inline-block;
@@ -15,14 +20,9 @@ h3 {
 
 .story-list {
   @include reset-list();
-  overflow: hidden;
+  overflow-y: hidden;
   max-height: none;
   transition: max-height 0.5s;
-}
-
-.board {
-  border-radius: 0.125rem;
-  padding: 1rem;
 }
 
 .board-theme-system {
@@ -36,7 +36,11 @@ h3 {
 }
 
 .list-item {
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   cursor: pointer;
 }
 
