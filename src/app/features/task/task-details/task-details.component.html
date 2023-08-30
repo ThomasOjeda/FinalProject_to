@@ -47,8 +47,8 @@
     >
       {{ task.created | date }}</app-custom-detail
     >
-    <app-custom-detail *ngIf="task.dueDate" [name]="'Due date'" [state]="true">
-      {{ task.dueDate | date }}</app-custom-detail
+    <app-custom-detail *ngIf="task.due" [name]="'Due date'" [state]="true">
+      {{ task.due | date : "MMM d, y" : "UTC" }}</app-custom-detail
     >
 
     <app-custom-icon-button

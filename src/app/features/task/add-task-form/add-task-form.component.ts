@@ -40,7 +40,7 @@ export class AddTaskFormComponent implements OnInit {
     this.taskForm = this.formBuilderService.group({
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.minLength(10)]),
-      dueDate: new FormControl(undefined),
+      due: new FormControl(undefined),
       done: new FormControl(false),
     });
   }

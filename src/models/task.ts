@@ -4,7 +4,7 @@ export interface Task {
   description?: string;
   story: string;
   created?: Date;
-  dueDate?: Date;
+  due?: Date;
   done?: boolean;
   __v?: number;
 }
