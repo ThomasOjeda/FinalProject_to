@@ -6,9 +6,14 @@
   [darkThemeClass]="'board-theme-dark'"
 >
   <header>
-    <h3>{{ title }}</h3>
+    <h3 (click)="toggleBoard()">
+      {{ title }} <span [ngClass]="{ up: !open }">&#9660;</span>
+    </h3>
   </header>
-  <ul class="story-list">
+  <ul #storyList class="story-list">
+    <p class="no-stories" *ngIf="stories.length <= 0">
+      <i>No {{ title }} stories...</i>
+    </p>
     <li *ngFor="let story of stories" class="list-item">
       <app-summary-card
         [name]="story.name"
