@@ -1,0 +1,22 @@
+<article
+  class="board"
+  appTheme
+  [systemThemeClass]="'board-theme-system'"
+  [lightThemeClass]="'board-theme-light'"
+  [darkThemeClass]="'board-theme-dark'"
+>
+  <header>
+    <h3>{{ title }}</h3>
+  </header>
+  <ul class="story-list">
+    <li *ngFor="let story of stories" class="list-item">
+      <app-summary-card
+        [name]="story.name"
+        [description]="story.description"
+        [icon]="story.icon"
+        (click)="handleStorySelection(story._id)"
+        [accent]="'#c49f49'"
+      ></app-summary-card>
+    </li>
+  </ul>
+</article>

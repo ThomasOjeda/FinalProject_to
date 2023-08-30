@@ -51,10 +51,4 @@ export class EpicStoriesComponent {
       });
     }
   }
-
-  handleStorySelection(storyId: string) {
-    this.router.navigate([storyId], {
-      relativeTo: this.activatedRouteService,
-    });
-  }
 }

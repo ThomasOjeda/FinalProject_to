@@ -1,39 +1,12 @@
 @import "../../../../../styles.scss";
 
-.board {
+.boards {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
-}
-.story-list {
-  @include reset-list();
-}
-
-.board-sector {
-  @include content-horizontal-padding();
-  padding-bottom: 1rem;
-  border-radius: 0.25rem;
-  min-width: 0; //Important to let the text shrink
-  max-width: 20rem;
-  width: 20rem;
-}
-
-.board-theme-system {
-  @include theme("board-sector", "theme-system");
-}
-.board-theme-light {
-  @include theme("board-sector", "theme-light");
-}
-.board-theme-dark {
-  @include theme("board-sector", "theme-dark");
-}
-
-.list-item {
-  margin-top: 1rem;
-  cursor: pointer;
 }
 
 .loading-spinner {
@@ -45,4 +18,10 @@
 .error-alert {
   display: block;
   margin-top: 1rem;
+}
+
+.board {
+  min-width: 0; //Important to let the text shrink
+  max-width: 20rem;
+  width: 20rem;
 }

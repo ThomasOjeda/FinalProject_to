@@ -20,75 +20,22 @@
   </app-alert-message>
   <div
     *ngIf="!loadingStories && storyList.length > 0 && !errorLoadingStories"
-    class="board"
+    class="boards"
   >
-    <article
-      class="board-sector"
-      appTheme
-      [systemThemeClass]="'board-theme-system'"
-      [lightThemeClass]="'board-theme-light'"
-      [darkThemeClass]="'board-theme-dark'"
-    >
-      <header>
-        <h3>ToDo</h3>
-      </header>
-      <ul class="story-list">
-        <li *ngFor="let story of storyListTodo" class="list-item">
-          <app-summary-card
-            [name]="story.name"
-            [description]="story.description"
-            [icon]="story.icon"
-            (click)="handleStorySelection(story._id)"
-            [accent]="'#c49f49'"
-          ></app-summary-card>
-        </li>
-      </ul>
-    </article>
-
-    <article
-      class="board-sector"
-      appTheme
-      [systemThemeClass]="'board-theme-system'"
-      [lightThemeClass]="'board-theme-light'"
-      [darkThemeClass]="'board-theme-dark'"
-    >
-      <header>
-        <h3>Running</h3>
-      </header>
-      <ul class="story-list">
-        <li *ngFor="let story of storyListRunning" class="list-item">
-          <app-summary-card
-            [name]="story.name"
-            [description]="story.description"
-            [icon]="story.icon"
-            (click)="handleStorySelection(story._id)"
-            [accent]="'#c49f49'"
-          ></app-summary-card>
-        </li>
-      </ul>
-    </article>
-
-    <article
-      class="board-sector"
-      appTheme
-      [systemThemeClass]="'board-theme-system'"
-      [lightThemeClass]="'board-theme-light'"
-      [darkThemeClass]="'board-theme-dark'"
-    >
-      <header>
-        <h3>Done</h3>
-      </header>
-      <ul class="story-list">
-        <li *ngFor="let story of storyListDone" class="list-item">
-          <app-summary-card
-            [name]="story.name"
-            [description]="story.description"
-            [icon]="story.icon"
-            (click)="handleStorySelection(story._id)"
-            [accent]="'#c49f49'"
-          ></app-summary-card>
-        </li>
-      </ul>
-    </article>
+    <app-board
+      class="board"
+      [title]="'ToDo'"
+      [stories]="storyListTodo"
+    ></app-board>
+    <app-board
+      class="board"
+      [title]="'Running'"
+      [stories]="storyListRunning"
+    ></app-board>
+    <app-board
+      class="board"
+      [title]="'Done'"
+      [stories]="storyListDone"
+    ></app-board>
   </div>
 </section>
