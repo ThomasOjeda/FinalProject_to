@@ -1,3 +1,8 @@
-<button (click)="buttonWasClicked($event)" class="btn" [ngClass]="classes">
+<button
+  [ariaLabel]="ariaLabel"
+  (click)="buttonWasClicked($event)"
+  class="btn"
+  [ngClass]="classes"
+>
   <img [src]="iconPath" [alt]="iconAlt" class="icon" />
 </button>

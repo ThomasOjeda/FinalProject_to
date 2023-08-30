@@ -5,6 +5,7 @@
     [buttonHeight]="'small'"
     [buttonPaint]="'orange'"
     (clickedButtonEvent)="handleButtonClickedEvent()"
+    [ariaLabel]="'Expand detail'"
   ></app-custom-button>
   <p class="detail" [ngClass]="{ show: state }">
     <ng-content></ng-content>

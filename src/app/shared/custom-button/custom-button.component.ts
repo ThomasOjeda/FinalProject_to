@@ -11,6 +11,8 @@ export class CustomButtonComponent implements OnInit {
   @Input() buttonPaint: string = '';
   @Input() buttonHeight: string = '';
   @Input() disabled: boolean = false;
+
+  @Input() ariaLabel: string = '';
   constructor() {}
 
   ngOnInit(): void {}

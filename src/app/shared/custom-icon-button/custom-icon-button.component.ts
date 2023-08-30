@@ -14,6 +14,8 @@ export class CustomIconButtonComponent {
   @Input() invisible: boolean = false;
   @Input() rounded: boolean = false;
   classes = {};
+
+  @Input() ariaLabel: string = '';
   constructor() {}
   ngOnInit(): void {
     this.classes = {

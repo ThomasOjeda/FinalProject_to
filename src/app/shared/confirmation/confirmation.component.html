@@ -16,12 +16,14 @@
         [buttonPaint]="option1Color"
         (clickedButtonEvent)="handleOption1Click()"
         [buttonHeight]="'medium'"
+        [ariaLabel]="'option 1'"
       ></app-custom-button>
       <app-custom-button
         [text]="option2"
         [buttonPaint]="option2Color"
         (clickedButtonEvent)="handleOption2Click()"
         [buttonHeight]="'medium'"
+        [ariaLabel]="'option 2'"
       ></app-custom-button>
     </div>
     <app-loading-spinner

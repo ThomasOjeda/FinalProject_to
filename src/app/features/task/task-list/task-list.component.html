@@ -33,6 +33,7 @@
     [iconAlt]="'add task'"
     [iconPath]="'assets/add-svgrepo-com.svg'"
     (clickedButtonEvent)="openAddTaskDialog()"
+    [ariaLabel]="'Create task'"
   ></app-custom-icon-button>
 
   <app-closable-dialog [commands$]="taskCreationDialogCommand.asObservable()">
