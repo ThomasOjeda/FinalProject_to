@@ -18,10 +18,12 @@
   <nav class="navigation">
     <ul class="nav-list">
       <li
-        *ngFor="let element of mainElements; index as i"
+        *ngFor="let element of mainElements"
         class="nav-list-item"
-        [ngClass]="{ selected: element.selected }"
-        (click)="navigateMain(element.url, i)"
+        [routerLink]="element.url"
+        routerLinkActive="selected"
+        [routerLinkActiveOptions]="{exact:false}"
+        (click)="closeMenu()"
       >
         <a>{{ element.name }} </a>
       </li>
@@ -30,10 +32,13 @@
   <footer class="footer">
     <ul class="nav-list">
       <li
-        *ngFor="let element of footerElements; index as i"
+        *ngFor="let element of footerElements"
         class="nav-list-item"
-        [ngClass]="{ selected: element.selected }"
-        (click)="navigateFooter(element.url, i)"
+        [routerLink]="element.url"
+        routerLinkActive="selected"
+        [routerLinkActiveOptions]="{exact:false}"
+        (click)="closeMenu()"
+
       >
         <a>{{ element.name }} </a>
       </li>
