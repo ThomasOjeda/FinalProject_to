@@ -6,9 +6,9 @@ import { ThemeService } from '../services/theme.service';
   selector: '[appTheme]',
 })
 export class ThemeDirective implements OnInit, OnDestroy {
-  @Input() systemThemeClass: string = '';
-  @Input() lightThemeClass: string = '';
-  @Input() darkThemeClass: string = '';
+  @Input() systemThemeClass = '';
+  @Input() lightThemeClass = '';
+  @Input() darkThemeClass = '';
 
   themeSubscription: Subscription = new Subscription();
   constructor(

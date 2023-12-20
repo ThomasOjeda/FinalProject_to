@@ -6,8 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./loading-spinner.component.scss'],
 })
 export class LoadingSpinnerComponent {
-  @Input() size: string = 'small';
-  @Input() color: string = 'primary';
+  @Input() size = 'small';
+  @Input() color = 'primary';
 
-  constructor() {}
 }

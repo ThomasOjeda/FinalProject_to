@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginUsername: string = '';
-  loginPassword: string = '';
-  isLoggingIn: boolean = false;
-  alertOpen: boolean = false;
+  loginUsername = '';
+  loginPassword = '';
+  isLoggingIn = false;
+  alertOpen = false;
 
   constructor(
     private loginService: LoginService,
@@ -32,7 +32,7 @@ export class LoginComponent {
           this.alertOpen = true;
         }
       },
-      error: (error) => {
+      error: () => {
         this.isLoggingIn = false;
         this.alertOpen = true;
       },

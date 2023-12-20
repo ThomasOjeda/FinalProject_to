@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Epic } from 'src/models/epic';
 import { EpicService } from '../../services/epic.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,11 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './epic-details.component.html',
   styleUrls: ['./epic-details.component.scss'],
 })
-export class EpicDetailsComponent {
+export class EpicDetailsComponent implements OnInit{
   epic: Epic | undefined;
 
-  loadingEpicDetails: boolean = true;
-  errorLoadingEpicDetails: boolean = false;
+  loadingEpicDetails = true;
+  errorLoadingEpicDetails = false;
 
   constructor(
     private epicService: EpicService,
@@ -22,7 +22,7 @@ export class EpicDetailsComponent {
   ngOnInit() {
     this.loadingEpicDetails = true;
     this.errorLoadingEpicDetails = false;
-    let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
+    const epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
       this.epicService.getEpic$(epicId).subscribe({
         next: (epic) => {

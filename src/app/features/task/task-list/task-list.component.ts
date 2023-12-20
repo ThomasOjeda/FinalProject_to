@@ -11,8 +11,8 @@ import { StoryService } from '../../story/services/story.service';
 })
 export class TaskListComponent implements OnInit {
   taskList: Task[] = [];
-  loadingTasks: boolean = true;
-  errorFetchingTasks: boolean = false;
+  loadingTasks = true;
+  errorFetchingTasks = false;
 
   taskCreationDialogCommand: Subject<string> = new Subject<string>();
   constructor(
@@ -27,7 +27,7 @@ export class TaskListComponent implements OnInit {
     this.loadingTasks = true;
     this.errorFetchingTasks = false;
 
-    let storyId = this.activatedRouteService.snapshot.paramMap.get('story-id');
+    const storyId = this.activatedRouteService.snapshot.paramMap.get('story-id');
     if (storyId) {
       this.storyService.getTasks$(storyId).subscribe({
         next: (tasks) => {

@@ -2,7 +2,7 @@
   <app-closable-dialog [commands$]="taskDeletionDialogCommand.asObservable()">
     <app-confirmation
       [commands$]="taskDeletionDialogCommand.asObservable()"
-      (result)="receiveResult($event)"
+      (confirmationResult)="receiveResult($event)"
       [option1]="'Delete'"
       [option2]="'Cancel'"
       [option1Color]="'red'"

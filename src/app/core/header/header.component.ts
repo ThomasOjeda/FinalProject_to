@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RouteSegmentsService } from '../services/route-segments.service';
 import { MenuService } from '../services/menu.service';
@@ -8,8 +8,8 @@ import { MenuService } from '../services/menu.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  mainSegment: string = '';
+export class HeaderComponent implements OnInit,OnDestroy {
+  mainSegment = '';
   segments: string[] = [];
   displayRouteSubscription: Subscription = new Subscription();
 

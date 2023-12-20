@@ -38,7 +38,7 @@
 
   <app-closable-dialog [commands$]="taskCreationDialogCommand.asObservable()">
     <app-add-task-form
-      (result)="handleResultFromDialog($event)"
+      (addTaskResult)="handleResultFromDialog($event)"
     ></app-add-task-form>
   </app-closable-dialog>
 </section>

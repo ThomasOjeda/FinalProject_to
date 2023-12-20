@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/models/story';
 import { StoryService } from '../services/story.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { EpicService } from '../../epic/services/epic.service';
 
 @Component({
@@ -13,8 +13,8 @@ import { EpicService } from '../../epic/services/epic.service';
 export class MyStoriesComponent implements OnInit {
   storyList: Story[] = [];
   storyListSubscription: Subscription = new Subscription();
-  loadingStories: boolean = true;
-  errorFetchingStories: boolean = false;
+  loadingStories = true;
+  errorFetchingStories = false;
   constructor(
     private storyService: StoryService,
     private epicService:EpicService,
@@ -25,7 +25,7 @@ export class MyStoriesComponent implements OnInit {
       next: (stories) => {
         this.storyList = stories.data;
       },
-      error: (err) => {
+      error: () => {
         this.loadingStories = false;
         this.errorFetchingStories = true;
       },

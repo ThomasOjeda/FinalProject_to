@@ -6,9 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./alert-message.component.scss'],
 })
 export class AlertMessageComponent {
-  @Input() type: string = 'error';
-  @Input() color: string = 'primary';
-  @Input() closable: boolean = true;
+  @Input() type = 'error';
+  @Input() color = 'primary';
+  @Input() closable = true;
 
   @Output() closeSignal = new EventEmitter();
   handleCloseButtonClick() {

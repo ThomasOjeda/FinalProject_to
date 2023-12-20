@@ -28,11 +28,9 @@ export class TaskComponent {
     this.task.done = !this.task.done;
     console.log(this.task.done);
     this.taskService.updateTask(this.task).subscribe({
-      next: () => {},
       error: () => {
         this.task.done = !this.task.done;
       },
-      complete: () => {},
     });
   }
 }

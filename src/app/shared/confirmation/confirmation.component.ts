@@ -1,12 +1,10 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
   OnInit,
   Output,
-  ViewChild,
 } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
@@ -24,14 +22,13 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   @Input() option2!: string;
   @Input() option2Color!: string;
 
-  @Output() result = new EventEmitter<string>();
+  @Output() confirmationResult = new EventEmitter<string>();
 
-  waitingForFeedback: boolean = false;
+  waitingForFeedback = false;
   commandsSubscription: Subscription = new Subscription();
-  error: boolean = false;
-  errorMessage: string = '';
+  error = false;
+  errorMessage = '';
 
-  constructor() {}
 
   ngOnInit(): void {
     this.commandsSubscription = this.commands$.subscribe({
@@ -42,22 +39,21 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
           this.errorMessage = state;
         }
       },
-      error: (error) => {
+      error: () => {
         this.waitingForFeedback = false;
       },
-      complete: () => {},
     });
   }
 
   handleOption1Click() {
     this.error = false;
     this.waitingForFeedback = true;
-    this.result.emit('op1');
+    this.confirmationResult.emit('op1');
   }
 
   handleOption2Click() {
     this.error = false;
-    this.result.emit('op2');
+    this.confirmationResult.emit('op2');
   }
 
   handleAlertClose() {

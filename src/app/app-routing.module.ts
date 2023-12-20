@@ -11,6 +11,7 @@ import { TaskDetailsComponent } from './features/task/task-details/task-details.
 import { LoginComponent } from './auth/login/login.component';
 import { hasTokenGuard } from './auth/guards/has-token.guard';
 import { MyStoriesComponent } from './features/story/my-stories/my-stories.component';
+import { canNavigateOutGuard } from './auth/guards/can-navigate-out.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         canActivate: [hasTokenGuard],
+        canDeactivate: [canNavigateOutGuard]
       },
       {
         path: 'my-projects',

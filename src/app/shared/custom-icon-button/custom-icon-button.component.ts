@@ -1,22 +1,21 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-custom-icon-button',
   templateUrl: './custom-icon-button.component.html',
   styleUrls: ['./custom-icon-button.component.scss'],
 })
-export class CustomIconButtonComponent {
+export class CustomIconButtonComponent implements OnInit{
   @Output() clickedButtonEvent = new EventEmitter();
-  @Input() buttonPaint: string = '';
+  @Input() buttonPaint = '';
 
-  @Input() iconPath: string = '';
-  @Input() iconAlt: string = '';
-  @Input() invisible: boolean = false;
-  @Input() rounded: boolean = false;
+  @Input() iconPath = '';
+  @Input() iconAlt = '';
+  @Input() invisible = false;
+  @Input() rounded = false;
   classes = {};
 
-  @Input() ariaLabel: string = '';
-  constructor() {}
+  @Input() ariaLabel = '';
   ngOnInit(): void {
     this.classes = {
       'btn-primary': this.buttonPaint == 'primary',

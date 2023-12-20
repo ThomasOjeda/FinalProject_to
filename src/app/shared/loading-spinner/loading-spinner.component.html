@@ -1,15 +1,15 @@
 <div
   class="loader"
   [ngClass]="{
-    'color-primary': color == 'primary',
-    'color-red': color == 'red',
-    'color-green': color == 'green',
-    'color-yellow': color == 'yellow',
-    'color-orange': color == 'orange',
-    'color-purple': color == 'purple',
-    'size-small': size == 'small',
-    'size-medium': size == 'medium',
-    'size-large': size == 'large'
+    'color-primary': color === 'primary',
+    'color-red': color === 'red',
+    'color-green': color === 'green',
+    'color-yellow': color === 'yellow',
+    'color-orange': color === 'orange',
+    'color-purple': color === 'purple',
+    'size-small': size === 'small',
+    'size-medium': size === 'medium',
+    'size-large': size === 'large'
   }"
   appTheme
   [systemThemeClass]="'loading-spinner-theme-system'"

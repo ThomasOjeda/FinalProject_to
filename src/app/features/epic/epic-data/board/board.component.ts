@@ -16,9 +16,9 @@ import { Story } from 'src/models/story';
 export class BoardComponent implements AfterViewInit {
   @ViewChild('storyList') storyListElement!: ElementRef;
 
-  @Input() title: string = '';
+  @Input() title = '';
   @Input() stories: Story[] = [];
-  open: boolean = true;
+  open = true;
 
   constructor(
     private routerService: Router,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Epic } from 'src/models/epic';
 import { ProjectService } from '../../services/project.service';
@@ -9,12 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './project-epics.component.html',
   styleUrls: ['./project-epics.component.scss'],
 })
-export class ProjectEpicsComponent {
+export class ProjectEpicsComponent implements OnInit{
   epicList: Epic[] = [];
 
   epicListSubscription: Subscription = new Subscription();
 
-  loadingEpics: boolean = true;
+  loadingEpics = true;
   errorLoadingEpics = false;
 
   constructor(
@@ -26,14 +26,14 @@ export class ProjectEpicsComponent {
   ngOnInit(): void {
     this.loadingEpics = true;
     this.errorLoadingEpics = false;
-    let projectId =
+    const projectId =
       this.activatedRouteService.snapshot.paramMap.get('project-id');
     if (projectId) {
       this.projectService.getEpics$(projectId).subscribe({
         next: (epics) => {
           this.epicList = epics.data;
         },
-        error: (error) => {
+        error: () => {
           this.loadingEpics = false;
           this.errorLoadingEpics = true;
         },

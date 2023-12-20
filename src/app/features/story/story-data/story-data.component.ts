@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./story-data.component.scss'],
 })
 export class StoryDataComponent {
-  constructor() {}
 }

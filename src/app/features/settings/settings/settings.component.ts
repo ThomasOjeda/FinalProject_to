@@ -16,8 +16,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   theme!: string;
   themeSubscription: Subscription = new Subscription();
 
-  loadingUserData: boolean = true;
-  errorLoadingUserData: boolean = false;
+  loadingUserData = true;
+  errorLoadingUserData = false;
   constructor(
     private loginService: LoginService,
     private userService: UserService,
@@ -30,7 +30,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       next: (user) => {
         this.user = user.data;
       },
-      error: (error) => {
+      error: () => {
         this.loadingUserData = false;
         this.errorLoadingUserData = true;
       },

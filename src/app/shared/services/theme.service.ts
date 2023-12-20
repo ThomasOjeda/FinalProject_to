@@ -6,10 +6,10 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root',
 })
 export class ThemeService {
-  theme: string = 'system';
+  theme = 'system';
   theme$: BehaviorSubject<string>;
   constructor(private localStorageService: LocalStorageService) {
-    let theme = this.localStorageService.getItem('theme');
+    const theme = this.localStorageService.getItem('theme');
     if (theme) this.theme = JSON.parse(theme);
     this.theme$ = new BehaviorSubject<string>(this.theme);
   }

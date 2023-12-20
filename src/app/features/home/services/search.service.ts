@@ -1,15 +1,15 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ProjectService } from '../../project/services/project.service';
 import { EpicService } from '../../epic/services/epic.service';
 import { StoryService } from '../../story/services/story.service';
 import { TaskService } from '../../task/services/task.service';
-import { Subscription, map } from 'rxjs';
+import {  map } from 'rxjs';
 import { SearchResult } from '../../../../models/search-result';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SearchService implements OnDestroy {
+export class SearchService  {
   constructor(
     private projectService: ProjectService,
     private epicService: EpicService,
@@ -38,7 +38,7 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((project) => project.name.toLowerCase().includes(value))
           .map((project) => {
-            let result: SearchResult = {
+            const result: SearchResult = {
               type: 1,
               data: {
                 _id: project._id,
@@ -60,7 +60,7 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((epic) => epic.name.toLowerCase().includes(value))
           .map((epic) => {
-            let result: SearchResult = {
+            const result: SearchResult = {
               type: 2,
               data: {
                 _id: epic._id,
@@ -82,7 +82,7 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((story) => story.name.toLowerCase().includes(value))
           .map((story) => {
-            let result: SearchResult = {
+            const result: SearchResult = {
               type: 3,
               data: {
                 _id: story._id,
@@ -104,7 +104,7 @@ export class SearchService implements OnDestroy {
         response.data
           .filter((task) => task.name.toLowerCase().includes(value))
           .map((task) => {
-            let result: SearchResult = {
+            const result: SearchResult = {
               type: 4,
               data: {
                 _id: task._id,
@@ -119,5 +119,4 @@ export class SearchService implements OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {}
 }

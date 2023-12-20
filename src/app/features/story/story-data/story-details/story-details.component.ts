@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Story } from 'src/models/story';
 import { StoryService } from '../../services/story.service';
@@ -9,10 +9,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './story-details.component.html',
   styleUrls: ['./story-details.component.scss'],
 })
-export class StoryDetailsComponent {
+export class StoryDetailsComponent implements OnInit{
   story!: Story;
-  loadingStoryDetails: boolean = true;
-  errorLoadingStoryDetails: boolean = false;
+  loadingStoryDetails = true;
+  errorLoadingStoryDetails = false;
 
   assignedToDialogCommand: Subject<string> = new Subject<string>();
   constructor(
@@ -21,7 +21,7 @@ export class StoryDetailsComponent {
   ) {}
 
   ngOnInit() {
-    let storyId = this.activatedRoute.snapshot.paramMap.get('story-id');
+    const storyId = this.activatedRoute.snapshot.paramMap.get('story-id');
     if (storyId) {
       this.storyService.getStory$(storyId).subscribe({
         next: (story) => {

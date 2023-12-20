@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Story } from 'src/models/story';
 import { EpicService } from '../../services/epic.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,14 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './epic-stories.component.html',
   styleUrls: ['./epic-stories.component.scss'],
 })
-export class EpicStoriesComponent {
+export class EpicStoriesComponent implements OnInit{
   storyList: Story[] = [];
   storyListDone: Story[] = [];
   storyListRunning: Story[] = [];
   storyListTodo: Story[] = [];
 
-  loadingStories: boolean = true;
-  errorLoadingStories: boolean = false;
+  loadingStories = true;
+  errorLoadingStories = false;
 
   constructor(
     private epicService: EpicService,
@@ -26,7 +26,7 @@ export class EpicStoriesComponent {
   ngOnInit() {
     this.loadingStories = true;
     this.errorLoadingStories = false;
-    let epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
+    const epicId = this.activatedRouteService.snapshot.paramMap.get('epic-id');
     if (epicId) {
       this.epicService.getStories$(epicId).subscribe({
         next: (stories) => {

@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ThemeService } from './shared/services/theme.service';
 
@@ -7,7 +7,7 @@ import { ThemeService } from './shared/services/theme.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit,OnDestroy{
   constructor(
     private renderer: Renderer2,
     private themeService: ThemeService

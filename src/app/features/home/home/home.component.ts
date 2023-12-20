@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   OnDestroy,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 
@@ -14,30 +13,33 @@ import {
   debounceTime,
   distinctUntilChanged,
   Subscription,
+  Observable,
+  tap,
 } from 'rxjs';
 import { SearchService } from '../services/search.service';
 import { SearchResult } from '../../../../models/search-result';
-import { Router } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { EpicService } from '../../epic/services/epic.service';
 import { StoryService } from '../../story/services/story.service';
+import { canBeDeactivated } from 'src/app/auth/guards/can-navigate-out.guard';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
+export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated {
   @ViewChild('searchInput') searchInput!: ElementRef;
 
-  search: string = '';
-  searchType: string = 'projects';
+  search = '';
+  searchType = 'projects';
   searchInputSubscription: Subscription = new Subscription();
   searchServiceSubscription: Subscription = new Subscription();
 
   searchResults: SearchResult[] = [];
 
-  loadingResults: boolean = true;
-  errorFetchingResults: boolean = false;
+  loadingResults = true;
+  errorFetchingResults = false;
 
   constructor(
     private searchService: SearchService,
@@ -45,6 +47,11 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     private storyService: StoryService,
     private routerService: Router
   ) {}
+
+  canBeDeactivated(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    if (this.search!=="") return confirm("Are you sure you want to navigate out? all changes will be lost")
+    return true;
+  }
 
   ngAfterViewInit(): void {
     this.searchInputSubscription = fromEvent<KeyboardEvent>(
@@ -56,6 +63,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           if (event.target)
             return (event.target as HTMLInputElement).value.toLowerCase();
           return '';
+        }),
+        tap(value=>{
+          this.search = value
         }),
         startWith(''),
         debounceTime(600),

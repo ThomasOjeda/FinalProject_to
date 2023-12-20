@@ -1,11 +1,8 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
-  OnDestroy,
   OnInit,
   Output,
-  ViewChild,
 } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import {
@@ -23,12 +20,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-task-form.component.scss'],
 })
 export class AddTaskFormComponent implements OnInit {
-  isOpen: boolean = false;
+  isOpen = false;
   taskForm!: FormGroup;
 
-  @Output() result = new EventEmitter<boolean>();
-  submitting: boolean = false;
-  thereWasAnError: boolean = false;
+  @Output() addTaskResult = new EventEmitter<boolean>();
+  submitting = false;
+  thereWasAnError = false;
 
   constructor(
     private taskService: TaskService,
@@ -49,14 +46,13 @@ export class AddTaskFormComponent implements OnInit {
     this.submitting = true;
     this.thereWasAnError = false;
 
-    let newTask: Task = this.taskForm.value;
+    const newTask: Task = this.taskForm.value;
 
-    let story = this.activatedRouteService.snapshot.paramMap.get('story-id');
+    const story = this.activatedRouteService.snapshot.paramMap.get('story-id');
     if (story) {
       newTask.story = story;
       this.taskService.addTask$(newTask).subscribe({
-        next: () => {},
-        error: (error) => {
+        error: () => {
           this.submitting = false;
           this.thereWasAnError = true;
         },
@@ -64,7 +60,7 @@ export class AddTaskFormComponent implements OnInit {
           this.taskForm.reset();
           this.submitting = false;
           this.thereWasAnError = false;
-          this.result.emit(true);
+          this.addTaskResult.emit(true);
         },
       });
     } else {

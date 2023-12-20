@@ -1,9 +1,9 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   Input,
-  Output,
+  OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
@@ -13,13 +13,12 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './closable-dialog.component.html',
   styleUrls: ['./closable-dialog.component.scss'],
 })
-export class ClosableDialogComponent {
-  isOpen: boolean = false;
+export class ClosableDialogComponent implements OnInit, OnDestroy{
+  isOpen = false;
   @Input() commands$!: Observable<string>;
   commandsSubscription: Subscription = new Subscription();
 
   @ViewChild('dialog') dialog!: ElementRef;
-  constructor() {}
 
   ngOnInit(): void {
     this.commandsSubscription = this.commands$.subscribe((state) => {

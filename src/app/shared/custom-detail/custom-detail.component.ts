@@ -6,10 +6,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./custom-detail.component.scss'],
 })
 export class CustomDetailComponent {
-  @Input() name: string = '';
-  @Input() state: boolean = false;
-  @Input() expandable: boolean = false;
-  constructor() {}
+  @Input() name = '';
+  @Input() state = false;
+  @Input() expandable = false;
 
   handleButtonClickedEvent() {
     if (this.expandable) this.state = !this.state;

@@ -15,10 +15,10 @@ export class UserService {
   ) {}
 
   getUser$() {
-    let token = this.tokenService.getToken();
+    const token = this.tokenService.getToken();
     if (token) {
       try {
-        let data: any = jwt_decode(token);
+        const data: any = jwt_decode(token);
         return this.httpService.get<UserResponse>(
           environment.API_URL + '/api/users/' + data.user._id
         );
@@ -34,10 +34,10 @@ export class UserService {
   }
 
   getUserId() {
-    let token = this.tokenService.getToken();
+    const token = this.tokenService.getToken();
     if (token) {
       try {
-        let data: any = jwt_decode(token);
+        const data: any = jwt_decode(token);
         return data.user._id;
       } catch (error) {
         return 'none';

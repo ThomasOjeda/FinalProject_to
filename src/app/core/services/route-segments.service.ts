@@ -127,7 +127,7 @@ export class RouteSegmentsService implements OnDestroy {
   }
 
   private routeToArray(r: string): string[] {
-    let cr = r.split('/');
+    const cr = r.split('/');
     cr.shift();
     return cr;
   }

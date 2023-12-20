@@ -12,5 +12,4 @@ export class SummaryCardComponent {
   @Input() type: string | undefined;
   @Input() accent: string | undefined;
 
-  constructor() {}
 }

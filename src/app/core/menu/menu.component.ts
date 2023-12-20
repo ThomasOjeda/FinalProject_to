@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/auth/services/login.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit, OnDestroy {
-  isOpen: boolean = false;
+  isOpen = false;
   menuStateSubscription: Subscription = new Subscription();
 
   mainElements = [

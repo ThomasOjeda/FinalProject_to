@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/models/project';
 import { ProjectService } from '../services/project.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, take } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-my-projects',
@@ -12,8 +12,8 @@ import { Subscription, take } from 'rxjs';
 export class MyProjectsComponent implements OnInit {
   projectList: Project[] = [];
   projectListSubscription: Subscription = new Subscription();
-  loadingProjects: boolean = true;
-  errorFetchingProjects: boolean = false;
+  loadingProjects = true;
+  errorFetchingProjects = false;
   constructor(
     private projectService: ProjectService,
     private router: Router,
@@ -24,7 +24,7 @@ export class MyProjectsComponent implements OnInit {
       next: (projects) => {
         this.projectList = projects.data;
       },
-      error: (err) => {
+      error: () => {
         this.loadingProjects = false;
         this.errorFetchingProjects = true;
       },

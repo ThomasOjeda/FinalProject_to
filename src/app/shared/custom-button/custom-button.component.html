@@ -4,16 +4,16 @@
   [ngClass]="{
     'btn-disabled': this.disabled,
 
-    'btn-large': this.buttonHeight == 'large',
-    'btn-medium': this.buttonHeight == 'medium',
-    'btn-small': this.buttonHeight == 'small',
+    'btn-large': this.buttonHeight === 'large',
+    'btn-medium': this.buttonHeight === 'medium',
+    'btn-small': this.buttonHeight === 'small',
 
-    'btn-primary': this.buttonPaint == 'primary' && !this.disabled,
-    'btn-red': this.buttonPaint == 'red' && !this.disabled,
-    'btn-orange': this.buttonPaint == 'orange' && !this.disabled,
-    'btn-green': this.buttonPaint == 'green' && !this.disabled,
-    'btn-yellow': this.buttonPaint == 'yellow' && !this.disabled,
-    'btn-purple': this.buttonPaint == 'purple' && !this.disabled,
+    'btn-primary': this.buttonPaint === 'primary' && !this.disabled,
+    'btn-red': this.buttonPaint === 'red' && !this.disabled,
+    'btn-orange': this.buttonPaint === 'orange' && !this.disabled,
+    'btn-green': this.buttonPaint === 'green' && !this.disabled,
+    'btn-yellow': this.buttonPaint === 'yellow' && !this.disabled,
+    'btn-purple': this.buttonPaint === 'purple' && !this.disabled,
   }"
   [disabled]="disabled"
   [ariaLabel]="ariaLabel"

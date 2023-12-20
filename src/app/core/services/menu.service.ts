@@ -5,7 +5,6 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class MenuService {
-  constructor() {}
   menuState$: Subject<boolean> = new Subject<boolean>();
 
   getMenuState$() {
