@@ -71,20 +71,21 @@ export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated 
         debounceTime(600),
         distinctUntilChanged()
       )
-      .subscribe((value) => this.searchFor(value));
+      .subscribe((value) => this.searchFor(value,this.searchType));
   }
 
-  handleSelectorChanged() {
-    this.searchFor(this.search);
+  handleSelectorChanged(value:string) {
+    this.searchType = value
+    this.searchFor(this.search,value);
   }
 
-  searchFor(value: string) {
+  searchFor(value: string,type:string) {
     this.loadingResults = true;
     this.errorFetchingResults = false;
     this.searchResults = [];
     this.searchServiceSubscription.unsubscribe();
     this.searchServiceSubscription = this.searchService
-      .search(value, this.searchType)
+      .search(value, type)
       .subscribe({
         next: (results) => {
           this.searchResults = results;
@@ -100,6 +101,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated 
   }
 
   handleElementClick(clicked: SearchResult) {
+    console.log("sas")
     this.loadingResults = true;
     switch (clicked.type) {
       case 1:

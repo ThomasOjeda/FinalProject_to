@@ -22,8 +22,7 @@
       name="search-type"
       id="search-type"
       #searchTypeInput
-      (change)="handleSelectorChanged()"
-      (ngModel)="searchType"
+      (change)="handleSelectorChanged(searchTypeInput.value)"
     >
       <option value="projects">Projects</option>
       <option value="epics">Epics</option>
@@ -59,7 +58,7 @@
   <ul *ngIf="!loadingResults">
     <li
       *ngFor="let result of searchResults"
-      (keydown)="handleElementClick(result)"
+      (click)="handleElementClick(result)"
       tabindex="{0}"
     >
       <app-summary-card
