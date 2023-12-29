@@ -1,12 +1,39 @@
 import { LocalStorageService } from './local-storage.service';
 import { ThemeService } from './theme.service';
+import { TestBed } from '@angular/core/testing';
 
-describe('ThemeServiceTests', () => {
+describe('ThemeService', () => {
+  let themeService: ThemeService;
+  let localStorageSpy: any;
+
+  beforeEach(() => {
+    localStorageSpy = jasmine.createSpyObj('localStorage', [
+      'getItem',
+      'setItem',
+    ]);
+
+    TestBed.configureTestingModule({
+      providers: [
+        ThemeService,
+        { provide: LocalStorageService, useValue: localStorageSpy },
+      ],
+    });
+
+    themeService = TestBed.inject(ThemeService);
+  });
+
   it("Should initialize the theme with the value 'system'", () => {
-    const themeService = new ThemeService(new LocalStorageService());
-
     const theme = themeService.theme;
 
-    expect(theme).toBe('system').withContext('asdasd');
+    expect(theme).toBe('system');
+
+    expect(localStorageSpy.getItem).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should set the theme to a different value', () => {
+    const newTheme = 'newTheme';
+    themeService.setTheme(newTheme);
+    expect(themeService.theme).toBe('newTheme');
+    expect(localStorageSpy.setItem).toHaveBeenCalledTimes(1);
   });
 });
