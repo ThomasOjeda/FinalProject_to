@@ -14,13 +14,8 @@ import {
   distinctUntilChanged,
   Subscription,
   Observable,
-  tap,
-  pluck,
-  merge,
   zip,
   combineLatest,
-  mergeAll,
-  mergeMap,
   switchMap,
   of,
 } from 'rxjs';
@@ -120,7 +115,6 @@ export class HomeComponent
   }
 
   handleElementClick(clicked: SearchResult) {
-    console.log('sas');
     this.loadingResults = true;
     switch (clicked.type) {
       case 1:
@@ -186,27 +180,6 @@ export class HomeComponent
           selectedTask.data._id,
         ]); 
       });
-
-/*     this.storyService
-      .getEpicId$(selectedTask.data.parent)
-      .subscribe((epicId) => {
-        //Get the projectId of the epic
-        this.epicService.getProjectId$(epicId).subscribe((projectId) => {
-          console.log(
-            projectId,
-            epicId,
-            selectedTask.data.parent,
-            selectedTask.data._id
-          );
-          this.routerService.navigate([
-            'my-projects',
-            projectId,
-            epicId,
-            selectedTask.data.parent,
-            selectedTask.data._id,
-          ]);
-        });
-      }); */
   }
 
   configureAccent(type: number) {
