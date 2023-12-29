@@ -1,16 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-
+import { LocalStorageService } from './local-storage.service';
 import { ThemeService } from './theme.service';
 
-describe('ThemeService', () => {
-  let service: ThemeService;
+describe('ThemeServiceTests', () => {
+  it("Should initialize the theme with the value 'system'", () => {
+    const themeService = new ThemeService(new LocalStorageService());
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
-  });
+    const theme = themeService.theme;
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(theme).toBe('system').withContext('asdasd');
   });
 });
