@@ -15,6 +15,14 @@ import {
   Subscription,
   Observable,
   tap,
+  pluck,
+  merge,
+  zip,
+  combineLatest,
+  mergeAll,
+  mergeMap,
+  switchMap,
+  of,
 } from 'rxjs';
 import { SearchService } from '../services/search.service';
 import { SearchResult } from '../../../../models/search-result';
@@ -28,11 +36,12 @@ import { canBeDeactivated } from 'src/app/auth/guards/can-navigate-out.guard';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated {
+export class HomeComponent
+  implements AfterViewInit, OnDestroy, canBeDeactivated
+{
   @ViewChild('searchInput') searchInput!: ElementRef;
+  @ViewChild('searchTypeInput') searchTypeInput!: ElementRef;
 
-  search = '';
-  searchType = 'projects';
   searchInputSubscription: Subscription = new Subscription();
   searchServiceSubscription: Subscription = new Subscription();
 
@@ -48,38 +57,48 @@ export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated 
     private routerService: Router
   ) {}
 
-  canBeDeactivated(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if (this.search!=="") return confirm("Are you sure you want to navigate out? all changes will be lost")
+  canBeDeactivated():
+    | boolean
+    | UrlTree
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree> {
+    if (this.searchInput.nativeElement.value !== '')
+      return confirm(
+        'Are you sure you want to navigate out? all changes will be lost'
+      );
     return true;
   }
 
   ngAfterViewInit(): void {
-    this.searchInputSubscription = fromEvent<KeyboardEvent>(
+    const typeObs$ = fromEvent<Event>(
+      this.searchTypeInput.nativeElement,
+      'change'
+    ).pipe(
+      map((event) => {
+        return (event.target as HTMLInputElement).value;
+      }),
+      startWith('projects')
+    );
+
+    const queryObs$ = fromEvent<KeyboardEvent>(
       this.searchInput.nativeElement,
       'keyup'
-    )
-      .pipe(
-        map((event) => {
-          if (event.target)
-            return (event.target as HTMLInputElement).value.toLowerCase();
-          return '';
-        }),
-        tap(value=>{
-          this.search = value
-        }),
-        startWith(''),
-        debounceTime(600),
-        distinctUntilChanged()
-      )
-      .subscribe((value) => this.searchFor(value,this.searchType));
+    ).pipe(
+      debounceTime(600),
+      map((event) => {
+        return (event.target as HTMLInputElement).value;
+      }),
+      distinctUntilChanged(),
+      startWith('')
+    );
+
+    this.searchInputSubscription = combineLatest([
+      queryObs$,
+      typeObs$,
+    ]).subscribe(([value, type]) => this.searchFor(value, type));
   }
 
-  handleSelectorChanged(value:string) {
-    this.searchType = value
-    this.searchFor(this.search,value);
-  }
-
-  searchFor(value: string,type:string) {
+  searchFor(value: string, type: string) {
     this.loadingResults = true;
     this.errorFetchingResults = false;
     this.searchResults = [];
@@ -101,7 +120,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated 
   }
 
   handleElementClick(clicked: SearchResult) {
-    console.log("sas")
+    console.log('sas');
     this.loadingResults = true;
     switch (clicked.type) {
       case 1:
@@ -150,11 +169,35 @@ export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated 
 
   navigateToTask(selectedTask: SearchResult) {
     //Get the epicId of the story that is the parent of this selected task
+
     this.storyService
+      .getEpicId$(selectedTask.data.parent)
+      .pipe(
+        switchMap((epic) => {
+          return zip(this.epicService.getProjectId$(epic),of(epic));
+        })
+      )
+      .subscribe((ids) => {
+         this.routerService.navigate([
+          'my-projects',
+          ids[0],
+          ids[1],
+          selectedTask.data.parent,
+          selectedTask.data._id,
+        ]); 
+      });
+
+/*     this.storyService
       .getEpicId$(selectedTask.data.parent)
       .subscribe((epicId) => {
         //Get the projectId of the epic
         this.epicService.getProjectId$(epicId).subscribe((projectId) => {
+          console.log(
+            projectId,
+            epicId,
+            selectedTask.data.parent,
+            selectedTask.data._id
+          );
           this.routerService.navigate([
             'my-projects',
             projectId,
@@ -163,7 +206,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy,canBeDeactivated 
             selectedTask.data._id,
           ]);
         });
-      });
+      }); */
   }
 
   configureAccent(type: number) {
