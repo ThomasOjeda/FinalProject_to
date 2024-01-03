@@ -34,6 +34,9 @@ describe('ThemeService', () => {
     const newTheme = 'newTheme';
     themeService.setTheme(newTheme);
     expect(themeService.theme).toBe('newTheme');
+    themeService.getTheme$().subscribe((newTheme) => {
+      expect(newTheme).toEqual('newTheme');
+    });
     expect(localStorageSpy.setItem).toHaveBeenCalledTimes(1);
   });
 });
