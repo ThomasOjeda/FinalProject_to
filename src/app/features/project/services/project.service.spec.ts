@@ -122,4 +122,31 @@ describe('ProjectService', () => {
 
     req.flush({ status: 'some', data: mockProjects.data[0] });
   });
+
+  it('Should handle the failed request correctly', () => {
+    projectService.getProject$('ut').subscribe({
+      next: (data) => {
+        fail('the get project operation should have failed');
+      },
+      error: (error) => {
+        expect(error.status).toBe(500);
+      },
+    });
+
+    const req = httpTestingController.expectOne(
+      environment.API_URL + '/api/projects/ut'
+    );
+    expect(req.request.method)
+      .withContext('Http method is not GET')
+      .toEqual('GET');
+
+    req.flush('get project failed', {
+      status: 500,
+      statusText: 'Internal server error',
+    });
+  });
+
+  afterEach(() => {
+    httpTestingController.verify();
+  });
 });
