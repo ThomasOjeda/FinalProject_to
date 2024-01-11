@@ -1,3 +1,4 @@
+<div *ngIf="isOpen" class="fallback-sheet" (click)="closeMenu()"></div>
 <aside class="menu" [ngClass]="{ 'open-menu': isOpen }">
   <header>
     <div class="close-btn-container">
@@ -22,7 +23,7 @@
         class="nav-list-item"
         [routerLink]="element.url"
         routerLinkActive="selected"
-        [routerLinkActiveOptions]="{exact:false}"
+        [routerLinkActiveOptions]="{ exact: false }"
         (click)="closeMenu()"
       >
         <a>{{ element.name }} </a>
@@ -36,9 +37,8 @@
         class="nav-list-item"
         [routerLink]="element.url"
         routerLinkActive="selected"
-        [routerLinkActiveOptions]="{exact:false}"
+        [routerLinkActiveOptions]="{ exact: false }"
         (click)="closeMenu()"
-
       >
         <a>{{ element.name }} </a>
       </li>

@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './project-epics.component.html',
   styleUrls: ['./project-epics.component.scss'],
 })
-export class ProjectEpicsComponent implements OnInit{
+export class ProjectEpicsComponent implements OnInit {
   epicList: Epic[] = [];
 
   epicListSubscription: Subscription = new Subscription();

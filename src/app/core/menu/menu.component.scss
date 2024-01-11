@@ -1,12 +1,20 @@
 @import "../../../styles.scss";
 
+.fallback-sheet {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 200;
+  height: 100dvh;
+}
+
 .menu {
   position: fixed;
-  z-index: 100;
   top: 0;
-  left: -50rem;
+  left: -25rem;
   height: 100dvh;
   width: 85%;
+  z-index: 200;
   transition-property: left;
   transition-duration: 0.5s;
   display: flex;

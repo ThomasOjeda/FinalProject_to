@@ -11,9 +11,8 @@ import { DebugElement } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectService } from '../../services/project.service';
 import { ActivatedRoute } from '@angular/router';
-import { catchError, delay, mergeMap, of, throwError, timer } from 'rxjs';
+import { delay, mergeMap, of, throwError, timer } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 
 describe('ProjectEpicsComponent', () => {
   let component: ProjectEpicsComponent;
@@ -112,7 +111,7 @@ describe('ProjectEpicsComponent', () => {
 
     fixture.detectChanges();
 
-    const spinner = debugElement.query(By.css('app-loading-spinner'));
+    let spinner = debugElement.query(By.css('app-loading-spinner'));
 
     expect(spinner)
       .withContext('Should display a loading spinner')
@@ -122,6 +121,12 @@ describe('ProjectEpicsComponent', () => {
 
     fixture.detectChanges();
 
+    spinner = debugElement.query(By.css('app-loading-spinner'));
+
+    expect(spinner)
+      .withContext('The spinner should disappear after the data is fetched')
+      .toBeFalsy();
+
     const errorAlert = debugElement.query(
       By.css('app-alert-message.error-alert')
     );
@@ -130,6 +135,22 @@ describe('ProjectEpicsComponent', () => {
       .withContext('The error alert should appear after the error is thrown')
       .toBeTruthy();
   }));
+
+  it('Should show a warning alert when there are 0 epics available', () => {
+    activatedRouteServiceSpy.snapshot.paramMap.get.and.returnValue('validId');
+    projectServiceSpy.getEpics$.and.returnValue(
+      of({
+        status: 'validStatus',
+        data: [],
+      })
+    );
+
+    fixture.detectChanges();
+
+    const noEpicsAlert = debugElement.query(By.css('.no-epics-alert'));
+
+    expect(noEpicsAlert).withContext('Should be present').toBeTruthy();
+  });
 });
 
 //Falta testear cuando no hay epicas, y cuando hay varias epicas que haya esa misma cantidad den la lista
