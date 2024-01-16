@@ -3,7 +3,7 @@
 .fallback-sheet {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100dvw;
   z-index: 200;
   height: 100dvh;
 }
@@ -11,18 +11,19 @@
 .menu {
   position: fixed;
   top: 0;
-  left: -25rem;
   height: 100dvh;
   width: 85%;
+  left: -85%;
   z-index: 200;
   transition-property: left;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
   display: flex;
   flex-direction: column;
   background-color: color("black800");
   color: color("gray100");
 
   @media (min-width: $big-screen) {
+    left: -15rem;
     width: 15rem;
   }
 }
