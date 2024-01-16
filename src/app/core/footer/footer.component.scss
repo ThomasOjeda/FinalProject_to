@@ -1,0 +1,21 @@
+@import "../../../styles.scss";
+
+.footer{
+    padding: 1rem;
+    border: 1rem dotted aquamarine;
+    max-height: 30dvh;
+    color: red;
+    @media (min-width: 500px) {
+        color: blue;
+    }
+    background-image: url("https://as1.ftcdn.net/v2/jpg/04/67/86/48/1000_F_467864889_eLV6Z4fnE5fwvwzSpRJZsRdRygSpe8Gs.jpg");
+    @media (min-width: 500px) {
+        background-image: url("https://as1.ftcdn.net/v2/jpg/05/65/59/40/1000_F_565594082_EH6hB0yUILACGQRuzxVKjv5fMgA1PRIE.jpg");
+    }
+    
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-origin: border-box;
+    background-clip: padding-box;
+
+}

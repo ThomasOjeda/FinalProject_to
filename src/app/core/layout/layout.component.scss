@@ -1,12 +1,12 @@
 @import "../../../styles.scss";
 
 .content {
-  margin: 0 auto;
-  @include center-x-y();
+  @include center-x-y(center,flex-start);
   @include content-horizontal-padding();
-  margin-top: 2rem;
-
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  flex-grow: 1;
   @media (min-width: $big-screen) {
-    margin-top: 3rem;
+    padding-top: 3.5rem;
   }
 }
