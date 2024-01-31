@@ -9,7 +9,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { SettingsModule } from './features/settings/settings.module';
-import { SecondInterceptorInterceptor } from './auth/interceptors/second-interceptor.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
