@@ -1,17 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home/home.component';
 import { LayoutComponent } from './core/layout/layout.component';
-import { MyProjectsComponent } from './features/project/my-projects/my-projects.component';
 import { SettingsComponent } from './features/settings/settings/settings.component';
-import { ProjectDataComponent } from './features/project/project-data/project-data.component';
-import { EpicDataComponent } from './features/epic/epic-data/epic-data.component';
-import { StoryDataComponent } from './features/story/story-data/story-data.component';
-import { TaskDetailsComponent } from './features/task/task-details/task-details.component';
 import { LoginComponent } from './auth/login/login.component';
 import { hasTokenGuard } from './auth/guards/has-token.guard';
 import { MyStoriesComponent } from './features/story/my-stories/my-stories.component';
-import { canNavigateOutGuard } from './auth/guards/can-navigate-out.guard';
 
 const routes: Routes = [
   {
@@ -20,33 +13,16 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomeComponent,
+        loadChildren: () =>
+          import('./features/home/home.module').then((m) => m.HomeModule),
         canActivate: [hasTokenGuard],
-        canDeactivate: [canNavigateOutGuard]
       },
       {
         path: 'my-projects',
-        component: MyProjectsComponent,
-        canActivate: [hasTokenGuard],
-      },
-      {
-        path: 'my-projects/:project-id',
-        component: ProjectDataComponent,
-        canActivate: [hasTokenGuard],
-      },
-      {
-        path: 'my-projects/:project-id/:epic-id',
-        component: EpicDataComponent,
-        canActivate: [hasTokenGuard],
-      },
-      {
-        path: 'my-projects/:project-id/:epic-id/:story-id',
-        component: StoryDataComponent,
-        canActivate: [hasTokenGuard],
-      },
-      {
-        path: 'my-projects/:project-id/:epic-id/:story-id/:task-id',
-        component: TaskDetailsComponent,
+        loadChildren: () =>
+          import('./features/project/project.module').then(
+            (m) => m.ProjectModule
+          ),
         canActivate: [hasTokenGuard],
       },
       {

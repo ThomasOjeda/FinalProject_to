@@ -6,6 +6,13 @@
   width: 100dvw;
   z-index: 200;
   height: 100dvh;
+  visibility: hidden;
+  backdrop-filter: blur(0px);
+}
+
+.fallback-sheet-open {
+  visibility: visible;
+  backdrop-filter: blur(1px);
 }
 
 .menu {
@@ -50,6 +57,7 @@ h1 {
 
 .open-menu {
   left: 0;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.445);
 }
 
 .navigation {

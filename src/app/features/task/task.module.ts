@@ -8,8 +8,8 @@ import { TaskNameComponent } from './task/task-name/task-name.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateTaskComponent } from './update-task/update-task.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
-import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TaskRoutingModule } from './task-routing.module';
 @NgModule({
   declarations: [
     AddTaskFormComponent,
@@ -23,9 +23,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
     SharedModule,
+    TaskRoutingModule,
   ],
-  exports: [TaskListComponent],
+  exports: [TaskListComponent, TaskRoutingModule],
 })
 export class TaskModule {}

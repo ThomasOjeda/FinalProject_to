@@ -1,4 +1,8 @@
-<div *ngIf="isOpen" class="fallback-sheet" (click)="closeMenu()"></div>
+<div
+  [ngClass]="{ 'fallback-sheet-open': isOpen }"
+  class="fallback-sheet"
+  (click)="closeMenu()"
+></div>
 <aside class="menu" [ngClass]="{ 'open-menu': isOpen }">
   <header>
     <div class="close-btn-container">

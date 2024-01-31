@@ -5,6 +5,7 @@ import { ProjectDataComponent } from './project-data/project-data.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectDetailsComponent } from './project-data/project-details/project-details.component';
 import { ProjectEpicsComponent } from './project-data/project-epics/project-epics.component';
+import { ProjectRoutingModule } from './project-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,6 @@ import { ProjectEpicsComponent } from './project-data/project-epics/project-epic
     ProjectDetailsComponent,
     ProjectEpicsComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, ProjectRoutingModule],
 })
 export class ProjectModule {}
