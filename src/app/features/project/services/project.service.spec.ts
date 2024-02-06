@@ -96,7 +96,6 @@ describe('ProjectService', () => {
         .withContext('Data is not the correct size')
         .toBe(6);
     });
-
     const req = httpTestingController.expectOne(
       environment.API_URL + '/api/projects'
     );

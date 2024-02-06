@@ -68,7 +68,7 @@ describe('ProjectEpicsComponent', () => {
       }).pipe(delay(100))
     );
 
-    fixture.detectChanges();
+    fixture.detectChanges(); // Its important to detect after the spies have been configured, because if you do it before, ngOnInit fires and finds some values undefined.
 
     let spinner = debugElement.query(By.css('app-loading-spinner'));
 
@@ -99,13 +99,13 @@ describe('ProjectEpicsComponent', () => {
     activatedRouteServiceSpy.snapshot.paramMap.get.and.returnValue('validId');
     projectServiceSpy.getEpics$.and.returnValue(
       timer(100).pipe(
-        mergeMap(() =>
-          throwError(() => {
+        mergeMap(() => {
+          return throwError(() => {
             return {
               error: 'there was an eror',
             };
-          })
-        )
+          });
+        })
       )
     );
 

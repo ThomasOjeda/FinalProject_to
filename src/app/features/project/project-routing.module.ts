@@ -11,13 +11,18 @@ const routes: Routes = [
   },
   {
     path: ':project-id',
-    component: ProjectDataComponent,
     canActivate: [hasTokenGuard],
-  },
-  {
-    path: ':project-id/:epic-id',
-    loadChildren: () => import('../epic/epic.module').then((m) => m.EpicModule),
-    canActivate: [hasTokenGuard],
+    children: [
+      {
+        path: '',
+        component: ProjectDataComponent,
+      },
+      {
+        path: ':epic-id',
+        loadChildren: () =>
+          import('../epic/epic.module').then((m) => m.EpicModule),
+      },
+    ],
   },
 ];
 
