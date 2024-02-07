@@ -5,10 +5,22 @@ import { SettingsComponent } from './features/settings/settings/settings.compone
 import { LoginComponent } from './auth/login/login.component';
 import { hasTokenGuard } from './auth/guards/has-token.guard';
 import { MyStoriesComponent } from './features/story/my-stories/my-stories.component';
+import { LandingComponent } from './landing/landing/landing.component';
+import { LandingContentComponent } from './landing/landing-content/landing-content.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: LandingComponent,
+    children: [
+      {
+        path: '',
+        component: LandingContentComponent,
+      },
+    ],
+  },
+  {
+    path: 'app',
     component: LayoutComponent,
     children: [
       {
@@ -36,9 +48,8 @@ const routes: Routes = [
         canActivate: [hasTokenGuard],
       },
       {
-        path: '',
+        path: '**',
         redirectTo: 'home',
-        pathMatch: 'full',
       },
     ],
   },
@@ -48,7 +59,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '',
   },
 ];
 

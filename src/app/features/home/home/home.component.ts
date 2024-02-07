@@ -136,11 +136,16 @@ export class HomeComponent
   }
 
   navigateToProject(selectedProject: SearchResult) {
-    this.routerService.navigate(['my-projects', selectedProject.data._id]);
+    this.routerService.navigate([
+      'app',
+      'my-projects',
+      selectedProject.data._id,
+    ]);
   }
 
   navigateToEpic(selectedEpic: SearchResult) {
     this.routerService.navigate([
+      'app',
       'my-projects',
       selectedEpic.data.parent,
       selectedEpic.data._id,
@@ -153,6 +158,7 @@ export class HomeComponent
       .getProjectId$(selectedStory.data.parent)
       .subscribe((projectId) => {
         this.routerService.navigate([
+          'app',
           'my-projects',
           projectId,
           selectedStory.data.parent,
@@ -168,17 +174,18 @@ export class HomeComponent
       .getEpicId$(selectedTask.data.parent)
       .pipe(
         switchMap((epic) => {
-          return zip(this.epicService.getProjectId$(epic),of(epic));
+          return zip(this.epicService.getProjectId$(epic), of(epic));
         })
       )
       .subscribe((ids) => {
-         this.routerService.navigate([
+        this.routerService.navigate([
+          'app',
           'my-projects',
           ids[0],
           ids[1],
           selectedTask.data.parent,
           selectedTask.data._id,
-        ]); 
+        ]);
       });
   }
 

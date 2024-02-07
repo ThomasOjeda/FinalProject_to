@@ -13,12 +13,14 @@ export class MenuComponent implements OnInit, OnDestroy {
   menuStateSubscription: Subscription = new Subscription();
 
   mainElements = [
-    { url: '/home', name: 'Home' },
-    { url: 'my-projects', name: 'My Projects' },
-    { url: '/my-stories', name: 'My Stories' },
+    { url: '/app/home', name: 'Home' },
+    { url: '/app/my-projects', name: 'My Projects' },
+    { url: '/app/my-stories', name: 'My Stories' },
   ];
 
-  footerElements = [{ url: '/settings', name: 'Settings', selected: false }];
+  footerElements = [
+    { url: '/app/settings', name: 'Settings', selected: false },
+  ];
 
   constructor(
     private menuService: MenuService,

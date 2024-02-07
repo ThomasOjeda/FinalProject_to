@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Event, Router } from '@angular/router';
-import { BehaviorSubject, Subscription, map } from 'rxjs';
+import { BehaviorSubject, Subscription, filter, map } from 'rxjs';
 import { EpicService } from 'src/app/features/epic/services/epic.service';
 import { ProjectService } from 'src/app/features/project/services/project.service';
 import { StoryService } from 'src/app/features/story/services/story.service';
@@ -67,17 +67,25 @@ export class RouteSegmentsService implements OnDestroy {
   ) {
     this.currentRoute$ = new BehaviorSubject<string[]>([]);
     this.displayRoute$ = new BehaviorSubject<string[]>([]);
-    this.routerSubscription = this.routerService.events.subscribe(
-      (event: Event) => {
-        if (event instanceof NavigationEnd) {
-          this.lastRoute = [...this.currentRoute];
-          this.currentRoute = this.routeToArray(event.urlAfterRedirects);
-          this.currentRoute$.next(this.currentRoute);
+    this.routerSubscription = this.routerService.events
+      .pipe(
+        filter((event: Event) => {
+          return (
+            event instanceof NavigationEnd &&
+            event.urlAfterRedirects.startsWith('/app')
+          );
+        })
+      )
+      .subscribe((event: Event) => {
+        this.lastRoute = [...this.currentRoute];
+        this.currentRoute = this.routeToArray(
+          (event as NavigationEnd).urlAfterRedirects
+        );
+        this.currentRoute.shift(); //get rid of /app segment
+        this.currentRoute$.next(this.currentRoute);
 
-          this.beautifyDisplayRoute();
-        }
-      }
-    );
+        this.beautifyDisplayRoute();
+      });
   }
 
   validIndex(index: number) {
@@ -133,7 +141,10 @@ export class RouteSegmentsService implements OnDestroy {
   }
 
   navigateTo(segmentIndex: number) {
-    this.routerService.navigate(this.currentRoute.slice(0, segmentIndex));
+    this.routerService.navigate([
+      'app', //the app segment was deleted from current route array
+      ...this.currentRoute.slice(0, segmentIndex),
+    ]);
   }
 
   getCurrentRoute$() {

@@ -9,7 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [HeaderComponent, MenuComponent, LayoutComponent, FooterComponent],
+  declarations: [
+    HeaderComponent,
+    MenuComponent,
+    LayoutComponent,
+    FooterComponent,
+  ],
   imports: [CommonModule, FormsModule, RouterModule, SharedModule],
   exports: [HeaderComponent],
 })

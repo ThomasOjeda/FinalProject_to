@@ -1,0 +1,21 @@
+.slides {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  gap: 3rem;
+
+  .slide {
+    background-color: aliceblue;
+    height: 30rem;
+    width: 40dvw;
+    flex-shrink: 0;
+
+    text-align: center;
+    line-height: 30rem;
+    vertical-align: middle;
+    order: 3;
+    &#one {
+      order: 2;
+    }
+  }
+}
