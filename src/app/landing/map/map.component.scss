@@ -1,0 +1,9 @@
+#argentina-map-container {
+  #argentina-map {
+    margin: 0 auto;
+    height: 90vh;
+    width: 80vw;
+  }
+
+  @import "/node_modules/leaflet/dist/leaflet";
+}
