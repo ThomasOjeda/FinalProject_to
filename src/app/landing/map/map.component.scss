@@ -1,9 +1,34 @@
 #argentina-map-container {
+  position: relative;
+  height: 90vh;
+  width: 80vw;
+  margin: 0 auto;
   #argentina-map {
-    margin: 0 auto;
-    height: 90vh;
-    width: 80vw;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
   }
 
   @import "/node_modules/leaflet/dist/leaflet";
+
+  .icon {
+    filter :invert(0.5) sepia(1) saturate(5) hue-rotate(360deg);
+  }
+.leaflet-popup {
+> .leaflet-popup-tip-container {
+  > .leaflet-popup-tip {
+    background-color: blue;
+  }
+}
+}
+}
+
+
+.tooltip {
+  position: absolute;
+  left: 5%;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  background-color: red;
 }
