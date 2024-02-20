@@ -7,6 +7,7 @@ import { hasTokenGuard } from './auth/guards/has-token.guard';
 import { MyStoriesComponent } from './features/story/my-stories/my-stories.component';
 import { LandingComponent } from './landing/landing/landing.component';
 import { LandingContentComponent } from './landing/landing-content/landing-content.component';
+import { MapComponent } from './landing/map/map.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: '',
         component: LandingContentComponent,
+      },
+      {
+        path: 'map',
+        component: MapComponent,
       },
     ],
   },
