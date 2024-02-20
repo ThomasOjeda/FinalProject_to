@@ -28,6 +28,13 @@ export class MapComponent {
         className: 'icon',
       });
 
+      const pointIcon = L.icon({
+        iconUrl: '/assets/marker-stroked-svgrepo-com.svg',
+        iconSize: [25, 25],
+        iconAnchor: [12.5, 24],
+        className: 'point-icon',
+      });
+
       const popup = L.popup().setContent(
         '<img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Mickey_mouse.svg" width="50" height="50">'
       );
@@ -44,9 +51,13 @@ export class MapComponent {
       this.httpClient
         .get('assets/mapdata/puntos.json')
         .subscribe((puntosGeoJSON) => {
-          this.points = L.geoJSON(puntosGeoJSON as GeoJSON.GeoJsonObject).addTo(
-            this.map
-          );
+          this.points = L.geoJSON(puntosGeoJSON as GeoJSON.GeoJsonObject, {
+            pointToLayer: (feature, latlng) => {
+              return L.marker(latlng, { icon: pointIcon }).bindPopup(
+                feature.properties.fna
+              );
+            },
+          }).addTo(this.map);
           this.map.fitBounds(this.points.getBounds(), {
             paddingTopLeft: [500, 0],
           });
@@ -58,8 +69,8 @@ export class MapComponent {
           L.geoJSON(provinciasGeoJSON as GeoJSON.GeoJsonObject, {
             style: (feature) => {
               if (feature?.properties.fna == 'Provincia de Buenos Aires')
-                return { color: '#3a5e3b' };
-              else return {};
+                return { color: '#3a5e3b', fillOpacity: 0 };
+              else return { fillOpacity: 0 };
             },
             onEachFeature: (feature, layer) => {
               layer.bindTooltip(feature.properties.fna);

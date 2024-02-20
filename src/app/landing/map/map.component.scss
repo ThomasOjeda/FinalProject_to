@@ -12,17 +12,21 @@
   @import "/node_modules/leaflet/dist/leaflet";
 
   .icon {
-    filter :invert(0.5) sepia(1) saturate(5) hue-rotate(360deg);
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(360deg);
   }
-.leaflet-popup {
-> .leaflet-popup-tip-container {
-  > .leaflet-popup-tip {
-    background-color: blue;
+  .leaflet-popup {
+    > .leaflet-popup-tip-container {
+      > .leaflet-popup-tip {
+        background-color: blue;
+      }
+    }
   }
-}
-}
-}
 
+  .point-icon {
+    filter: invert(86%) sepia(37%) saturate(906%) hue-rotate(86deg)
+      brightness(106%) contrast(94%);
+  }
+}
 
 .tooltip {
   position: absolute;
