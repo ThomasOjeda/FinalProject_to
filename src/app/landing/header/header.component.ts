@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { NavItemComponent } from './nav-item/nav-item.component';
 
 @Component({
   selector: 'app-header',
@@ -6,17 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  menuElements: string[] = [
-    'Store',
-    'Mac',
-    'iPad',
-    'iPhone',
-    'Watch',
-    'Vision',
-    'AirPods',
-    'TV & Home',
-    'Entertainment',
-    'Accesories',
-    'Support',
+  menuElements: any[] = [
+    { title: 'Store', component: NavItemComponent },
+    { title: 'Mac', component: NavItemComponent },
   ];
+
+  @ViewChild('navContent', { read: ViewContainerRef })
+  navContentContainer!: ViewContainerRef;
+  mouseEnter(comp: any) {
+    this.navContentContainer.createComponent(comp);
+  }
 }
