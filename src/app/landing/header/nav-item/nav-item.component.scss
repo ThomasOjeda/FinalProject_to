@@ -1,5 +1,19 @@
 .header-content {
+  width: 64rem;
+  padding: 40px 22px 84px 22px;
   display: grid;
 
-  grid-template-columns: auto 1 1;
+  grid-template-columns: max-content 20rem 20rem;
+
+  > .explore-column {
+    padding-right: 88px;
+  }
+
+  > .shop-column {
+    background-color: skyblue;
+  }
+
+  > .more-column {
+    background-color: blue;
+  }
 }

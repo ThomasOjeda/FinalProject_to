@@ -18,13 +18,13 @@ nav {
   width: 100%;
   background-color: rgba($color: #000000, $alpha: 0.73);
   color: white;
-
+  overflow: hidden;
   transition-property: height, background-color;
   transition-duration: $nav-transition-duration, $nav-transition-duration;
   transition-timing-function: cubic-bezier();
-  &:hover {
+
+  &.open {
     background-color: rgba($color: #000000, $alpha: 1);
-    height: 40vh;
   }
 
   > ul {
@@ -66,6 +66,18 @@ nav {
         color: $nav-element-hover-color;
         fill: $nav-element-hover-color;
       }
+    }
+  }
+
+  > .nav-content {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+
+    &.visible {
+      opacity: 1;
     }
   }
 }
