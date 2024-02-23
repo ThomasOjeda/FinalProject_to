@@ -20,6 +20,7 @@ export class HeaderComponent {
     { title: 'Mac', component: NavItemComponent },
   ];
 
+  currentSubmenu: string | null = null;
   @ViewChild('nav', { read: ElementRef }) nav!: ElementRef;
   @ViewChild('navContent', { read: ElementRef }) navContent!: ElementRef;
   @ViewChild('navContentContainer', { read: ViewContainerRef })
@@ -28,23 +29,29 @@ export class HeaderComponent {
   isHeaderOpen = false;
   constructor(private renderer2: Renderer2) {}
 
-  mouseEnterNavItem(comp: any) {
-    this.isHeaderOpen = true;
-    if (this.navContentContainer.length <= 0) {
+  mouseEnterNavItem(compName: string, comp: any) {
+    console.log(compName, comp);
+    if (compName != this.currentSubmenu || !this.isHeaderOpen) {
+      this.currentSubmenu = compName;
+      if (this.navContentContainer.length > 0) this.navContentContainer.clear();
       this.navContentContainer.createComponent(comp);
     }
+    this.isHeaderOpen = true;
   }
 
   mouseLeaveNavContent() {
+    //this.navContentContainer.clear();
     this.isHeaderOpen = false;
-    this.navContentContainer.clear();
+    this.renderer2.removeClass(this.nav.nativeElement, 'open');
+    this.renderer2.removeStyle(this.nav.nativeElement, 'height');
+    this.renderer2.removeClass(this.navContent.nativeElement, 'visible');
+    this.renderer2.removeClass(this.navContent.nativeElement, 'animatedEntry');
+
+    this.renderer2.addClass(this.navContent.nativeElement, 'animatedExit');
   }
 
   ngAfterViewChecked() {
     if (!this.isHeaderOpen) {
-      this.renderer2.removeClass(this.nav.nativeElement, 'open');
-      this.renderer2.removeStyle(this.nav.nativeElement, 'height');
-      this.renderer2.removeClass(this.navContent.nativeElement, 'visible');
     } else {
       this.renderer2.addClass(this.nav.nativeElement, 'open');
       this.renderer2.addClass(this.navContent.nativeElement, 'visible');
@@ -54,6 +61,16 @@ export class HeaderComponent {
         'height',
         this.nav.nativeElement.scrollHeight + 'px'
       );
+      this.renderer2.removeClass(this.navContent.nativeElement, 'animatedExit');
+      this.renderer2.addClass(this.navContent.nativeElement, 'animatedEntry');
+    }
+  }
+
+  onAnimationFinished($event: AnimationEvent) {
+    console.log($event);
+
+    if ($event.animationName.includes('slowlyGoBack')) {
+      this.navContentContainer.clear();
     }
   }
 }

@@ -15,7 +15,7 @@
       </li>
       <li
         *ngFor="let element of menuElements"
-        (mouseenter)="mouseEnterNavItem(element.component)"
+        (mouseenter)="mouseEnterNavItem(element.title, element.component)"
       >
         <a href="">{{ element.title }}</a>
       </li>
@@ -45,7 +45,11 @@
       </li>
     </ul>
 
-    <section #navContent class="nav-content">
+    <section
+      #navContent
+      class="nav-content"
+      (animationend)="onAnimationFinished($event)"
+    >
       <ng-container #navContentContainer></ng-container>
     </section>
   </nav>
