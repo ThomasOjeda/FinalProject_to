@@ -1,14 +1,25 @@
 <nav class="header-content">
-  <section class="explore-column">
+  <section #column1 class="explore-column">
     <app-nav-column-content
       [header]="'Explore Masssssc'"
       [elements]="exploreColumnElements"
+      [delay]="'240ms'"
     ></app-nav-column-content>
   </section>
-  <section class="shop-column">
-    <h3>Super header</h3>
+  <section #column2 class="shop-column">
+    <app-nav-column-content
+      [header]="'Shop things'"
+      [elements]="exploreColumnElements"
+      [delay]="'280ms'"
+    >
+    </app-nav-column-content>
   </section>
-  <section class="more-column">
-    <h3>Super header</h3>
+  <section #column3 class="more-column">
+    <app-nav-column-content
+      [header]="'Shop things'"
+      [elements]="exploreColumnElements"
+      [delay]="'320ms'"
+    >
+    </app-nav-column-content>
   </section>
 </nav>

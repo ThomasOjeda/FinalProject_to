@@ -1,3 +1,21 @@
 ul {
   list-style: none;
 }
+
+li {
+  opacity: 0;
+
+  @keyframes slowlyAppearAbove {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  animation: 0.1s ease-in calc(var(--delay) + var(--order-app) * 8ms)
+    slowlyAppearAbove forwards;
+}

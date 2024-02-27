@@ -2,5 +2,10 @@
   {{ header }}
 </h4>
 <ul>
-  <li *ngFor="let element of elements">{{ element }}</li>
+  <li
+    *ngFor="let element of elements; let i = index"
+    style="--delay : {{ delay }}; --order-app : {{ i }}"
+  >
+    {{ element }}
+  </li>
 </ul>

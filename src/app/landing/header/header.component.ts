@@ -1,6 +1,5 @@
 import {
   AfterViewChecked,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   Renderer2,
@@ -8,14 +7,15 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { NavItem } from './NavItem';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
-  menuElements: any[] = [
+export class HeaderComponent implements AfterViewChecked {
+  menuElements: { title: string; component: NavItem }[] = [
     { title: 'Store', component: NavItemComponent },
     { title: 'Mac', component: NavItemComponent },
   ];
@@ -30,7 +30,6 @@ export class HeaderComponent {
   constructor(private renderer2: Renderer2) {}
 
   mouseEnterNavItem(compName: string, comp: any) {
-    console.log(compName, comp);
     if (compName != this.currentSubmenu || !this.isHeaderOpen) {
       this.currentSubmenu = compName;
       if (this.navContentContainer.length > 0) this.navContentContainer.clear();
@@ -40,35 +39,35 @@ export class HeaderComponent {
   }
 
   mouseLeaveNavContent() {
-    //this.navContentContainer.clear();
     this.isHeaderOpen = false;
-    this.renderer2.removeClass(this.nav.nativeElement, 'open');
-    this.renderer2.removeStyle(this.nav.nativeElement, 'height');
-    this.renderer2.removeClass(this.navContent.nativeElement, 'visible');
-    this.renderer2.removeClass(this.navContent.nativeElement, 'animatedEntry');
-
-    this.renderer2.addClass(this.navContent.nativeElement, 'animatedExit');
   }
 
   ngAfterViewChecked() {
-    if (!this.isHeaderOpen) {
-    } else {
-      this.renderer2.addClass(this.nav.nativeElement, 'open');
-      this.renderer2.addClass(this.navContent.nativeElement, 'visible');
+    this.adjustHeader();
+  }
 
+  adjustHeader() {
+    if (this.isHeaderOpen) {
       this.renderer2.setStyle(
         this.nav.nativeElement,
         'height',
         this.nav.nativeElement.scrollHeight + 'px'
       );
-      this.renderer2.removeClass(this.navContent.nativeElement, 'animatedExit');
-      this.renderer2.addClass(this.navContent.nativeElement, 'animatedEntry');
+      this.renderer2.addClass(this.nav.nativeElement, 'open');
+      this.renderer2.removeClass(
+        this.navContent.nativeElement,
+        'animatedClose'
+      );
+      this.renderer2.addClass(this.navContent.nativeElement, 'animatedOpen');
+    } else {
+      this.renderer2.removeStyle(this.nav.nativeElement, 'height');
+      this.renderer2.removeClass(this.nav.nativeElement, 'open');
+      this.renderer2.removeClass(this.navContent.nativeElement, 'animatedOpen');
+      this.renderer2.addClass(this.navContent.nativeElement, 'animatedClose');
     }
   }
 
   onAnimationFinished($event: AnimationEvent) {
-    console.log($event);
-
     if ($event.animationName.includes('slowlyGoBack')) {
       this.navContentContainer.clear();
     }

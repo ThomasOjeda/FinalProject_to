@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class NavColumnContentComponent {
   @Input() header!: string;
   @Input() elements!: string[];
+  @Input() delay!: string;
 }
