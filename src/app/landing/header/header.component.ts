@@ -7,7 +7,6 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NavItemComponent } from './nav-item/nav-item.component';
-import { NavItem } from './NavItem';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +14,7 @@ import { NavItem } from './NavItem';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements AfterViewChecked {
-  menuElements: { title: string; component: NavItem }[] = [
+  menuElements: { title: string; component: any }[] = [
     { title: 'Store', component: NavItemComponent },
     { title: 'Mac', component: NavItemComponent },
   ];
@@ -33,7 +32,11 @@ export class HeaderComponent implements AfterViewChecked {
     if (compName != this.currentSubmenu || !this.isHeaderOpen) {
       this.currentSubmenu = compName;
       if (this.navContentContainer.length > 0) this.navContentContainer.clear();
-      this.navContentContainer.createComponent(comp);
+      const newlyCreated = this.navContentContainer.createComponent(comp);
+      if (this.isHeaderOpen) {
+        newlyCreated.setInput('animate', false);
+        console.log(newlyCreated.location.nativeElement);
+      } else newlyCreated.setInput('animate', true);
     }
     this.isHeaderOpen = true;
   }

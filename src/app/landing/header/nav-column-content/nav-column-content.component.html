@@ -1,10 +1,16 @@
-<h4>
+<h4
+  [ngClass]="{ 'animated-element': this.animate }"
+  style=" --item-order : 0; --item-delay: {{ delayBetweenElements }}"
+>
   {{ header }}
 </h4>
 <ul>
   <li
+    [ngClass]="{ 'animated-element': this.animate }"
     *ngFor="let element of elements; let i = index"
-    style="--delay : {{ delay }}; --order-app : {{ i }}"
+    style=" --item-order : {{ i + 1 }}; --item-delay: {{
+      delayBetweenElements
+    }}"
   >
     {{ element }}
   </li>

@@ -2,7 +2,7 @@ ul {
   list-style: none;
 }
 
-li {
+.animated-element {
   opacity: 0;
 
   @keyframes slowlyAppearAbove {
@@ -16,6 +16,7 @@ li {
     }
   }
 
-  animation: 0.1s ease-in calc(var(--delay) + var(--order-app) * 8ms)
+  animation: 0.1s ease-in
+    calc(var(--column-appearance-delay) + var(--item-order) * var(--item-delay))
     slowlyAppearAbove forwards;
 }

@@ -1,12 +1,12 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
+  Input,
   QueryList,
   Renderer2,
-  ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { NavItem } from '../NavItem';
 import { NavColumnContentComponent } from '../nav-column-content/nav-column-content.component';
 
 @Component({
@@ -14,7 +14,8 @@ import { NavColumnContentComponent } from '../nav-column-content/nav-column-cont
   templateUrl: './nav-item.component.html',
   styleUrls: ['./nav-item.component.scss'],
 })
-export class NavItemComponent implements NavItem {
+export class NavItemComponent implements AfterViewInit {
+  @Input() animate!: boolean;
   exploreColumnElements = [
     'Explore All Mac',
     'MacBook Air',
@@ -39,14 +40,11 @@ export class NavItemComponent implements NavItem {
   constructor(private renderer2: Renderer2) {}
 
   ngAfterViewInit() {
-    console.log(this.columns);
-
     this.columns.forEach((col: ElementRef, index: number) => {
-      console.log(col);
       this.renderer2.setProperty(
         col.nativeElement,
         'style',
-        `--order-app:${this.orderOfAppearance[index]};`
+        `--column-appearance-delay : ${240 + index * 32}ms`
       );
     });
   }

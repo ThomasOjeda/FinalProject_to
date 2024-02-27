@@ -1,24 +1,27 @@
 <nav class="header-content">
   <section #column1 class="explore-column">
     <app-nav-column-content
+      [animate]="animate"
       [header]="'Explore Masssssc'"
       [elements]="exploreColumnElements"
-      [delay]="'240ms'"
+      [delayBetweenElements]="'8ms'"
     ></app-nav-column-content>
   </section>
   <section #column2 class="shop-column">
     <app-nav-column-content
+      [animate]="animate"
       [header]="'Shop things'"
       [elements]="exploreColumnElements"
-      [delay]="'280ms'"
+      [delayBetweenElements]="'8ms'"
     >
     </app-nav-column-content>
   </section>
   <section #column3 class="more-column">
     <app-nav-column-content
+      [animate]="animate"
       [header]="'Shop things'"
       [elements]="exploreColumnElements"
-      [delay]="'320ms'"
+      [delayBetweenElements]="'8ms'"
     >
     </app-nav-column-content>
   </section>
