@@ -1,5 +1,6 @@
 import {
   AfterViewChecked,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   Renderer2,
@@ -7,6 +8,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { NavItem2Component } from './nav-item2/nav-item2.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,7 @@ import { NavItemComponent } from './nav-item/nav-item.component';
 export class HeaderComponent implements AfterViewChecked {
   menuElements: { title: string; component: any }[] = [
     { title: 'Store', component: NavItemComponent },
-    { title: 'Mac', component: NavItemComponent },
+    { title: 'Mac', component: NavItem2Component },
   ];
 
   currentSubmenu: string | null = null;
@@ -26,7 +28,10 @@ export class HeaderComponent implements AfterViewChecked {
   navContentContainer!: ViewContainerRef;
 
   isHeaderOpen = false;
-  constructor(private renderer2: Renderer2) {}
+  constructor(
+    private renderer2: Renderer2,
+    private changes: ChangeDetectorRef
+  ) {}
 
   mouseEnterNavItem(compName: string, comp: any) {
     if (compName != this.currentSubmenu || !this.isHeaderOpen) {
@@ -54,7 +59,7 @@ export class HeaderComponent implements AfterViewChecked {
       this.renderer2.setStyle(
         this.nav.nativeElement,
         'height',
-        this.nav.nativeElement.scrollHeight + 'px'
+        `calc(2.75rem + ${this.navContent.nativeElement.scrollHeight}px)`
       );
       this.renderer2.addClass(this.nav.nativeElement, 'open');
       this.renderer2.removeClass(
@@ -71,6 +76,7 @@ export class HeaderComponent implements AfterViewChecked {
   }
 
   onAnimationFinished($event: AnimationEvent) {
+    console.log($event);
     if ($event.animationName.includes('slowlyGoBack')) {
       this.navContentContainer.clear();
     }
